@@ -1,273 +1,367 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>장동철 | Embedded & Vision Portfolio</title>
+  <meta name="description" content="임베디드 시스템 & 컴퓨터 비전 포트폴리오. RTOS, MCU, 드라이버, 실시간 스트리밍, 컴퓨터 비전 프로젝트와 코드 링크.">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow-x: hidden;
-        }
+  <!-- Open Graph -->
+  <meta property="og:title" content="장동철 | Embedded & Vision Portfolio">
+  <meta property="og:description" content="RTOS, MCU, 드라이버, 실시간 스트리밍, 컴퓨터 비전 프로젝트 모음.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="og-image.png">
+  <meta property="og:locale" content="ko_KR">
 
-        /* 공통 섹션 스타일 */
-        section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 50px;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
+  <link rel="icon" href="favicon.ico">
+  <style>
+    :root{
+      --bg-dark-1:#0a0a0a;
+      --bg-dark-2:#1a1a3e;
+      --accent:#00d4ff;
+      --text:#e9f1f8;
+      --muted:#a7b3c2;
+      --card:#ffffff0f;
+      --border:#00d4ff4d;
+      --ink:#1a1a3e;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html:focus-within{scroll-behavior:smooth}
+    body{
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color:var(--text);
+      background:#fff;
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+    /* Skip link */
+    .skip-link{
+      position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden
+    }
+    .skip-link:focus{
+      position:fixed;left:16px;top:16px;width:auto;height:auto;padding:10px 14px;background:#fff;color:#000;border-radius:8px;z-index:9999
+    }
 
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    /* Sections */
+    section{
+      min-height:100svh;
+      display:flex;flex-direction:column;justify-content:center;align-items:center;
+      padding:64px 24px;
+      opacity:0;transform:translateY(80px);
+      transition:opacity 1.2s ease, transform 1.2s ease;
+    }
+    section.visible{opacity:1;transform:translateY(0)}
+    .container{width:100%;max-width:1120px;margin:0 auto}
 
-        /* 섹션 1: 인트로 (다크) */
-        .intro {
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a3e 100%);
-            color: white;
-            position: relative;
-            overflow: hidden;
-            justify-content: flex-end;
-            align-items: flex-start;
-        }
+    /* Intro */
+    .intro{
+      background:linear-gradient(135deg, var(--bg-dark-1) 0%, var(--bg-dark-2) 100%);
+      position:relative;color:white;align-items:flex-start;justify-content:flex-end;overflow:hidden
+    }
+    .intro::before{
+      content:"";position:absolute;width:300%;height:300%;
+      background:radial-gradient(circle, rgba(0,150,255,.15) 0%, transparent 60%);
+      top:-100%;left:-100%;animation:spin 25s linear infinite
+    }
+    @keyframes spin { from{transform:rotate(0)} to{transform:rotate(360deg)} }
 
-        .intro::before {
-            content: '';
-            position: absolute;
-            width: 300%;
-            height: 300%;
-            background: radial-gradient(circle, rgba(0, 150, 255, 0.15) 0%, transparent 60%);
-            animation: rotate 25s linear infinite;
-            top: -100%;
-            left: -100%;
-        }
+    .intro-content{z-index:1;margin:0 0 96px 80px;max-width:1080px}
+    .hero-title{
+      font-size:clamp(36px, 8vw, 84px);
+      font-weight:300;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px
+    }
+    .subtitle{
+      font-size:clamp(16px, 3vw, 26px);
+      color:var(--accent);letter-spacing:.24em;margin-bottom:28px
+    }
+    .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:12px 16px;border-radius:12px;border:1px solid var(--border);
+      color:var(--text);text-decoration:none;background:transparent;
+      transition:transform .2s ease, box-shadow .2s ease, background .2s ease
+    }
+    .btn.primary{background:var(--accent);color:#001018;border-color:transparent;font-weight:600}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,212,255,.35)}
+    .btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+    /* About */
+    .about{background:#fff;color:#333}
+    .about h2{
+      font-size:clamp(28px, 5vw, 56px);color:var(--ink);text-align:center;margin-bottom:24px;font-weight:800
+    }
+    .about p{
+      font-size:clamp(16px, 2.5vw, 20px);line-height:1.85;color:#444;text-align:center;max-width:860px;margin:0 auto
+    }
+    .about .highlights{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:32px
+    }
+    .chip{
+      border:1px solid #e6ecf4;border-radius:999px;padding:10px 14px;text-align:center;color:#2a3a52;background:#f7fbff
+    }
 
-        .intro-content {
-            z-index: 1;
-            margin-bottom: 80px;
-            margin-left: 80px;
-        }
+    /* Core skills */
+    .skills{background:linear-gradient(135deg, var(--bg-dark-2), var(--bg-dark-1));color:#fff}
+    .section-title{
+      font-size:clamp(28px, 5vw, 56px);font-weight:800;text-align:center;margin-bottom:40px;color:var(--accent)
+    }
+    .skill-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px
+    }
+    .card{
+      background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px
+    }
+    .card h3{font-size:20px;margin-bottom:8px;color:var(--accent)}
+    .card ul{list-style:none;color:#dde7ef}
+    .card li{padding-left:10px;margin:6px 0}
+    .card li::marker{content:""}
 
-        .intro h1 {
-            font-size: 80px;
-            font-weight: 900;
-            letter-spacing: 5px;
-        }
+    /* Projects */
+    .projects{background:linear-gradient(135deg, var(--bg-dark-2) 0%, var(--bg-dark-1) 100%);color:#fff}
+    .project-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px
+    }
+    .project-card{
+      background:var(--card);padding:24px;border-radius:16px;border:1px solid var(--border);
+      transition:transform .2s, box-shadow .2s
+    }
+    .project-card:hover{transform:translateY(-6px);box-shadow:0 16px 36px rgba(0,212,255,.35)}
+    .project-card h3{font-size:22px;margin-bottom:8px;color:var(--accent)}
+    .meta{font-size:14px;color:var(--muted);margin-bottom:10px}
+    .project-card p{color:#d7e6f2;margin-bottom:14px}
+    .tagset{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 16px}
+    .tag{font-size:12px;border:1px solid var(--border);border-radius:999px;padding:6px 10px;color:#cfefff}
+    .links{display:flex;gap:10px;flex-wrap:wrap}
 
-        /* 섹션 2: About Me (화이트) */
-        .about {
-            background: #ffffff;
-            color: #333;
-        }
+    /* Contact */
+    .contact{background:#fff;color:#2a3a52}
+    .contact .panel{
+      background:#f7fbff;border:1px solid #e6ecf4;border-radius:16px;padding:24px;text-align:center
+    }
+    .contact a{color:#0a6cae;text-underline-offset:3px}
+    .contact .cta{margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 
-        .about-content {
-            max-width: 800px;
-            text-align: center;
-        }
+    /* Footer */
+    footer{padding:24px;text-align:center;background:#060b12;color:#88a1b8}
 
-        .about h2 {
-            font-size: 56px;
-            font-weight: bold;
-            margin-bottom: 40px;
-            color: #1a1a3e;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
+    /* Motion preference */
+    @media (prefers-reduced-motion: reduce){
+      html:focus-within{scroll-behavior:auto}
+      section{transition:none}
+      .intro::before{animation:none}
+    }
 
-        .about h2.fade-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    @media (max-width:768px){
+      .intro-content{margin:0 20px 64px 20px}
+      section{padding:48px 20px}
+    }
+  </style>
 
-        .about p {
-            font-size: 20px;
-            line-height: 1.8;
-            color: #555;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease 0.4s, transform 0.8s ease 0.4s;
-        }
-
-        .about p.fade-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* 섹션 3: Projects (다크) */
-        .projects {
-            background: linear-gradient(135deg, #1a1a3e 0%, #0a0a0a 100%);
-            color: white;
-        }
-
-        .projects-content {
-            max-width: 1200px;
-            width: 100%;
-        }
-
-        .projects h2 {
-            font-size: 56px;
-            font-weight: bold;
-            margin-bottom: 60px;
-            text-align: center;
-            color: #00d4ff;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .project-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 40px;
-            border-radius: 15px;
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
-        }
-
-        .project-card h3 {
-            font-size: 28px;
-            margin-bottom: 15px;
-            color: #00d4ff;
-        }
-
-        .project-card p {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #ccc;
-        }
-
-        /* 반응형 */
-        @media (max-width: 768px) {
-            .intro h1 {
-                font-size: 48px;
-            }
-
-            .intro-content {
-                margin-left: 30px;
-                margin-bottom: 50px;
-            }
-
-            .about h2, .projects h2 {
-                font-size: 36px;
-            }
-
-            section {
-                padding: 30px;
-            }
-        }
-    </style>
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"장동철",
+    "jobTitle":"Embedded Systems Engineer",
+    "url":"https://example.com",
+    "sameAs": [],
+    "knowsAbout": ["RTOS","MCU","Device Driver","Computer Vision","OpenCV","GStreamer","MQTT","C/C++","Qt"]
+  }
+  </script>
 </head>
 <body>
-    <!-- 섹션 1: 인트로 -->
-    <section class="intro visible">
-        <div class="intro-content">
-            <h1>Jang Dongchul</h1>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <!-- Intro -->
+  <section class="intro visible" id="home" aria-label="인트로">
+    <div class="intro-content" role="banner">
+      <h1 class="hero-title">Jang&nbsp;Dongchul</h1>
+      <div class="subtitle" aria-live="polite">Embedded Systems & Vision</div>
+      <div class="hero-cta" role="navigation" aria-label="주요 링크">
+        <a class="btn primary" href="#projects" aria-label="프로젝트 섹션으로 이동">프로젝트 보기</a>
+        <a class="btn" href="#skills" aria-label="핵심 역량 섹션으로 이동">핵심 역량</a>
+        <a class="btn" href="resume.pdf" download aria-label="이력서 다운로드">이력서 PDF</a>
+        <a class="btn" href="https://github.com/yourid" target="_blank" rel="noopener" aria-label="깃허브 새 창으로 열기">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <main id="main">
+    <section class="about" aria-label="소개">
+      <div class="container">
+        <h2>About Me</h2>
+        <p>
+          MCU 프로그래밍·RTOS·통신(UDP/TCP·SPI·I²C)에 기반한 <strong>펌웨어/디바이스 드라이버</strong>를 다루고,
+          OpenCV·GStreamer로 <strong>실시간 스트리밍/비전 파이프라인</strong>을 구성합니다.
+          “안정성→실시간성→관측 가능성” 순으로 문제를 푸는 편이고, 재현 로그·지표·프로파일을 먼저 세웁니다.
+        </p>
+        <div class="highlights" aria-label="키 하이라이트">
+          <div class="chip">C/C++ · ARM · Bare-Metal/FreeRTOS</div>
+          <div class="chip">Linux Device Driver(모듈/GPIO/Timer)</div>
+          <div class="chip">OpenCV · Optical Flow · Lab Color</div>
+          <div class="chip">GStreamer RTSP · MQTT(TLS)</div>
         </div>
+      </div>
     </section>
 
-    <!-- 섹션 2: About Me -->
-    <section class="about">
-        <div class="about-content">
-            <h2>About Me</h2>
+    <!-- Skills -->
+    <section class="skills" id="skills" aria-label="핵심 역량">
+      <div class="container">
+        <h2 class="section-title">Core Skills</h2>
+        <div class="skill-grid">
+          <div class="card">
+            <h3>Embedded / RTOS</h3>
+            <ul>
+              <li>STM32/ESP32 · FreeRTOS 타이머·큐·ISR</li>
+              <li>SPI/I²C/UART 드라이버, 센서 구동</li>
+              <li>전력/메모리/우선순위 튜닝</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Linux & Driver</h3>
+            <ul>
+              <li>커널 모듈(스레드·kthread_stop) 안전 종료</li>
+              <li>GPIO/모터 제어, 타이밍/경합 이슈 해결</li>
+              <li>ftrace/kprobe로 병목 추적</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Vision & Streaming</h3>
+            <ul>
+              <li>Optical Flow 기반 속도 측정 안정화</li>
+              <li>Lab 공간 색 분류 · 조명/화이트밸런스 보정</li>
+              <li>RTSP 파이프라인 · 다중 클라이언트</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Quality & Ops</h3>
+            <ul>
+              <li>로깅/메트릭/리트라이/워치독 설계</li>
+              <li>테스트 시나리오·실험 설계·한계값 캘리브레이션</li>
+              <li>문서화(회로·시퀀스·API) &amp; 발표</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="projects" id="projects" aria-label="프로젝트">
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <div class="project-grid">
+
+          <article class="project-card" aria-labelledby="p1">
+            <h3 id="p1">스마트팩토리 컨베이어 모니터링</h3>
+            <div class="meta">Raspberry Pi · OpenCV · GStreamer · MQTT(TLS)</div>
             <p>
-                MCU 프로그래밍, RTOS, 통신 프로토콜 등 임베디드 시스템 전반에 대한 깊은 이해를 바탕으로
-                하드웨어와 소프트웨어를 연결하는 펌웨어 개발에 열정을 가지고 있습니다.
-                효율적이고 안정적인 임베디드 시스템 구축을 목표로 합니다.
+              Optical Flow + 이중 필터(미디언→Kalman)로 벨트 속도 추정 오차 ±2 cm/s.
+              RTSP 실시간 스트리밍과 MQTT 경보를 결합해 관제 지연/드롭 최소화.
             </p>
-        </div>
-    </section>
-
-    <!-- 섹션 3: Projects -->
-    <section class="projects">
-        <div class="projects-content">
-            <h2>Projects</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <h3>프로젝트 1</h3>
-                    <p>ESP32 기반 IoT 센서 시스템. 실시간 데이터 수집 및 클라우드 전송 구현.</p>
-                </div>
-                <div class="project-card">
-                    <h3>프로젝트 2</h3>
-                    <p>STM32를 활용한 자율주행 RC카. PID 제어와 센서 융합 기술 적용.</p>
-                </div>
-                <div class="project-card">
-                    <h3>프로젝트 3</h3>
-                    <p>스마트 홈 컨트롤러. Bluetooth 통신을 통한 원격 제어 시스템.</p>
-                </div>
+            <div class="tagset">
+              <span class="tag">Real-Time</span><span class="tag">Optical-Flow</span><span class="tag">Kalman</span>
             </div>
+            <div class="links">
+              <a class="btn" href="https://github.com/yourid/conveyor-monitor" target="_blank" rel="noopener">Code</a>
+              <a class="btn" href="https://youtu.be/XXXXXXXX" target="_blank" rel="noopener">Demo</a>
+              <a class="btn" href="docs/conveyor-notes.pdf" target="_blank" rel="noopener">Notes</a>
+            </div>
+          </article>
+
+          <article class="project-card" aria-labelledby="p2">
+            <h3 id="p2">커널 모듈 기반 모터 제어</h3>
+            <div class="meta">Linux Driver · GPIO · Timer</div>
+            <p>
+              kthread 종료 경합으로 unload 실패하던 이슈를 재현 테스트/로그 기반으로 수정.
+              자원 해제 순서/락 정책 재설계해 안전 언로드 보장.
+            </p>
+            <div class="tagset">
+              <span class="tag">Kernel</span><span class="tag">Concurrency</span><span class="tag">Defensive</span>
+            </div>
+            <div class="links">
+              <a class="btn" href="https://github.com/yourid/motor-kmod" target="_blank" rel="noopener">Code</a>
+              <a class="btn" href="docs/kmod-postmortem.pdf" target="_blank" rel="noopener">Postmortem</a>
+            </div>
+          </article>
+
+          <article class="project-card" aria-labelledby="p3">
+            <h3 id="p3">영아 모니터링 시스템</h3>
+            <div class="meta">ESP32 · 센서 융합 · BLE</div>
+            <p>
+              온습도/울음/움직임 감지. 이벤트 기반 BLE 알림과 로컬 버퍼링으로 전력·지연 균형.
+            </p>
+            <div class="tagset">
+              <span class="tag">Embedded</span><span class="tag">BLE</span><span class="tag">Sensor-Fusion</span>
+            </div>
+            <div class="links">
+              <a class="btn" href="https://github.com/yourid/infant-monitor" target="_blank" rel="noopener">Code</a>
+              <a class="btn" href="docs/infant-arch.svg" target="_blank" rel="noopener">Architecture</a>
+            </div>
+          </article>
+
+          <article class="project-card" aria-labelledby="p4">
+            <h3 id="p4">IBL 기반 렌더링 실험</h3>
+            <div class="meta">C++ · GLSL · PBR</div>
+            <p>
+              Simple PBR(IBL, Fresnel, GGX) 구현과 성능 측정. 임베디드 GPU 환경에서의 셰이딩 비용 분석.
+            </p>
+            <div class="tagset">
+              <span class="tag">GLSL</span><span class="tag">PBR</span><span class="tag">Profiling</span>
+            </div>
+            <div class="links">
+              <a class="btn" href="https://github.com/yourid/simple-pbr" target="_blank" rel="noopener">Code</a>
+              <a class="btn" href="docs/pbr-report.pdf" target="_blank" rel="noopener">Report</a>
+            </div>
+          </article>
+
         </div>
+      </div>
     </section>
 
-    <script>
-        // 스크롤 애니메이션
-        const sections = document.querySelectorAll('section');
+    <!-- Contact -->
+    <section class="contact" id="contact" aria-label="연락처">
+      <div class="container">
+        <h2 class="section-title" style="color:#0a4f7a">Contact</h2>
+        <div class="panel" role="contentinfo">
+          <p>협업·채용 관련 문의는 아래 채널로 부탁드립니다.</p>
+          <p>
+            이메일: <a href="mailto:you@example.com">you@example.com</a> ·
+            GitHub: <a href="https://github.com/yourid" target="_blank" rel="noopener">yourid</a>
+          </p>
+          <div class="cta">
+            <a class="btn primary" href="resume.pdf" download>이력서 다운로드</a>
+            <a class="btn" href="#home">맨 위로</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-        const observerOptions = {
-            threshold: 0.3,
-            rootMargin: '0px'
-        };
+  <footer aria-label="푸터">© <span id="y"></span> Jang Dongchul. All rights reserved.</footer>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
+  <script>
+    // Intersection Observer (한 번만 애니메이션)
+    const sections = document.querySelectorAll('section');
+    const io = new IntersectionObserver((entries, obs)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    sections.forEach(s=>io.observe(s));
 
-        sections.forEach(section => {
-            observer.observe(section);
-        });
+    // About 섹션 타이틀/문단 페이드인 (접근성 고려, 과한 반복 제거)
+    // 시각적 클래스 토글 대신 섹션 가시화에 통합했으므로 별도 로직 제거
 
-        // About Me 섹션 페이드인 (계속 반복)
-        const aboutTitle = document.querySelector('.about h2');
-        const aboutText = document.querySelector('.about p');
-
-        const aboutObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // 스크롤 내리면 페이드인
-                    setTimeout(() => {
-                        aboutTitle.classList.add('fade-in');
-                    }, 200);
-                    setTimeout(() => {
-                        aboutText.classList.add('fade-in');
-                    }, 600);
-                } else {
-                    // 스크롤 올리면 다시 숨김
-                    aboutTitle.classList.remove('fade-in');
-                    aboutText.classList.remove('fade-in');
-                }
-            });
-        }, { threshold: 0.3 });
-
-        aboutObserver.observe(document.querySelector('.about'));
-    </script>
+    // Footer year
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

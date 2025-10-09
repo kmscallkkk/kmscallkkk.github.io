@@ -40,6 +40,8 @@
             color: white;
             position: relative;
             overflow: hidden;
+            justify-content: flex-end;
+            align-items: flex-start;
         }
 
         .intro::before {
@@ -59,22 +61,15 @@
         }
 
         .intro-content {
-            text-align: center;
             z-index: 1;
+            margin-bottom: 80px;
+            margin-left: 80px;
         }
 
         .intro h1 {
             font-size: 80px;
             font-weight: 900;
-            margin-bottom: 20px;
             letter-spacing: 5px;
-        }
-
-        .intro .subtitle {
-            font-size: 28px;
-            color: #00d4ff;
-            letter-spacing: 3px;
-            margin-top: 20px;
         }
 
         /* 섹션 2: About Me (화이트) */
@@ -173,8 +168,9 @@
                 font-size: 48px;
             }
 
-            .intro .subtitle {
-                font-size: 20px;
+            .intro-content {
+                margin-left: 30px;
+                margin-bottom: 50px;
             }
 
             .about h2, .projects h2 {
@@ -191,8 +187,7 @@
     <!-- 섹션 1: 인트로 -->
     <section class="intro visible">
         <div class="intro-content">
-            <h1>홍길동</h1>
-            <div class="subtitle">EMBEDDED DEVELOPER</div>
+            <h1>Jang Dongchul</h1>
         </div>
     </section>
 

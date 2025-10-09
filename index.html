@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* 공통 섹션 스타일 */
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 섹션 1: 인트로 (다크) */
+        .intro {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a3e 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .intro::before {
+            content: '';
+            position: absolute;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(0, 150, 255, 0.15) 0%, transparent 60%);
+            animation: rotate 25s linear infinite;
+            top: -100%;
+            left: -100%;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .intro-content {
+            text-align: center;
+            z-index: 1;
+        }
+
+        .intro h1 {
+            font-size: 80px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: 5px;
+        }
+
+        .intro .subtitle {
+            font-size: 28px;
+            color: #00d4ff;
+            letter-spacing: 3px;
+            margin-top: 20px;
+        }
+
+        /* 섹션 2: About Me (화이트) */
+        .about {
+            background: #ffffff;
+            color: #333;
+        }
+
+        .about-content {
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 56px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            color: #1a1a3e;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .about h2.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .about p {
+            font-size: 20px;
+            line-height: 1.8;
+            color: #555;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease 0.4s, transform 0.8s ease 0.4s;
+        }
+
+        .about p.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 섹션 3: Projects (다크) */
+        .projects {
+            background: linear-gradient(135deg, #1a1a3e 0%, #0a0a0a 100%);
+            color: white;
+        }
+
+        .projects-content {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .projects h2 {
+            font-size: 56px;
+            font-weight: bold;
+            margin-bottom: 60px;
+            text-align: center;
+            color: #00d4ff;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+        }
+
+        .project-card h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #00d4ff;
+        }
+
+        .project-card p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #ccc;
+        }
+
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .intro h1 {
+                font-size: 48px;
+            }
+
+            .intro .subtitle {
+                font-size: 20px;
+            }
+
+            .about h2, .projects h2 {
+                font-size: 36px;
+            }
+
+            section {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 섹션 1: 인트로 -->
+    <section class="intro visible">
+        <div class="intro-content">
+            <h1>홍길동</h1>
+            <div class="subtitle">EMBEDDED DEVELOPER</div>
+        </div>
+    </section>
+
+    <!-- 섹션 2: About Me -->
+    <section class="about">
+        <div class="about-content">
+            <h2>About Me</h2>
+            <p>
+                MCU 프로그래밍, RTOS, 통신 프로토콜 등 임베디드 시스템 전반에 대한 깊은 이해를 바탕으로
+                하드웨어와 소프트웨어를 연결하는 펌웨어 개발에 열정을 가지고 있습니다.
+                효율적이고 안정적인 임베디드 시스템 구축을 목표로 합니다.
+            </p>
+        </div>
+    </section>
+
+    <!-- 섹션 3: Projects -->
+    <section class="projects">
+        <div class="projects-content">
+            <h2>Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>프로젝트 1</h3>
+                    <p>ESP32 기반 IoT 센서 시스템. 실시간 데이터 수집 및 클라우드 전송 구현.</p>
+                </div>
+                <div class="project-card">
+                    <h3>프로젝트 2</h3>
+                    <p>STM32를 활용한 자율주행 RC카. PID 제어와 센서 융합 기술 적용.</p>
+                </div>
+                <div class="project-card">
+                    <h3>프로젝트 3</h3>
+                    <p>스마트 홈 컨트롤러. Bluetooth 통신을 통한 원격 제어 시스템.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // 스크롤 애니메이션
+        const sections = document.querySelectorAll('section');
+
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // About Me 섹션 페이드인 (계속 반복)
+        const aboutTitle = document.querySelector('.about h2');
+        const aboutText = document.querySelector('.about p');
+
+        const aboutObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // 스크롤 내리면 페이드인
+                    setTimeout(() => {
+                        aboutTitle.classList.add('fade-in');
+                    }, 200);
+                    setTimeout(() => {
+                        aboutText.classList.add('fade-in');
+                    }, 600);
+                } else {
+                    // 스크롤 올리면 다시 숨김
+                    aboutTitle.classList.remove('fade-in');
+                    aboutText.classList.remove('fade-in');
+                }
+            });
+        }, { threshold: 0.3 });
+
+        aboutObserver.observe(document.querySelector('.about'));
+    </script>
+</body>
+</html>

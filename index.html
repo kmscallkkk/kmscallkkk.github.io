@@ -3,495 +3,740 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>장동철 | Embedded & Vision Portfolio</title>
-  <meta name="description" content="임베디드 시스템 & 컴퓨터 비전 포트폴리오. RTOS, MCU, 드라이버, 실시간 스트리밍, 컴퓨터 비전 프로젝트와 코드 링크.">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>Jang Dongchul | Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="장동철 | Embedded & Vision Portfolio">
-  <meta property="og:description" content="RTOS, MCU, 드라이버, 실시간 스트리밍, 컴퓨터 비전 프로젝트 모음.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="og-image.png">
-  <meta property="og:locale" content="ko_KR">
-
-  <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
   <style>
-    :root{
-      --bg-dark-1:#0a0a0a;
-      --bg-dark-2:#1a1a3e;
-      --accent:#00d4ff;
-      --text:#e9f1f8;
-      --muted:#a7b3c2;
-      --card:#ffffff0f;
-      --border:#00d4ff4d;
-      --ink:#1a1a3e;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    *{margin:0;padding:0;box-sizing:border-box}
-    html:focus-within{scroll-behavior:smooth}
-    body{
-      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      color:var(--text);
-      background:#fff;
-      line-height:1.6;
-      overflow-x:hidden;
-    }
-    /* Skip link */
-    .skip-link{
-      position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden
-    }
-    .skip-link:focus{
-      position:fixed;left:16px;top:16px;width:auto;height:auto;padding:10px 14px;background:#fff;color:#000;border-radius:8px;z-index:9999
-    }
-
-    /* Header Navigation */
-    header{
-      position:fixed;top:0;left:0;right:0;
-      background:transparent;
-      z-index:1000;
-      transition:background 0.2s ease;
-      transform:translateY(0);
-      overflow:hidden;
-      pointer-events:none;
-    }
-    nav{
-      pointer-events:auto;
-    }
-    header::before{
-      content:"";
-      position:absolute;
-      top:0;left:0;right:0;
-      height:100%;
-      background:#0A0A0A;
-      transform:translateY(-100%);
-      transition:transform 0.2s ease;
-      z-index:-1;
-    }
-    header.nav-hovered::before,
-    header.scrolled::before{
-      transform:translateY(0);
-    }
-    header.hidden{transform:translateY(-100%)}
     
-    nav{
-      max-width:1400px;margin:0 auto;
-      display:flex;justify-content:space-between;align-items:center;
-      padding:16px 32px;
+    html {
+      scroll-behavior: smooth;
     }
-    .logo{
-      font-size:20px;font-weight:700;color:#666666;
-      text-decoration:none;letter-spacing:0.05em;
-      transition:color 0.3s ease;
+    
+    body {
+      font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+      overflow-x: hidden;
     }
-    header.nav-hovered .logo,
-    header.scrolled .logo{
-      color:#ffffff;
+    
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: transparent;
+      transition: background 0.2s ease;
+      pointer-events: none;
     }
-    .nav-menu{
-      display:flex;gap:32px;list-style:none;align-items:center;
+    
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background: #0A0A0A;
+      transform: translateY(-100%);
+      transition: transform 0.2s ease;
+      z-index: -1;
     }
-    .nav-menu a{
-      color:#ffffff;text-decoration:none;
-      font-size:14px;letter-spacing:0.05em;font-weight:700;
-      transition:color 0.3s ease;
+    
+    header.nav-hovered::before,
+    header.scrolled::before {
+      transform: translateY(0);
     }
-    header.nav-hovered .nav-menu a{
-      color:#888888;
+    
+    nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 40px;
+      pointer-events: auto;
     }
-    header.nav-hovered .nav-menu a:hover{
-      color:#ffffff !important;
+    
+    .nav-menu {
+      display: flex;
+      gap: 48px;
+      list-style: none;
     }
-    header.scrolled .nav-menu a{
-      color:#ffffff;
+    
+    .nav-menu a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      transition: color 0.3s ease;
     }
-    .nav-menu a:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:4px}
-
-    /* Mobile menu toggle */
-    .menu-toggle{
-      display:none;background:none;border:none;color:#666666;
-      font-size:24px;cursor:pointer;padding:8px;
-      transition:color 0.3s ease;
+    
+    header.nav-hovered .nav-menu a {
+      color: #888888;
     }
-    header.nav-hovered .menu-toggle,
-    header.scrolled .menu-toggle{
-      color:#ffffff;
+    
+    header.nav-hovered .nav-menu a:hover,
+    header.scrolled .nav-menu a:hover {
+      color: #ffffff !important;
     }
-
-    @media (max-width:768px){
-      .menu-toggle{display:block}
-      .nav-menu{
-        position:fixed;top:65px;left:0;right:0;
-        background:rgba(10, 10, 10, 0.98);
-        flex-direction:column;gap:0;
-        padding:24px 0;
-        transform:translateY(-100%);
-        opacity:0;
-        transition:transform 0.3s ease, opacity 0.3s ease;
-        pointer-events:none;
-      }
-      .nav-menu.active{
-        transform:translateY(0);
-        opacity:1;
-        pointer-events:all;
-      }
-      .nav-menu a{
-        display:block;padding:16px 32px;
-        border-bottom:1px solid rgba(255,255,255,0.1);
-      }
+    
+    header.scrolled .nav-menu a {
+      color: #ffffff;
     }
-
-    /* Sections */
-    section{
-      min-height:100svh;
-      display:flex;flex-direction:column;justify-content:center;align-items:center;
-      padding:64px 24px;
-      opacity:0;transform:translateY(80px);
-      transition:opacity 1.2s ease, transform 1.2s ease;
+    
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
     }
-    section.visible{opacity:1;transform:translateY(0)}
-    .container{width:100%;max-width:1120px;margin:0 auto}
-
-    /* Intro */
-    .intro{
-      background:linear-gradient(135deg, var(--bg-dark-1) 0%, var(--bg-dark-2) 100%);
-      position:relative;color:white;align-items:flex-start;justify-content:flex-end;overflow:hidden;
-      padding-top:120px;
+    
+    .hero-content {
+      text-align: center;
+      color: #ffffff;
     }
-    .intro::before{
-      content:"";position:absolute;width:300%;height:300%;
-      background:radial-gradient(circle, rgba(0,150,255,.15) 0%, transparent 60%);
-      top:-100%;left:-100%;animation:spin 25s linear infinite
+    
+    .hero h1 {
+      font-size: clamp(48px, 10vw, 120px);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      margin-bottom: 24px;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeInUp 1.2s ease forwards 0.3s;
     }
-    @keyframes spin { from{transform:rotate(0)} to{transform:rotate(360deg)} }
-
-    .intro-content{
-      z-index:1;
-      position:absolute;
-      bottom:80px;
-      left:80px;
-      max-width:1080px;
+    
+    .hero .tagline {
+      font-size: clamp(18px, 3vw, 28px);
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: #b0b0b0;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.2s ease forwards 0.6s;
     }
-    .hero-title{
-      font-size:clamp(36px, 8vw, 84px);
-      font-weight:300;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px;
-      color:#ffffff;
-      opacity:0;
-      transform:translateY(80px);
-      animation:slideUpFade 1.5s ease forwards 0.3s;
-    }
-    .subtitle{
-      font-size:clamp(16px, 3vw, 26px);
-      color:#ffffff;letter-spacing:.24em;margin-bottom:28px;
-      opacity:0;
-      transform:translateY(80px);
-      animation:slideUpFade 1.5s ease forwards 0.6s;
-    }
-    @keyframes slideUpFade {
+    
+    @keyframes fadeInUp {
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
-
-    /* About */
-    .about{background:#fff;color:#333}
-    .about h2{
-      font-size:clamp(28px, 5vw, 56px);color:var(--ink);text-align:center;margin-bottom:24px;font-weight:800
+    
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #ffffff;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 1.5s, bounce 2s ease-in-out infinite 2s;
     }
-    .about p{
-      font-size:clamp(16px, 2.5vw, 20px);line-height:1.85;color:#444;text-align:center;max-width:860px;margin:0 auto
+    
+    @keyframes fadeIn {
+      to { opacity: 0.6; }
     }
-    .about .highlights{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:32px
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(10px); }
     }
-    .chip{
-      border:1px solid #e6ecf4;border-radius:999px;padding:10px 14px;text-align:center;color:#2a3a52;background:#f7fbff
+    
+    /* About Section */
+    .about {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 40px;
+      background: #ffffff;
     }
-
-    /* Core skills */
-    .skills{background:linear-gradient(135deg, var(--bg-dark-2), var(--bg-dark-1));color:#fff}
-    .section-title{
-      font-size:clamp(28px, 5vw, 56px);font-weight:800;text-align:center;margin-bottom:40px;color:var(--accent)
+    
+    .about-content {
+      max-width: 900px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
     }
-    .skill-grid{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px
+    
+    .about-content.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
-    .card{
-      background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px
+    
+    .section-title {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 800;
+      margin-bottom: 48px;
+      color: #1a1a1a;
     }
-    .card h3{font-size:20px;margin-bottom:8px;color:var(--accent)}
-    .card ul{list-style:none;color:#dde7ef}
-    .card li{padding-left:10px;margin:6px 0}
-    .card li::marker{content:""}
-
-    /* Projects */
-    .projects{background:linear-gradient(135deg, var(--bg-dark-2) 0%, var(--bg-dark-1) 100%);color:#fff}
-    .project-grid{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px
+    
+    .about p {
+      font-size: clamp(16px, 2.5vw, 20px);
+      line-height: 1.8;
+      color: #444444;
+      margin-bottom: 24px;
     }
-    .project-card{
-      background:var(--card);padding:24px;border-radius:16px;border:1px solid var(--border);
-      transition:transform .2s, box-shadow .2s
+    
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 40px;
     }
-    .project-card:hover{transform:translateY(-6px);box-shadow:0 16px 36px rgba(0,212,255,.35)}
-    .project-card h3{font-size:22px;margin-bottom:8px;color:var(--accent)}
-    .meta{font-size:14px;color:var(--muted);margin-bottom:10px}
-    .project-card p{color:#d7e6f2;margin-bottom:14px}
-    .tagset{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 16px}
-    .tag{font-size:12px;border:1px solid var(--border);border-radius:999px;padding:6px 10px;color:#cfefff}
-    .links{display:flex;gap:10px;flex-wrap:wrap}
-    .btn{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:10px 14px;border-radius:12px;border:1px solid var(--border);
-      color:var(--text);text-decoration:none;background:transparent;font-size:14px;
-      transition:transform .2s ease, box-shadow .2s ease, background .2s ease
+    
+    .skill-tag {
+      padding: 12px 24px;
+      background: #f5f5f5;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #333333;
     }
-    .btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,212,255,.35)}
-    .btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-
-    /* Contact */
-    .contact{background:#fff;color:#2a3a52}
-    .contact .panel{
-      background:#f7fbff;border:1px solid #e6ecf4;border-radius:16px;padding:24px;text-align:center
+    
+    /* Tech Section */
+    .tech {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 40px;
+      background: #0a0a0a;
+      color: #ffffff;
     }
-    .contact a{color:#0a6cae;text-underline-offset:3px}
-    .contact .cta{margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-
+    
+    .tech-content {
+      max-width: 1200px;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    
+    .tech-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .tech .section-title {
+      color: #ffffff;
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+    }
+    
+    .tech-card {
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    
+    .tech-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .tech-card h3 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #ffffff;
+    }
+    
+    .tech-card ul {
+      list-style: none;
+      color: #b0b0b0;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+    
+    .tech-card li {
+      margin-bottom: 8px;
+    }
+    
+    /* Projects Section */
+    .projects {
+      min-height: 100vh;
+      padding: 100px 40px;
+      background: #ffffff;
+    }
+    
+    .projects-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    
+    .projects-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .projects .section-title {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 48px;
+    }
+    
+    .project-card {
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+    
+    .project-image {
+      width: 100%;
+      height: 240px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .project-info {
+      padding: 32px;
+    }
+    
+    .project-info h3 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #1a1a1a;
+    }
+    
+    .project-meta {
+      font-size: 13px;
+      color: #888888;
+      margin-bottom: 16px;
+    }
+    
+    .project-info p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #555555;
+      margin-bottom: 20px;
+    }
+    
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    
+    .project-tag {
+      padding: 6px 14px;
+      background: #f5f5f5;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #666666;
+    }
+    
+    .project-links {
+      display: flex;
+      gap: 12px;
+    }
+    
+    .project-link {
+      padding: 10px 20px;
+      background: #1a1a1a;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+    
+    .project-link:hover {
+      background: #333333;
+    }
+    
+    /* Awards Section */
+    .awards {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 40px;
+      background: #0a0a0a;
+      color: #ffffff;
+    }
+    
+    .awards-content {
+      max-width: 900px;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    
+    .awards-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .awards .section-title {
+      color: #ffffff;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .award-item {
+      padding: 32px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .award-item:last-child {
+      border-bottom: none;
+    }
+    
+    .award-year {
+      font-size: 14px;
+      color: #888888;
+      margin-bottom: 8px;
+      letter-spacing: 0.1em;
+    }
+    
+    .award-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+    
+    .award-org {
+      font-size: 16px;
+      color: #b0b0b0;
+    }
+    
+    /* Contact Section */
+    .contact {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 40px;
+      background: #ffffff;
+    }
+    
+    .contact-content {
+      max-width: 700px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    
+    .contact-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .contact .section-title {
+      margin-bottom: 40px;
+    }
+    
+    .contact p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #555555;
+      margin-bottom: 40px;
+    }
+    
+    .contact-links {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .contact-link {
+      padding: 16px 32px;
+      background: #1a1a1a;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    
+    .contact-link:hover {
+      background: #333333;
+      transform: translateY(-4px);
+    }
+    
     /* Footer */
-    footer{padding:24px;text-align:center;background:#060b12;color:#88a1b8}
-
-    /* Motion preference */
-    @media (prefers-reduced-motion: reduce){
-      html:focus-within{scroll-behavior:auto}
-      section{transition:none}
-      .intro::before{animation:none}
+    footer {
+      padding: 40px;
+      text-align: center;
+      background: #0a0a0a;
+      color: #888888;
+      font-size: 14px;
     }
-
-    @media (max-width:768px){
-      .intro-content{
-        bottom:50px;
-        left:20px;
+    
+    /* Mobile */
+    @media (max-width: 768px) {
+      .nav-menu {
+        gap: 24px;
       }
-      section{padding:48px 20px}
-      nav{padding:16px 20px}
+      
+      .nav-menu a {
+        font-size: 11px;
+      }
+      
+      .hero h1 {
+        font-size: 48px;
+      }
+      
+      .section-title {
+        font-size: 36px;
+      }
+      
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .tech-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Person",
-    "name":"장동철",
-    "jobTitle":"Embedded Systems Engineer",
-    "url":"https://example.com",
-    "sameAs": [],
-    "knowsAbout": ["RTOS","MCU","Device Driver","Computer Vision","OpenCV","GStreamer","MQTT","C/C++","Qt"]
-  }
-  </script>
 </head>
 <body>
-  <a class="skip-link" href="#main">본문 바로가기</a>
-
-  <!-- Header Navigation -->
-  <header>
+  <!-- Header -->
+  <header id="header">
     <nav>
-      <button class="menu-toggle" aria-label="메뉴 열기" aria-expanded="false">☰</button>
       <ul class="nav-menu">
-        <li><a href="#projects">PROJECT</a></li>
-        <li><a href="#skills">CORE SKILL</a></li>
-        <li><a href="https://github.com/yourid" target="_blank" rel="noopener">GITHUB</a></li>
+        <li><a href="#projects">PROJECTS</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#tech">TECH</a></li>
+        <li><a href="#awards">AWARDS</a></li>
         <li><a href="#contact">CONTACT</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Intro -->
-  <section class="intro visible" id="home" aria-label="인트로">
-    <div class="intro-content" role="banner">
-      <h1 class="hero-title">Jang&nbsp;Dongchul</h1>
-      <div class="subtitle" aria-live="polite">Embedded Systems & Vision</div>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>JANG DONGCHUL</h1>
+      <div class="tagline">EMBEDDED SYSTEMS & VISION</div>
     </div>
+    <div class="scroll-indicator">SCROLL</div>
   </section>
 
   <!-- About -->
-  <main id="main">
-    <section class="about" aria-label="소개">
-      <div class="container">
-        <h2>About Me</h2>
-        <p>
-          MCU 프로그래밍·RTOS·통신(UDP/TCP·SPI·I²C)에 기반한 <strong>펌웨어/디바이스 드라이버</strong>를 다루고,
-          OpenCV·GStreamer로 <strong>실시간 스트리밍/비전 파이프라인</strong>을 구성합니다.
-          "안정성→실시간성→관측 가능성" 순으로 문제를 푸는 편이고, 재현 로그·지표·프로파일을 먼저 세웁니다.
-        </p>
-        <div class="highlights" aria-label="키 하이라이트">
-          <div class="chip">C/C++ · ARM · Bare-Metal/FreeRTOS</div>
-          <div class="chip">Linux Device Driver(모듈/GPIO/Timer)</div>
-          <div class="chip">OpenCV · Optical Flow · Lab Color</div>
-          <div class="chip">GStreamer RTSP · MQTT(TLS)</div>
+  <section class="about" id="about">
+    <div class="about-content">
+      <h2 class="section-title">About</h2>
+      <p>
+        아주대학교 디지털미디어학과와 소프트웨어학과를 복수전공하며 임베디드 시스템과 컴퓨터 비전에 대한 
+        폭넓은 지식을 쌓았습니다.
+      </p>
+      <p>
+        Hanwha Vision's Edge Device Academy 2기를 수료하며 우수 훈련생상과 최종 프로젝트 최우수상을 수상했습니다.
+        C/C++ 기반의 Qt 개발과 Linux 커널 모듈의 디바이스 드라이버 개발 경험을 보유하고 있으며,
+        OpenCV를 활용한 영상처리와 컴퓨터 비전 프로젝트를 진행한 경험이 있습니다.
+      </p>
+      <div class="skills-list">
+        <span class="skill-tag">C/C++</span>
+        <span class="skill-tag">OpenCV</span>
+        <span class="skill-tag">Qt</span>
+        <span class="skill-tag">Embedded Linux</span>
+        <span class="skill-tag">Linux Kernel</span>
+        <span class="skill-tag">Kernel Programming</span>
+        <span class="skill-tag">GUI</span>
+        <span class="skill-tag">OpenGL</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech -->
+  <section class="tech" id="tech">
+    <div class="tech-content">
+      <h2 class="section-title">Tech Stack</h2>
+      <div class="tech-grid">
+        <div class="tech-card">
+          <h3>Programming Languages</h3>
+          <ul>
+            <li>C/C++ (능숙)</li>
+            <li>Python</li>
+            <li>GLSL</li>
+          </ul>
+        </div>
+        <div class="tech-card">
+          <h3>Embedded & Linux</h3>
+          <ul>
+            <li>Embedded Linux</li>
+            <li>Linux Kernel Programming</li>
+            <li>Device Driver 개발</li>
+          </ul>
+        </div>
+        <div class="tech-card">
+          <h3>Computer Vision & GUI</h3>
+          <ul>
+            <li>OpenCV · 영상처리</li>
+            <li>Qt Framework</li>
+            <li>OpenGL</li>
+          </ul>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Skills -->
-    <section class="skills" id="skills" aria-label="핵심 역량">
-      <div class="container">
-        <h2 class="section-title">Core Skills</h2>
-        <div class="skill-grid">
-          <div class="card">
-            <h3>Embedded / RTOS</h3>
-            <ul>
-              <li>STM32/ESP32 · FreeRTOS 타이머·큐·ISR</li>
-              <li>SPI/I²C/UART 드라이버, 센서 구동</li>
-              <li>전력/메모리/우선순위 튜닝</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Linux & Driver</h3>
-            <ul>
-              <li>커널 모듈(스레드·kthread_stop) 안전 종료</li>
-              <li>GPIO/모터 제어, 타이밍/경합 이슈 해결</li>
-              <li>ftrace/kprobe로 병목 추적</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Vision & Streaming</h3>
-            <ul>
-              <li>Optical Flow 기반 속도 측정 안정화</li>
-              <li>Lab 공간 색 분류 · 조명/화이트밸런스 보정</li>
-              <li>RTSP 파이프라인 · 다중 클라이언트</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Quality & Ops</h3>
-            <ul>
-              <li>로깅/메트릭/리트라이/워치독 설계</li>
-              <li>테스트 시나리오·실험 설계·한계값 캘리브레이션</li>
-              <li>문서화(회로·시퀀스·API) &amp; 발표</li>
-            </ul>
+  <!-- Projects -->
+  <section class="projects" id="projects">
+    <div class="projects-content">
+      <h2 class="section-title">Projects</h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <div class="project-image">🏭</div>
+          <div class="project-info">
+            <h3>스마트팩토리 컨베이어 모니터링</h3>
+            <div class="project-meta">Raspberry Pi · OpenCV · GStreamer</div>
+            <p>Optical Flow 기반 벨트 속도 측정 시스템. RTSP 실시간 스트리밍과 MQTT 경보 시스템 구현.</p>
+            <div class="project-tags">
+              <span class="project-tag">Real-Time</span>
+              <span class="project-tag">OpenCV</span>
+              <span class="project-tag">MQTT</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link">GitHub</a>
+              <a href="#" class="project-link">Demo</a>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Projects -->
-    <section class="projects" id="projects" aria-label="프로젝트">
-      <div class="container">
-        <h2 class="section-title">Projects</h2>
-        <div class="project-grid">
-
-          <article class="project-card" aria-labelledby="p1">
-            <h3 id="p1">스마트팩토리 컨베이어 모니터링</h3>
-            <div class="meta">Raspberry Pi · OpenCV · GStreamer · MQTT(TLS)</div>
-            <p>
-              Optical Flow + 이중 필터(미디언→Kalman)로 벨트 속도 추정 오차 ±2 cm/s.
-              RTSP 실시간 스트리밍과 MQTT 경보를 결합해 관제 지연/드롭 최소화.
-            </p>
-            <div class="tagset">
-              <span class="tag">Real-Time</span><span class="tag">Optical-Flow</span><span class="tag">Kalman</span>
+        <div class="project-card">
+          <div class="project-image">⚙️</div>
+          <div class="project-info">
+            <h3>커널 모듈 기반 모터 제어</h3>
+            <div class="project-meta">Linux Driver · GPIO · Timer</div>
+            <p>안전한 커널 모듈 언로드를 위한 kthread 관리 및 자원 해제 정책 설계.</p>
+            <div class="project-tags">
+              <span class="project-tag">Kernel</span>
+              <span class="project-tag">Driver</span>
+              <span class="project-tag">GPIO</span>
             </div>
-            <div class="links">
-              <a class="btn" href="https://github.com/yourid/conveyor-monitor" target="_blank" rel="noopener">Code</a>
-              <a class="btn" href="https://youtu.be/XXXXXXXX" target="_blank" rel="noopener">Demo</a>
-              <a class="btn" href="docs/conveyor-notes.pdf" target="_blank" rel="noopener">Notes</a>
+            <div class="project-links">
+              <a href="#" class="project-link">GitHub</a>
             </div>
-          </article>
-
-          <article class="project-card" aria-labelledby="p2">
-            <h3 id="p2">커널 모듈 기반 모터 제어</h3>
-            <div class="meta">Linux Driver · GPIO · Timer</div>
-            <p>
-              kthread 종료 경합으로 unload 실패하던 이슈를 재현 테스트/로그 기반으로 수정.
-              자원 해제 순서/락 정책 재설계해 안전 언로드 보장.
-            </p>
-            <div class="tagset">
-              <span class="tag">Kernel</span><span class="tag">Concurrency</span><span class="tag">Defensive</span>
-            </div>
-            <div class="links">
-              <a class="btn" href="https://github.com/yourid/motor-kmod" target="_blank" rel="noopener">Code</a>
-              <a class="btn" href="docs/kmod-postmortem.pdf" target="_blank" rel="noopener">Postmortem</a>
-            </div>
-          </article>
-
-          <article class="project-card" aria-labelledby="p3">
-            <h3 id="p3">영아 모니터링 시스템</h3>
-            <div class="meta">ESP32 · 센서 융합 · BLE</div>
-            <p>
-              온습도/울음/움직임 감지. 이벤트 기반 BLE 알림과 로컬 버퍼링으로 전력·지연 균형.
-            </p>
-            <div class="tagset">
-              <span class="tag">Embedded</span><span class="tag">BLE</span><span class="tag">Sensor-Fusion</span>
-            </div>
-            <div class="links">
-              <a class="btn" href="https://github.com/yourid/infant-monitor" target="_blank" rel="noopener">Code</a>
-              <a class="btn" href="docs/infant-arch.svg" target="_blank" rel="noopener">Architecture</a>
-            </div>
-          </article>
-
-          <article class="project-card" aria-labelledby="p4">
-            <h3 id="p4">IBL 기반 렌더링 실험</h3>
-            <div class="meta">C++ · GLSL · PBR</div>
-            <p>
-              Simple PBR(IBL, Fresnel, GGX) 구현과 성능 측정. 임베디드 GPU 환경에서의 셰이딩 비용 분석.
-            </p>
-            <div class="tagset">
-              <span class="tag">GLSL</span><span class="tag">PBR</span><span class="tag">Profiling</span>
-            </div>
-            <div class="links">
-              <a class="btn" href="https://github.com/yourid/simple-pbr" target="_blank" rel="noopener">Code</a>
-              <a class="btn" href="docs/pbr-report.pdf" target="_blank" rel="noopener">Report</a>
-            </div>
-          </article>
-
+          </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Contact -->
-    <section class="contact" id="contact" aria-label="연락처">
-      <div class="container">
-        <h2 class="section-title" style="color:#0a4f7a">Contact</h2>
-        <div class="panel" role="contentinfo">
-          <p>협업·채용 관련 문의는 아래 채널로 부탁드립니다.</p>
-          <p>
-            이메일: <a href="mailto:you@example.com">you@example.com</a> ·
-            GitHub: <a href="https://github.com/yourid" target="_blank" rel="noopener">yourid</a>
-          </p>
-          <div class="cta">
-            <a class="btn" href="resume.pdf" download>이력서 다운로드</a>
-            <a class="btn" href="#home">맨 위로</a>
+        <div class="project-card">
+          <div class="project-image">👶</div>
+          <div class="project-info">
+            <h3>영아 모니터링 시스템</h3>
+            <div class="project-meta">ESP32 · 센서 융합 · BLE</div>
+            <p>온습도, 울음, 움직임 감지 센서를 활용한 실시간 모니터링 시스템.</p>
+            <div class="project-tags">
+              <span class="project-tag">IoT</span>
+              <span class="project-tag">BLE</span>
+              <span class="project-tag">ESP32</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link">GitHub</a>
+            </div>
           </div>
         </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <footer aria-label="푸터">© <span id="y"></span> Jang Dongchul. All rights reserved.</footer>
+  <!-- Awards -->
+  <section class="awards" id="awards">
+    <div class="awards-content">
+      <h2 class="section-title">Awards & Certificates</h2>
+      <div class="award-item">
+        <div class="award-year">2025.08</div>
+        <div class="award-title">Vision's Edge Device Academy, 최종 프로젝트 최우수상</div>
+        <div class="award-org">한화비전</div>
+      </div>
+      <div class="award-item">
+        <div class="award-year">2025.08</div>
+        <div class="award-title">Vision's Edge Device Academy, 우수 훈련생상</div>
+        <div class="award-org">한화비전</div>
+      </div>
+      <div class="award-item">
+        <div class="award-year">2025.01</div>
+        <div class="award-title">OPIC Intermediate Mid2</div>
+        <div class="award-org">영어</div>
+      </div>
+      <div class="award-item">
+        <div class="award-year">2011.02</div>
+        <div class="award-title">컴퓨터활용능력 2급</div>
+        <div class="award-org">대한상공회의소</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="contact-content">
+      <h2 class="section-title">Contact</h2>
+      <p>
+        협업 및 채용 관련 문의는 언제든 환영합니다.<br>
+        아래 연락처로 편하게 연락주세요.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:gro*****@naver.com" class="contact-link">Email</a>
+        <a href="https://github.com/kmscallkkk" target="_blank" class="contact-link">GitHub</a>
+        <a href="https://kmscallkkk.github.io" class="contact-link">Portfolio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Jang Dongchul. All rights reserved.</p>
+  </footer>
 
   <script>
-    // Mobile menu toggle
-    const menuToggle = document.querySelector('.menu-toggle');
+    // Header interaction
+    const header = document.getElementById('header');
     const navMenu = document.querySelector('.nav-menu');
-    const header = document.querySelector('header');
     
-    menuToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-      const isOpen = navMenu.classList.contains('active');
-      menuToggle.setAttribute('aria-expanded', isOpen);
-      menuToggle.textContent = isOpen ? '✕' : '☰';
-    });
-
-    // Close menu when clicking a link
-    navMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.textContent = '☰';
-      });
-    });
-
-    // Show header background on nav hover
     navMenu.addEventListener('mouseenter', () => {
       header.classList.add('nav-hovered');
     });
@@ -499,49 +744,38 @@
     navMenu.addEventListener('mouseleave', () => {
       header.classList.remove('nav-hovered');
     });
-
-    // Hide header on scroll down, show on scroll up
-    let lastScroll = 0;
     
+    // Scroll handler
+    let lastScroll = 0;
     window.addEventListener('scroll', () => {
       const currentScroll = window.pageYOffset;
       
-      if (currentScroll <= 0) {
-        header.classList.remove('hidden');
-        header.classList.remove('scrolled');
-        return;
-      }
-      
-      // Add scrolled class when scrolling
-      if (currentScroll > 50) {
+      if (currentScroll > 100) {
         header.classList.add('scrolled');
       } else {
         header.classList.remove('scrolled');
       }
       
-      if (currentScroll > lastScroll && currentScroll > 100) {
-        header.classList.add('hidden');
-      } else {
-        header.classList.remove('hidden');
-      }
-      
       lastScroll = currentScroll;
     });
-
-    // Intersection Observer
-    const sections = document.querySelectorAll('section');
-    const io = new IntersectionObserver((entries, obs)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
-          e.target.classList.add('visible');
-          obs.unobserve(e.target);
+    
+    // Intersection Observer for sections
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelector('.about-content, .tech-content, .projects-content, .awards-content, .contact-content').classList.add('visible');
         }
       });
-    }, { threshold: 0.2 });
-    sections.forEach(s=>io.observe(s));
-
-    // Footer year
-    document.getElementById('y').textContent = new Date().getFullYear();
+    }, observerOptions);
+    
+    document.querySelectorAll('.about, .tech, .projects, .awards, .contact').forEach(section => {
+      observer.observe(section);
+    });
   </script>
 </body>
 </html>

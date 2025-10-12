@@ -115,6 +115,20 @@
     .hero-content {
       text-align: center;
       color: #ffffff;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    .hero-content.moved {
+      position: fixed;
+      top: auto;
+      bottom: 40px;
+      left: 40px;
+      transform: translate(0, 0);
+      text-align: left;
     }
     
     .hero h1 {
@@ -126,6 +140,12 @@
       transform: translateY(50px);
       animation: fadeInUp 1.2s ease forwards 0.5s;
       line-height: 1.3;
+      transition: all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    .hero-content.moved h1 {
+      font-size: clamp(18px, 3vw, 28px);
+      margin-bottom: 8px;
     }
     
     .hero h1 .name {
@@ -143,6 +163,14 @@
       line-height: 1.8;
       max-width: 800px;
       margin: 0 auto;
+      transition: all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    .hero-content.moved .tagline {
+      font-size: clamp(12px, 1.5vw, 14px);
+      max-width: 400px;
+      margin: 0;
+      opacity: 0;
     }
     
     @keyframes fadeInUp {
@@ -593,8 +621,7 @@
     <div class="hero-content">
       <h1>Embedded Software Developer<br><span class="name">Jang Dongchul</span></h1>
       <div class="tagline">
-        I believe that technological excellence is determined by a single line of code,<br>
-        and I pursue perfection by personally verifying even the invisible details.
+        who believes true craft begins with a single line of code
       </div>
     </div>
     <div class="scroll-indicator">SCROLL</div>
@@ -765,6 +792,12 @@
   </footer>
 
   <script>
+    // Hero animation: move to bottom left after initial display
+    setTimeout(() => {
+      const heroContent = document.querySelector('.hero-content');
+      heroContent.classList.add('moved');
+    }, 3000);
+    
     // Header interaction
     const header = document.getElementById('header');
     const navMenu = document.querySelector('.nav-menu');

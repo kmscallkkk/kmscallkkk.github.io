@@ -115,20 +115,60 @@
     .hero-content {
       text-align: center;
       color: #ffffff;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      transition: all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
     
-    .hero-content.moved {
+    .hero-content.fade-out {
+      animation: fadeOutCompletely 0.8s ease forwards;
+    }
+    
+    @keyframes fadeOutCompletely {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+    
+    .hero-fixed {
       position: fixed;
-      top: auto;
       bottom: 40px;
       left: 40px;
-      transform: translate(0, 0);
+      color: #ffffff;
       text-align: left;
+      opacity: 0;
+      transform: translateY(30px);
+      pointer-events: none;
+      z-index: 999;
+    }
+    
+    .hero-fixed.show {
+      animation: slideUpFadeIn 1s ease forwards;
+    }
+    
+    @keyframes slideUpFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .hero-fixed h1 {
+      font-size: clamp(18px, 3vw, 28px);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    
+    .hero-fixed h1 .name {
+      font-weight: 700;
+    }
+    
+    .hero-fixed .tagline {
+      font-size: clamp(12px, 1.5vw, 14px);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      color: #b0b0b0;
+      line-height: 1.6;
     }
     
     .hero h1 {
@@ -140,12 +180,6 @@
       transform: translateY(50px);
       animation: fadeInUp 1.2s ease forwards 0.5s;
       line-height: 1.3;
-      transition: all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-    
-    .hero-content.moved h1 {
-      font-size: clamp(18px, 3vw, 28px);
-      margin-bottom: 8px;
     }
     
     .hero h1 .name {
@@ -163,14 +197,6 @@
       line-height: 1.8;
       max-width: 800px;
       margin: 0 auto;
-      transition: all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-    
-    .hero-content.moved .tagline {
-      font-size: clamp(12px, 1.5vw, 14px);
-      max-width: 400px;
-      margin: 0;
-      opacity: 0;
     }
     
     @keyframes fadeInUp {
@@ -627,6 +653,14 @@
     <div class="scroll-indicator">SCROLL</div>
   </section>
 
+  <!-- Fixed Hero Text (Bottom Left) -->
+  <div class="hero-fixed">
+    <h1>Embedded Software Developer<br><span class="name">Jang Dongchul</span></h1>
+    <div class="tagline">
+      who believes true craft begins with a single line of code
+    </div>
+  </div>
+
   <!-- About -->
   <section class="about" id="about">
     <div class="about-content">
@@ -792,11 +826,17 @@
   </footer>
 
   <script>
-    // Hero animation: move to bottom left after initial display
+    // Hero animation: fade out center, then show bottom left
     setTimeout(() => {
       const heroContent = document.querySelector('.hero-content');
-      heroContent.classList.add('moved');
-    }, 3000);
+      heroContent.classList.add('fade-out');
+      
+      // Show fixed version after center fades out
+      setTimeout(() => {
+        const heroFixed = document.querySelector('.hero-fixed');
+        heroFixed.classList.add('show');
+      }, 800);
+    }, 2500);
     
     // Header interaction
     const header = document.getElementById('header');

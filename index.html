@@ -27,6 +27,10 @@
       overflow-x: hidden;
     }
     
+    body.modal-open {
+      overflow: hidden;
+    }
+    
     /* Header */
     header {
       position: fixed;
@@ -88,6 +92,13 @@
       font-weight: 700;
       letter-spacing: 0.1em;
       transition: color 0.3s ease;
+      padding: 8px 12px;
+    }
+    
+    .nav-menu a:focus-visible {
+      outline: 3px solid #667eea;
+      outline-offset: 4px;
+      border-radius: 4px;
     }
     
     header.nav-hovered .nav-menu a {
@@ -139,16 +150,11 @@
       transform: translateY(30px);
       pointer-events: none;
       z-index: 999;
-      transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     }
     
     .hero-fixed.show {
       animation: slideUpFadeIn 1s ease forwards;
-    }
-    
-    .hero-fixed.fade-out {
-      opacity: 0;
-      transform: translate(-30px, -50px);
     }
     
     @keyframes slideUpFadeIn {
@@ -204,20 +210,6 @@
       line-height: 1.8;
       max-width: 800px;
       margin: 0 auto;
-    }
-    
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    @keyframes slideDownFade {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
     
     @keyframes fadeInUp {
@@ -299,6 +291,13 @@
       font-size: 14px;
       font-weight: 600;
       color: #333333;
+      transition: all 0.3s ease;
+    }
+    
+    .skill-tag:hover {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      transform: translateY(-2px);
     }
     
     /* Tech Section */
@@ -415,6 +414,11 @@
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
     }
     
+    .project-card:focus-visible {
+      outline: 3px solid #667eea;
+      outline-offset: 4px;
+    }
+    
     .project-image {
       width: 100%;
       height: 240px;
@@ -439,7 +443,7 @@
     
     .project-meta {
       font-size: 13px;
-      color: #888888;
+      color: #666666;
       margin-bottom: 16px;
     }
     
@@ -464,6 +468,13 @@
       font-size: 12px;
       font-weight: 600;
       color: #666666;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+    
+    .project-card:hover .project-tag {
+      border-color: #667eea;
+      transform: translateY(-2px);
     }
     
     .project-links {
@@ -484,6 +495,155 @@
     
     .project-link:hover {
       background: #333333;
+    }
+    
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 2000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+    }
+    
+    .modal-content {
+      background: #ffffff;
+      border-radius: 20px;
+      max-width: 1200px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+    
+    .modal.active .modal-content {
+      transform: scale(1);
+    }
+    
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: rgba(0, 0, 0, 0.7);
+      border: none;
+      border-radius: 50%;
+      color: #ffffff;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: all 0.3s ease;
+    }
+    
+    .modal-close:hover {
+      background: #667eea;
+      transform: rotate(90deg);
+    }
+    
+    .modal-video-container {
+      width: 100%;
+      background: #000000;
+      border-radius: 20px 20px 0 0;
+      overflow: hidden;
+    }
+    
+    .modal-video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .modal-body {
+      padding: 40px;
+    }
+    
+    .modal-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #1a1a1a;
+    }
+    
+    .modal-meta {
+      font-size: 14px;
+      color: #888888;
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+    }
+    
+    .modal-description {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #444444;
+      margin-bottom: 32px;
+    }
+    
+    .modal-section {
+      margin-bottom: 32px;
+    }
+    
+    .modal-section h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #1a1a1a;
+    }
+    
+    .modal-section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    
+    .modal-section li {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #555555;
+      margin-bottom: 12px;
+      padding-left: 24px;
+      position: relative;
+    }
+    
+    .modal-section li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: #667eea;
+      font-weight: 700;
+    }
+    
+    .modal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    
+    .modal-tag {
+      padding: 10px 20px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #ffffff;
+      border-radius: 25px;
+      font-size: 13px;
+      font-weight: 600;
     }
     
     /* Awards Section */
@@ -602,6 +762,11 @@
       transform: translateY(-4px);
     }
     
+    .contact-link:focus-visible {
+      outline: 3px solid #667eea;
+      outline-offset: 4px;
+    }
+    
     /* Footer */
     footer {
       padding: 40px;
@@ -619,6 +784,7 @@
       
       .nav-menu a {
         font-size: 11px;
+        padding: 6px 8px;
       }
       
       .hero h1 {
@@ -635,6 +801,24 @@
       
       .tech-grid {
         grid-template-columns: 1fr;
+      }
+      
+      .modal-content {
+        width: 95%;
+        max-height: 95vh;
+      }
+      
+      .modal-body {
+        padding: 24px;
+      }
+      
+      .modal-title {
+        font-size: 24px;
+      }
+      
+      .hero-fixed {
+        left: 20px;
+        bottom: 20px;
       }
     }
   </style>
@@ -751,7 +935,7 @@
           </div>
         </div>
 
-        <div class="project-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="200">
+        <div class="project-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="200" onclick="openModal()">
           <div class="project-image">⚙️</div>
           <div class="project-info">
             <h3>Kernel Module Motor Control</h3>
@@ -763,7 +947,7 @@
               <span class="project-tag">GPIO</span>
             </div>
             <div class="project-links">
-              <a href="#" class="project-link">GitHub</a>
+              <a href="#" class="project-link" onclick="event.stopPropagation()">GitHub</a>
             </div>
           </div>
         </div>
@@ -787,6 +971,70 @@
       </div>
     </div>
   </section>
+
+  <!-- Modal -->
+  <div class="modal" id="projectModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      
+      <div class="modal-video-container">
+        <video class="modal-video" controls>
+          <source src="your-video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      
+      <div class="modal-body">
+        <h2 class="modal-title">Kernel Module Motor Control</h2>
+        <div class="modal-meta">Linux Driver · GPIO · Timer · Kernel Programming</div>
+        
+        <div class="modal-description">
+          <p>
+            Linux 커널 모듈을 활용한 모터 제어 시스템입니다. 안전한 커널 모듈 언로딩을 위한 kthread 관리 및 리소스 해제 정책을 설계하였으며, GPIO 핀을 통한 직접적인 하드웨어 제어를 구현했습니다.
+          </p>
+        </div>
+        
+        <div class="modal-section">
+          <h3>주요 기능</h3>
+          <ul>
+            <li>Kernel space에서 동작하는 디바이스 드라이버 개발</li>
+            <li>kthread를 활용한 비동기 모터 제어</li>
+            <li>GPIO 핀 직접 제어를 통한 PWM 신호 생성</li>
+            <li>안전한 모듈 언로딩을 위한 리소스 정리 메커니즘</li>
+            <li>Timer 기반 정밀한 타이밍 제어</li>
+          </ul>
+        </div>
+        
+        <div class="modal-section">
+          <h3>기술적 도전 과제</h3>
+          <ul>
+            <li>커널 패닉 방지를 위한 안전한 메모리 관리</li>
+            <li>Race condition 방지를 위한 동기화 메커니즘 구현</li>
+            <li>하드웨어 타이밍 제약사항 해결</li>
+            <li>효율적인 인터럽트 핸들링</li>
+          </ul>
+        </div>
+        
+        <div class="modal-section">
+          <h3>성과</h3>
+          <ul>
+            <li>안정적인 커널 모듈 로딩/언로딩 (0% 크래시율)</li>
+            <li>마이크로초 단위의 정밀한 모터 제어 달성</li>
+            <li>최소한의 CPU 오버헤드로 실시간 제어 구현</li>
+          </ul>
+        </div>
+        
+        <div class="modal-tags">
+          <span class="modal-tag">Linux Kernel</span>
+          <span class="modal-tag">Device Driver</span>
+          <span class="modal-tag">GPIO</span>
+          <span class="modal-tag">kthread</span>
+          <span class="modal-tag">PWM</span>
+          <span class="modal-tag">C Language</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Awards -->
   <section class="awards" id="awards">
@@ -864,27 +1112,63 @@
       header.classList.remove('nav-hovered');
     });
     
-    // Scroll handler
+    // Improved scroll handler with debouncing
+    let scrollTimeout;
     window.addEventListener('scroll', () => {
-      const currentScroll = window.pageYOffset;
-      const heroFixed = document.querySelector('.hero-fixed');
-      const heroHeight = window.innerHeight;
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        const currentScroll = window.pageYOffset;
+        const heroFixed = document.querySelector('.hero-fixed');
+        const heroHeight = window.innerHeight;
 
-      // header background
-      if (currentScroll > 100) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
+        // header background
+        if (currentScroll > 100) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+
+        // heroFixed show/hide logic - improved threshold
+        if (currentScroll > heroHeight * 0.3) {
+          const opacity = Math.max(0, 1 - ((currentScroll - heroHeight * 0.3) / (heroHeight * 0.2)));
+          heroFixed.style.opacity = opacity;
+          heroFixed.style.pointerEvents = opacity > 0 ? 'auto' : 'none';
+        } else {
+          heroFixed.style.opacity = '1';
+          heroFixed.style.pointerEvents = 'auto';
+        }
+      }, 16);
+    }, { passive: true });
+    
+    // Modal functions
+    function openModal() {
+      const modal = document.getElementById('projectModal');
+      const video = modal.querySelector('video');
+      document.body.classList.add('modal-open');
+      modal.classList.add('active');
+      video.play();
+    }
+    
+    function closeModal() {
+      const modal = document.getElementById('projectModal');
+      const video = modal.querySelector('video');
+      modal.classList.remove('active');
+      document.body.classList.remove('modal-open');
+      video.pause();
+      video.currentTime = 0;
+    }
+    
+    // Close modal on background click
+    document.getElementById('projectModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
       }
-
-      // heroFixed show/hide logic
-      if (currentScroll > heroHeight * 0.05) {
-        // hero 영역의 약 5% 지점부터 서서히 사라짐
-        heroFixed.classList.add('hide');
-        heroFixed.style.visibility = 'hidden';
-      } else {
-        heroFixed.classList.remove('hide');
-        heroFixed.style.visibility = 'visible';
+    });
+    
+    // Close modal on ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
       }
     });
     
@@ -897,7 +1181,8 @@
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.querySelector('.about-content, .tech-content, .projects-content, .awards-content, .contact-content').classList.add('visible');
+          const content = entry.target.querySelector('.about-content, .tech-content, .projects-content, .awards-content, .contact-content');
+          if (content) content.classList.add('visible');
         }
       });
     }, observerOptions);
@@ -906,7 +1191,7 @@
       observer.observe(section);
     });
     
-    // Initialize AOS (SATREC Initiative style - smoother)
+    // Initialize AOS
     AOS.init({
       easing: 'ease-in-out-sine',
       duration: 1200,

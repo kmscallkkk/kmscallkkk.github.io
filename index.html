@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
   
   <style>
     * {
@@ -780,23 +781,23 @@
   <!-- Awards -->
   <section class="awards" id="awards">
     <div class="awards-content">
-      <h2 class="section-title">Awards & Certificates</h2>
-      <div class="award-item">
+      <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000">Awards & Certificates</h2>
+      <div class="award-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
         <div class="award-year">AUG 2025</div>
         <div class="award-title">Best Final Project Award, Vision's Edge Device Academy</div>
         <div class="award-org">Hanwha Vision</div>
       </div>
-      <div class="award-item">
+      <div class="award-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
         <div class="award-year">AUG 2025</div>
         <div class="award-title">Outstanding Trainee Award, Vision's Edge Device Academy</div>
         <div class="award-org">Hanwha Vision</div>
       </div>
-      <div class="award-item">
+      <div class="award-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
         <div class="award-year">JAN 2025</div>
         <div class="award-title">OPIC Intermediate Mid2</div>
         <div class="award-org">English Proficiency</div>
       </div>
-      <div class="award-item">
+      <div class="award-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
         <div class="award-year">FEB 2011</div>
         <div class="award-title">Computer Specialist in Spreadsheet & Database Level 2</div>
         <div class="award-org">Korea Chamber of Commerce & Industry</div>
@@ -825,6 +826,9 @@
     <p>© 2025 Jang Dongchul. All rights reserved.</p>
   </footer>
 
+  <!-- AOS Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  
   <script>
     // Hero animation: fade out center, then show bottom left
     setTimeout(() => {
@@ -880,6 +884,13 @@
     
     document.querySelectorAll('.about, .tech, .projects, .awards, .contact').forEach(section => {
       observer.observe(section);
+    });
+    
+    // Initialize AOS
+    AOS.init({
+      easing: 'ease-in-out-sine',
+      once: true,
+      mirror: false
     });
   </script>
 </body>

@@ -139,10 +139,16 @@
       transform: translateY(30px);
       pointer-events: none;
       z-index: 999;
+      transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
     }
     
     .hero-fixed.show {
       animation: slideUpFadeIn 1s ease forwards;
+    }
+    
+    .hero-fixed.fade-out {
+      opacity: 0;
+      transform: translate(-30px, -50px);
     }
     
     @keyframes slideUpFadeIn {
@@ -248,8 +254,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 100px 40px;
+      padding: 150px 40px;
       background: #ffffff;
+      margin-bottom: 100px;
     }
     
     .about-content {
@@ -300,9 +307,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 100px 40px;
+      padding: 150px 40px;
       background: #ffffff;
       color: #1a1a1a;
+      margin-bottom: 100px;
     }
     
     .tech-content {
@@ -364,8 +372,9 @@
     /* Projects Section */
     .projects {
       min-height: 100vh;
-      padding: 100px 40px;
+      padding: 150px 40px;
       background: #ffffff;
+      margin-bottom: 100px;
     }
     
     .projects-content {
@@ -483,9 +492,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 100px 40px;
+      padding: 150px 40px;
       background: #ffffff;
       color: #1a1a1a;
+      margin-bottom: 100px;
     }
     
     .awards-content {
@@ -541,7 +551,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 100px 40px;
+      padding: 150px 40px;
       background: #ffffff;
     }
     
@@ -665,14 +675,14 @@
   <!-- About -->
   <section class="about" id="about">
     <div class="about-content">
-      <h2 class="section-title">About</h2>
-      <p>
+      <h2 class="section-title" data-aos="fade-right" data-aos-duration="700">About</h2>
+      <p data-aos="fade-right" data-aos-duration="700" data-aos-delay="100">
         Double majoring in Digital Media and Software at Ajou University, I have built extensive knowledge in embedded systems and computer vision.
       </p>
-      <p>
+      <p data-aos="fade-right" data-aos-duration="700" data-aos-delay="200">
         Completed Hanwha Vision's Edge Device Academy (2nd cohort) with Outstanding Trainee Award and Best Final Project Award. Experienced in Qt development with C/C++ and Linux kernel module device driver development. Proficient in image processing and computer vision projects using OpenCV.
       </p>
-      <div class="skills-list">
+      <div class="skills-list" data-aos="fade-right" data-aos-duration="700" data-aos-delay="300">
         <span class="skill-tag">C/C++</span>
         <span class="skill-tag">OpenCV</span>
         <span class="skill-tag">Qt</span>
@@ -688,9 +698,9 @@
   <!-- Tech -->
   <section class="tech" id="tech">
     <div class="tech-content">
-      <h2 class="section-title">Tech Stack</h2>
+      <h2 class="section-title" data-aos="fade-right" data-aos-duration="700">Tech Stack</h2>
       <div class="tech-grid">
-        <div class="tech-card">
+        <div class="tech-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="100">
           <h3>Programming Languages</h3>
           <ul>
             <li>C/C++ (Advanced)</li>
@@ -698,7 +708,7 @@
             <li>GLSL</li>
           </ul>
         </div>
-        <div class="tech-card">
+        <div class="tech-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="200">
           <h3>Embedded & Linux</h3>
           <ul>
             <li>Embedded Linux</li>
@@ -706,7 +716,7 @@
             <li>Device Driver Development</li>
           </ul>
         </div>
-        <div class="tech-card">
+        <div class="tech-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="300">
           <h3>Computer Vision & GUI</h3>
           <ul>
             <li>OpenCV · Image Processing</li>
@@ -721,9 +731,9 @@
   <!-- Projects -->
   <section class="projects" id="projects">
     <div class="projects-content">
-      <h2 class="section-title">Projects</h2>
+      <h2 class="section-title" data-aos="fade-right" data-aos-duration="700">Projects</h2>
       <div class="project-grid">
-        <div class="project-card">
+        <div class="project-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="100">
           <div class="project-image">🏭</div>
           <div class="project-info">
             <h3>Smart Factory Conveyor Monitoring</h3>
@@ -741,7 +751,7 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="200">
           <div class="project-image">⚙️</div>
           <div class="project-info">
             <h3>Kernel Module Motor Control</h3>
@@ -758,7 +768,7 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="300">
           <div class="project-image">👶</div>
           <div class="project-info">
             <h3>Infant Monitoring System</h3>
@@ -781,23 +791,23 @@
   <!-- Awards -->
   <section class="awards" id="awards">
     <div class="awards-content">
-      <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000">Awards & Certificates</h2>
-      <div class="award-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+      <h2 class="section-title" data-aos="fade-up">Awards & Certificates</h2>
+      <div class="award-item" data-aos="fade-up" data-aos-delay="150">
         <div class="award-year">AUG 2025</div>
         <div class="award-title">Best Final Project Award, Vision's Edge Device Academy</div>
         <div class="award-org">Hanwha Vision</div>
       </div>
-      <div class="award-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+      <div class="award-item" data-aos="fade-up" data-aos-delay="300">
         <div class="award-year">AUG 2025</div>
         <div class="award-title">Outstanding Trainee Award, Vision's Edge Device Academy</div>
         <div class="award-org">Hanwha Vision</div>
       </div>
-      <div class="award-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+      <div class="award-item" data-aos="fade-up" data-aos-delay="450">
         <div class="award-year">JAN 2025</div>
         <div class="award-title">OPIC Intermediate Mid2</div>
         <div class="award-org">English Proficiency</div>
       </div>
-      <div class="award-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+      <div class="award-item" data-aos="fade-up" data-aos-delay="600">
         <div class="award-year">FEB 2011</div>
         <div class="award-title">Computer Specialist in Spreadsheet & Database Level 2</div>
         <div class="award-org">Korea Chamber of Commerce & Industry</div>
@@ -855,17 +865,27 @@
     });
     
     // Scroll handler
-    let lastScroll = 0;
     window.addEventListener('scroll', () => {
       const currentScroll = window.pageYOffset;
-      
+      const heroFixed = document.querySelector('.hero-fixed');
+      const heroHeight = window.innerHeight;
+
+      // header background
       if (currentScroll > 100) {
         header.classList.add('scrolled');
       } else {
         header.classList.remove('scrolled');
       }
-      
-      lastScroll = currentScroll;
+
+      // heroFixed show/hide logic
+      if (currentScroll > heroHeight * 0.05) {
+        // hero 영역의 약 5% 지점부터 서서히 사라짐
+        heroFixed.classList.add('hide');
+        heroFixed.style.visibility = 'hidden';
+      } else {
+        heroFixed.classList.remove('hide');
+        heroFixed.style.visibility = 'visible';
+      }
     });
     
     // Intersection Observer for sections
@@ -886,11 +906,13 @@
       observer.observe(section);
     });
     
-    // Initialize AOS
+    // Initialize AOS (SATREC Initiative style - smoother)
     AOS.init({
       easing: 'ease-in-out-sine',
+      duration: 1200,
+      offset: 120,
       once: true,
-      mirror: false
+      disable: false
     });
   </script>
 </body>

@@ -423,7 +423,7 @@
       font-size: 36px;
       font-weight: 700;
       margin-bottom: 24px;
-      color: #1a1a1a;
+      color: #0070C0;
     }
     
     .project-single .project-meta {
@@ -436,6 +436,22 @@
       font-size: 18px;
       line-height: 1.8;
       color: #555555;
+      margin-bottom: 24px;
+    }
+    
+    .project-detail-btn {
+      background: none;
+      border: none;
+      color: #1a1a1a;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0;
+      transition: color 0.3s ease;
+    }
+    
+    .project-detail-btn:hover {
+      color: #0070C0;
     }
     
     /* Modal Styles */
@@ -866,16 +882,19 @@
         <h3>Smart Factory Conveyor Monitoring</h3>
         <div class="project-meta">Raspberry Pi · OpenCV · GStreamer</div>
         <p>Optical Flow-based belt speed measurement system. Implemented RTSP real-time streaming and MQTT alert system.</p>
+        <button class="project-detail-btn" onclick="openProjectModal(1)">Learn More →</button>
       </div>
       <div class="project-single" id="project2" style="opacity: 0; transform: translateY(500px);">
         <h3>Kernel Module Motor Control</h3>
         <div class="project-meta">Linux Driver · GPIO · Timer</div>
         <p>Designed kthread management and resource release policy for safe kernel module unloading.</p>
+        <button class="project-detail-btn" onclick="openProjectModal(2)">Learn More →</button>
       </div>
       <div class="project-single" id="project3" style="opacity: 0; transform: translateY(500px);">
         <h3>Infant Monitoring System</h3>
         <div class="project-meta">ESP32 · Sensor Fusion · BLE</div>
         <p>Real-time monitoring system utilizing temperature/humidity, cry detection, and motion sensors.</p>
+        <button class="project-detail-btn" onclick="openProjectModal(3)">Learn More →</button>
       </div>
     </div>
   </section>
@@ -1064,6 +1083,13 @@
       video.play();
     }
     
+    function openProjectModal(projectNum) {
+      const modal = document.getElementById('projectModal');
+      document.body.classList.add('modal-open');
+      modal.classList.add('active');
+      // 프로젝트별 내용은 나중에 추가 예정
+    }
+    
     function closeModal() {
       const modal = document.getElementById('projectModal');
       const video = modal.querySelector('video');
@@ -1140,8 +1166,8 @@
       if (scrollProgress >= 0.3 && scrollProgress <= 0.5) {
         const phase3Progress = (scrollProgress - 0.3) / 0.2;
         
-        // First project moves up and fades out
-        project1.style.opacity = 1 - phase3Progress;
+        // First project moves up (no fade out)
+        project1.style.opacity = 1;
         project1.style.transform = `translateY(${-500 * phase3Progress}px)`;
         
         // Second project moves up and fades in
@@ -1151,7 +1177,7 @@
       
       // Phase 4: Show second project (0.5 - 0.55)
       if (scrollProgress > 0.5 && scrollProgress < 0.55) {
-        project1.style.opacity = 0;
+        project1.style.opacity = 1;
         project1.style.transform = 'translateY(-500px)';
         project2.style.opacity = 1;
         project2.style.transform = 'translateY(0)';
@@ -1161,8 +1187,8 @@
       if (scrollProgress >= 0.55 && scrollProgress <= 0.75) {
         const phase5Progress = (scrollProgress - 0.55) / 0.2;
         
-        // Second project moves up and fades out
-        project2.style.opacity = 1 - phase5Progress;
+        // Second project moves up (no fade out)
+        project2.style.opacity = 1;
         project2.style.transform = `translateY(${-500 * phase5Progress}px)`;
         
         // Third project moves up and fades in
@@ -1172,18 +1198,18 @@
       
       // Phase 6: Show third project (0.75 - 0.8)
       if (scrollProgress > 0.75 && scrollProgress < 0.8) {
-        project1.style.opacity = 0;
+        project1.style.opacity = 1;
         project1.style.transform = 'translateY(-500px)';
-        project2.style.opacity = 0;
+        project2.style.opacity = 1;
         project2.style.transform = 'translateY(-500px)';
         project3.style.opacity = 1;
         project3.style.transform = 'translateY(0)';
       }
       
-      // Phase 7: Third project moves up and fades out (0.8 - 1)
+      // Phase 7: Third project moves up (no fade out) (0.8 - 1)
       if (scrollProgress >= 0.8) {
         const phase7Progress = (scrollProgress - 0.8) / 0.2;
-        project3.style.opacity = 1 - phase7Progress;
+        project3.style.opacity = 1;
         project3.style.transform = `translateY(${-500 * phase7Progress}px)`;
       }
       

@@ -300,74 +300,74 @@
       transform: translateY(-2px);
     }
     
-    /* Tech Section Split Layout */
+    /* Tech Section */
     .tech {
-      display: flex;
-      position: relative;
-      height: 300vh; /* 총 스크롤 높이 */
-      background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 100%);
-      color: #fff;
-      overflow: hidden;
-    }
-    
-    /* 왼쪽 고정 영역 */
-    .tech-left {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      width: 40%;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-right: 1px solid rgba(255,255,255,0.1);
+      padding: 150px 40px;
+      background: #ffffff;
+      color: #1a1a1a;
+      margin-bottom: 100px;
     }
     
-    .tech-left h2 {
-      font-size: clamp(36px, 6vw, 72px);
-      font-weight: 800;
-      color: #fff;
-      text-align: left;
-      margin-left: 80px;
-    }
-    
-    /* 오른쪽 전환 영역 */
-    .tech-right {
-      width: 60%;
-      position: relative;
-    }
-    
-    .tech-scene {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      text-align: left;
-      padding: 0 80px;
+    .tech-content {
+      max-width: 1200px;
+      width: 100%;
       opacity: 0;
-      transform: translateX(100px);
+      transform: translateY(50px);
       transition: opacity 1s ease, transform 1s ease;
     }
     
-    .tech-scene.active {
+    .tech-content.visible {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateY(0);
     }
     
-    .tech-scene h3 {
-      font-size: clamp(28px, 4vw, 48px);
+    .tech .section-title {
+      color: #1a1a1a;
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+    }
+    
+    .tech-card {
+      padding: 40px;
+      background: #f8f8f8;
+      border: 1px solid #e0e0e0;
+      border-radius: 16px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .tech-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .tech-card h3 {
+      font-size: 24px;
       font-weight: 700;
-      margin-bottom: 24px;
-      color: #fff;
+      margin-bottom: 16px;
+      color: #1a1a1a;
     }
     
-    .tech-scene p {
-      font-size: clamp(16px, 2vw, 20px);
-      color: #ccc;
+    .tech-card ul {
+      list-style: none;
+      color: #555555;
+      font-size: 15px;
       line-height: 1.8;
     }
-
+    
+    .tech-card li {
+      margin-bottom: 8px;
+    }
+    
     /* Projects Section */
     .projects {
       min-height: 100vh;
@@ -775,48 +775,7 @@
       color: #888888;
       font-size: 14px;
     }
-
-
-    /* Tech Section Scroll Transition */
-    .tech {
-      position: relative;
-      height: 300vh; /* 3개 화면 높이 */
-    }
     
-    .tech-scene {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 100%);
-      color: #fff;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-    
-    .tech-scene.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    .tech-scene h2 {
-      font-size: clamp(36px, 6vw, 72px);
-      font-weight: 800;
-      margin-bottom: 20px;
-    }
-    
-    .tech-scene p {
-      font-size: clamp(16px, 2.5vw, 20px);
-      color: #ccc;
-      line-height: 1.8;
-      max-width: 800px;
-    }
-
     /* Mobile */
     @media (max-width: 768px) {
       .nav-menu {
@@ -837,6 +796,10 @@
       }
       
       .project-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .tech-grid {
         grid-template-columns: 1fr;
       }
       
@@ -918,37 +881,96 @@
 
   <!-- Tech -->
   <section class="tech" id="tech">
-    <div class="tech-left">
-      <h2>Tech Stack</h2>
-    </div>
-  
-    <div class="tech-right">
-      <div class="tech-scene scene1">
-        <h3>System Architecture</h3>
-        <p>
-          Embedded Linux, Kernel Programming, Device Driver Development<br>
-          GPIO Control, Thread Synchronization, Timer Management
-        </p>
-      </div>
-  
-      <div class="tech-scene scene2">
-        <h3>Control and Communication</h3>
-        <p>
-          C/C++, MQTT, RTSP, GStreamer, Multithreading<br>
-          Real-time control and data communication
-        </p>
-      </div>
-  
-      <div class="tech-scene scene3">
-        <h3>Vision and Interface</h3>
-        <p>
-          OpenCV, Qt Framework, OpenGL<br>
-          Vision processing and GUI visualization
-        </p>
+    <div class="tech-content">
+      <h2 class="section-title" data-aos="fade-right" data-aos-duration="700">Tech Stack</h2>
+      <div class="tech-grid">
+        <div class="tech-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="100">
+          <h3>Programming Languages</h3>
+          <ul>
+            <li>C/C++ (Advanced)</li>
+            <li>Python</li>
+            <li>GLSL</li>
+          </ul>
+        </div>
+        <div class="tech-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="200">
+          <h3>Embedded & Linux</h3>
+          <ul>
+            <li>Embedded Linux</li>
+            <li>Linux Kernel Programming</li>
+            <li>Device Driver Development</li>
+          </ul>
+        </div>
+        <div class="tech-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="300">
+          <h3>Computer Vision & GUI</h3>
+          <ul>
+            <li>OpenCV · Image Processing</li>
+            <li>Qt Framework</li>
+            <li>OpenGL</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- Projects -->
+  <section class="projects" id="projects">
+    <div class="projects-content">
+      <h2 class="section-title" data-aos="fade-right" data-aos-duration="700">Projects</h2>
+      <div class="project-grid">
+        <div class="project-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="100">
+          <div class="project-image">🏭</div>
+          <div class="project-info">
+            <h3>Smart Factory Conveyor Monitoring</h3>
+            <div class="project-meta">Raspberry Pi · OpenCV · GStreamer</div>
+            <p>Optical Flow-based belt speed measurement system. Implemented RTSP real-time streaming and MQTT alert system.</p>
+            <div class="project-tags">
+              <span class="project-tag">Real-Time</span>
+              <span class="project-tag">OpenCV</span>
+              <span class="project-tag">MQTT</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link">GitHub</a>
+              <a href="#" class="project-link">Demo</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="200" onclick="openModal()">
+          <div class="project-image">⚙️</div>
+          <div class="project-info">
+            <h3>Kernel Module Motor Control</h3>
+            <div class="project-meta">Linux Driver · GPIO · Timer</div>
+            <p>Designed kthread management and resource release policy for safe kernel module unloading.</p>
+            <div class="project-tags">
+              <span class="project-tag">Kernel</span>
+              <span class="project-tag">Driver</span>
+              <span class="project-tag">GPIO</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link" onclick="event.stopPropagation()">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="300">
+          <div class="project-image">👶</div>
+          <div class="project-info">
+            <h3>Infant Monitoring System</h3>
+            <div class="project-meta">ESP32 · Sensor Fusion · BLE</div>
+            <p>Real-time monitoring system utilizing temperature/humidity, cry detection, and motion sensors.</p>
+            <div class="project-tags">
+              <span class="project-tag">IoT</span>
+              <span class="project-tag">BLE</span>
+              <span class="project-tag">ESP32</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Modal -->
   <div class="modal" id="projectModal">
@@ -1159,17 +1181,15 @@
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const content = entry.target.querySelector('.about-content, .projects-content, .awards-content, .contact-content');
+          const content = entry.target.querySelector('.about-content, .tech-content, .projects-content, .awards-content, .contact-content');
           if (content) content.classList.add('visible');
         }
       });
     }, observerOptions);
     
-    document.querySelectorAll('.about, .projects, .awards, .contact').forEach(section => {
+    document.querySelectorAll('.about, .tech, .projects, .awards, .contact').forEach(section => {
       observer.observe(section);
     });
-    
-    // Tech Stack scroll animation
     
     // Initialize AOS
     AOS.init({
@@ -1179,33 +1199,6 @@
       once: true,
       disable: false
     });
-
-    // Tech Stack left-fixed + right-scroll effect
-    window.addEventListener('scroll', () => {
-      const techSection = document.getElementById('tech');
-      const techTop = techSection.offsetTop;
-      const techHeight = techSection.offsetHeight;
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-    
-      const progress = (scrollY - techTop) / (techHeight - windowHeight);
-      const scenes = document.querySelectorAll('.tech-scene');
-      const numScenes = scenes.length;
-    
-      scenes.forEach((scene, i) => {
-        const start = i / numScenes;
-        const end = (i + 1) / numScenes;
-        const localProgress = (progress - start) / (end - start);
-    
-        if (localProgress >= 0 && localProgress <= 1) {
-          scene.classList.add('active');
-        } else {
-          scene.classList.remove('active');
-        }
-      });
-    });
-
-
   </script>
 </body>
 </html>

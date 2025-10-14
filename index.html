@@ -804,7 +804,48 @@
       color: #888888;
       font-size: 14px;
     }
+
+
+    /* Tech Section Scroll Transition */
+    .tech {
+      position: relative;
+      height: 300vh; /* 3개 화면 높이 */
+    }
     
+    .tech-scene {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 100%);
+      color: #fff;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    
+    .tech-scene.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .tech-scene h2 {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+    
+    .tech-scene p {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: #ccc;
+      line-height: 1.8;
+      max-width: 800px;
+    }
+
     /* Mobile */
     @media (max-width: 768px) {
       .nav-menu {
@@ -905,45 +946,32 @@
   </section>
 
   <!-- Tech -->
-  <section class="tech" id="tech">
-    <div class="tech-scene">
-      <div class="tech-slide" data-scene="1">
-        <div class="tech-slide-content">
-          <h2>Tech Stack</h2>
-          <h3>Programming Languages</h3>
-          <ul>
-            <li>C/C++ (Advanced)</li>
-            <li>Python</li>
-            <li>GLSL</li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="tech-slide" data-scene="2">
-        <div class="tech-slide-content">
-          <h2>Tech Stack</h2>
-          <h3>Embedded & Linux</h3>
-          <ul>
-            <li>Embedded Linux</li>
-            <li>Linux Kernel Programming</li>
-            <li>Device Driver Development</li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="tech-slide" data-scene="3">
-        <div class="tech-slide-content">
-          <h2>Tech Stack</h2>
-          <h3>Computer Vision & GUI</h3>
-          <ul>
-            <li>OpenCV · Image Processing</li>
-            <li>Qt Framework</li>
-            <li>OpenGL</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="tech" id="tech">
+  <div class="tech-scene scene1">
+    <h2>System Architecture</h2>
+    <p>
+      Embedded Linux, Kernel Programming, Device Driver Development<br>
+      GPIO Control, Thread Synchronization, Timer Management
+    </p>
+  </div>
+
+  <div class="tech-scene scene2">
+    <h2>Control and Communication</h2>
+    <p>
+      C/C++, MQTT, RTSP, GStreamer, Multithreading<br>
+      Real-time control and data communication
+    </p>
+  </div>
+
+  <div class="tech-scene scene3">
+    <h2>Vision and Interface</h2>
+    <p>
+      OpenCV, Qt Framework, OpenGL<br>
+      Vision processing and GUI visualization
+    </p>
+  </div>
+</section>
+
 
   <!-- Projects -->
   <section class="projects" id="projects">
@@ -1225,57 +1253,6 @@
     });
     
     // Tech Stack scroll animation
-    function updateTechScenes() {
-      const techSection = document.querySelector('.tech');
-      if (!techSection) return;
-      
-      const techRect = techSection.getBoundingClientRect();
-      const techHeight = techSection.offsetHeight;
-      const viewportHeight = window.innerHeight;
-      
-      // Calculate scroll progress within tech section (0 to 1)
-      const scrollProgress = Math.max(0, Math.min(1, -techRect.top / (techHeight - viewportHeight)));
-      
-      const slides = techSection.querySelectorAll('.tech-slide');
-      const numSlides = slides.length;
-      
-      slides.forEach((slide, index) => {
-        const sceneStart = index / numSlides;
-        const sceneEnd = (index + 1) / numSlides;
-        
-        // Smooth transition with overlap
-        const fadeInStart = Math.max(0, sceneStart - 0.1);
-        const fadeOutEnd = Math.min(1, sceneEnd + 0.1);
-        
-        let opacity = 0;
-        
-        if (scrollProgress >= fadeInStart && scrollProgress <= fadeOutEnd) {
-          if (scrollProgress < sceneStart) {
-            // Fading in
-            opacity = (scrollProgress - fadeInStart) / (sceneStart - fadeInStart);
-          } else if (scrollProgress > sceneEnd) {
-            // Fading out
-            opacity = 1 - (scrollProgress - sceneEnd) / (fadeOutEnd - sceneEnd);
-          } else {
-            // Fully visible
-            opacity = 1;
-          }
-        }
-        
-        if (opacity > 0.5) {
-          slide.classList.add('active');
-        } else {
-          slide.classList.remove('active');
-        }
-        
-        slide.style.opacity = opacity;
-      });
-    }
-    
-    // Update on scroll
-    window.addEventListener('scroll', updateTechScenes, { passive: true });
-    // Initial update
-    updateTechScenes();
     
     // Initialize AOS
     AOS.init({
@@ -1284,6 +1261,25 @@
       offset: 120,
       once: true,
       disable: false
+    });
+
+    // Tech Stack scroll scene effect
+    const scenes = document.querySelectorAll('.tech-scene');
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const techSection = document.getElementById('tech');
+      const sectionTop = techSection.offsetTop;
+      const sectionHeight = window.innerHeight;
+
+      scenes.forEach((scene, i) => {
+        const start = sectionTop + i * sectionHeight;
+        const end = start + sectionHeight;
+        if (scrollY >= start && scrollY < end) {
+          scene.classList.add('active');
+        } else {
+          scene.classList.remove('active');
+        }
+      });
     });
   </script>
 </body>

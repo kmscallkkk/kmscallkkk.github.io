@@ -312,10 +312,17 @@
       top: 0;
       height: 100vh;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
-      overflow: hidden;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 100%);
+      color: #fff;
+      opacity: 0;
+      transform: translateY(100px);
+      will-change: opacity, transform;
     }
+
     
     .tech-slide {
       position: absolute;
@@ -1263,24 +1270,38 @@
       disable: false
     });
 
-    // Tech Stack scroll scene effect
-    const scenes = document.querySelectorAll('.tech-scene');
+    // Tech Stack smooth scroll transition
     window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
       const techSection = document.getElementById('tech');
-      const sectionTop = techSection.offsetTop;
-      const sectionHeight = window.innerHeight;
-
+      const techTop = techSection.offsetTop;
+      const techHeight = techSection.offsetHeight;
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+    
+      // 0~1 사이로 스크롤 비율 계산
+      const progress = (scrollY - techTop) / (techHeight - windowHeight);
+      const scenes = document.querySelectorAll('.tech-scene');
+      const numScenes = scenes.length;
+    
       scenes.forEach((scene, i) => {
-        const start = sectionTop + i * sectionHeight;
-        const end = start + sectionHeight;
-        if (scrollY >= start && scrollY < end) {
-          scene.classList.add('active');
+        const start = i / numScenes;
+        const end = (i + 1) / numScenes;
+        const localProgress = (progress - start) / (end - start);
+    
+        if (localProgress >= 0 && localProgress <= 1) {
+          // 중앙에서 가장 선명하고 위아래로 자연스럽게 이동
+          const opacity = Math.min(1, Math.max(0, 1 - Math.abs(localProgress - 0.5) * 2));
+          const translate = (1 - opacity) * 80; // 위아래 이동량(px)
+          scene.style.opacity = opacity;
+          scene.style.transform = `translateY(${translate}px)`;
+          scene.style.zIndex = 2;
         } else {
-          scene.classList.remove('active');
+          scene.style.opacity = 0;
+          scene.style.zIndex = 1;
         }
       });
     });
+
   </script>
 </body>
 </html>

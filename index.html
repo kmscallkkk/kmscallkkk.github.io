@@ -412,6 +412,11 @@
       transform: translateY(0);
     }
     
+    .projects .section-title.fade-out {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    
     .project-single {
       max-width: 600px;
       position: absolute;
@@ -613,6 +618,7 @@
       background: #ffffff;
       color: #1a1a1a;
       margin-bottom: 100px;
+      position: relative;
     }
     
     .awards-content {
@@ -630,8 +636,19 @@
     
     .awards .section-title {
       color: #1a1a1a;
-      text-align: center;
+      text-align: left;
       margin-bottom: 60px;
+      position: absolute;
+      top: 150px;
+      left: 40px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .awards .section-title.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     
     .award-item {
@@ -1124,6 +1141,12 @@
         if (entry.isIntersecting) {
           const content = entry.target.querySelector('.about-content, .tech-content, .awards-content, .contact-content');
           if (content) content.classList.add('visible');
+          
+          // Awards title animation
+          if (entry.target.classList.contains('awards')) {
+            const awardsTitle = entry.target.querySelector('.section-title');
+            if (awardsTitle) awardsTitle.classList.add('visible');
+          }
         }
       });
     }, observerOptions);
@@ -1153,6 +1176,7 @@
       // Phase 1: Show title (0 - 0.1)
       if (scrollProgress > 0 && scrollProgress < 0.25) {
         projectsTitle.classList.add('visible');
+        projectsTitle.classList.remove('fade-out');
       }
       
       // Phase 2: Show first project (0.1 - 0.3)
@@ -1196,8 +1220,8 @@
         project3.style.transform = `translateY(${500 - phase5Progress * 500}px)`;
       }
       
-      // Phase 6: Show third project (0.75 - 0.8)
-      if (scrollProgress > 0.75 && scrollProgress < 0.8) {
+      // Phase 6: Show third project (0.75 - 0.85)
+      if (scrollProgress > 0.75 && scrollProgress < 0.85) {
         project1.style.opacity = 1;
         project1.style.transform = 'translateY(-500px)';
         project2.style.opacity = 1;
@@ -1206,11 +1230,17 @@
         project3.style.transform = 'translateY(0)';
       }
       
-      // Phase 7: Third project moves up (no fade out) (0.8 - 1)
-      if (scrollProgress >= 0.8) {
-        const phase7Progress = (scrollProgress - 0.8) / 0.2;
+      // Phase 7: Third project moves up (0.85 - 0.9)
+      if (scrollProgress >= 0.85 && scrollProgress < 0.9) {
+        const phase7Progress = (scrollProgress - 0.85) / 0.05;
         project3.style.opacity = 1;
         project3.style.transform = `translateY(${-500 * phase7Progress}px)`;
+      }
+      
+      // Phase 8: Projects title fades out (0.9 - 1)
+      if (scrollProgress >= 0.9) {
+        projectsTitle.classList.add('fade-out');
+        projectsTitle.classList.remove('visible');
       }
       
       // Before animation starts

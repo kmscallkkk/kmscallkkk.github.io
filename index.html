@@ -1197,9 +1197,9 @@
         // First project moves up
         project1.style.transform = `translateY(${-500 * phase3Progress}px)`;
         
-        // Fade out only in the last 30% of movement
-        if (phase3Progress > 0.7) {
-          project1.style.opacity = 1 - ((phase3Progress - 0.7) / 0.3);
+        // Fade out starting from 50% of movement
+        if (phase3Progress > 0.5) {
+          project1.style.opacity = 1 - ((phase3Progress - 0.5) / 0.5);
         } else {
           project1.style.opacity = 1;
         }
@@ -1224,9 +1224,9 @@
         // Second project moves up
         project2.style.transform = `translateY(${-500 * phase5Progress}px)`;
         
-        // Fade out only in the last 30% of movement
-        if (phase5Progress > 0.7) {
-          project2.style.opacity = 1 - ((phase5Progress - 0.7) / 0.3);
+        // Fade out starting from 50% of movement
+        if (phase5Progress > 0.5) {
+          project2.style.opacity = 1 - ((phase5Progress - 0.5) / 0.5);
         } else {
           project2.style.opacity = 1;
         }
@@ -1252,9 +1252,9 @@
         
         project3.style.transform = `translateY(${-500 * phase7Progress}px)`;
         
-        // Fade out only in the last 30% of movement
-        if (phase7Progress > 0.7) {
-          project3.style.opacity = 1 - ((phase7Progress - 0.7) / 0.3);
+        // Fade out starting from 50% of movement
+        if (phase7Progress > 0.5) {
+          project3.style.opacity = 1 - ((phase7Progress - 0.5) / 0.5);
         } else {
           project3.style.opacity = 1;
         }

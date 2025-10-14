@@ -821,7 +821,25 @@
         bottom: 20px;
       }
     }
+
+    /* Fullscreen project slides */
+    .project-swiper {
+      width: 100%;
+      height: 100vh;
+    }
+    
+    .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #0a0a0a;
+      color: #fff;
+      transition: background 1s ease;
+    }
   </style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
 </head>
 <body>
   <!-- Header -->
@@ -912,65 +930,43 @@
     </div>
   </section>
 
-  <!-- Projects -->
   <section class="projects" id="projects">
-    <div class="projects-content">
-      <h2 class="section-title" data-aos="fade-right" data-aos-duration="700">Projects</h2>
-      <div class="project-grid">
-        <div class="project-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="100">
-          <div class="project-image">🏭</div>
-          <div class="project-info">
-            <h3>Smart Factory Conveyor Monitoring</h3>
-            <div class="project-meta">Raspberry Pi · OpenCV · GStreamer</div>
-            <p>Optical Flow-based belt speed measurement system. Implemented RTSP real-time streaming and MQTT alert system.</p>
-            <div class="project-tags">
-              <span class="project-tag">Real-Time</span>
-              <span class="project-tag">OpenCV</span>
-              <span class="project-tag">MQTT</span>
-            </div>
-            <div class="project-links">
-              <a href="#" class="project-link">GitHub</a>
-              <a href="#" class="project-link">Demo</a>
-            </div>
+    <div class="swiper project-swiper">
+      <div class="swiper-wrapper">
+        
+        <!-- 첫 번째 슬라이드 -->
+        <div class="swiper-slide">
+          <div class="project-slide">
+            <h2>Smart Factory Conveyor Monitoring</h2>
+            <p>Optical Flow 기반 벨트 속도 계산 및 RTSP 실시간 스트리밍 시스템</p>
+            <span class="tags">Raspberry Pi · OpenCV · MQTT</span>
           </div>
         </div>
-
-        <div class="project-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="200" onclick="openModal()">
-          <div class="project-image">⚙️</div>
-          <div class="project-info">
-            <h3>Kernel Module Motor Control</h3>
-            <div class="project-meta">Linux Driver · GPIO · Timer</div>
-            <p>Designed kthread management and resource release policy for safe kernel module unloading.</p>
-            <div class="project-tags">
-              <span class="project-tag">Kernel</span>
-              <span class="project-tag">Driver</span>
-              <span class="project-tag">GPIO</span>
-            </div>
-            <div class="project-links">
-              <a href="#" class="project-link" onclick="event.stopPropagation()">GitHub</a>
-            </div>
+  
+        <!-- 두 번째 슬라이드 -->
+        <div class="swiper-slide">
+          <div class="project-slide">
+            <h2>Kernel Module Motor Control</h2>
+            <p>GPIO 제어 및 안전한 kthread 종료 정책 설계</p>
+            <span class="tags">Linux Driver · GPIO · Timer</span>
           </div>
         </div>
-
-        <div class="project-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="300">
-          <div class="project-image">👶</div>
-          <div class="project-info">
-            <h3>Infant Monitoring System</h3>
-            <div class="project-meta">ESP32 · Sensor Fusion · BLE</div>
-            <p>Real-time monitoring system utilizing temperature/humidity, cry detection, and motion sensors.</p>
-            <div class="project-tags">
-              <span class="project-tag">IoT</span>
-              <span class="project-tag">BLE</span>
-              <span class="project-tag">ESP32</span>
-            </div>
-            <div class="project-links">
-              <a href="#" class="project-link">GitHub</a>
-            </div>
+  
+        <!-- 세 번째 슬라이드 -->
+        <div class="swiper-slide">
+          <div class="project-slide">
+            <h2>Infant Monitoring System</h2>
+            <p>온습도, 울음, 움직임 감지를 통한 실시간 모니터링</p>
+            <span class="tags">ESP32 · BLE · Sensor Fusion</span>
           </div>
         </div>
+  
       </div>
+      <!-- 하단 점 네비게이션 -->
+      <div class="swiper-pagination"></div>
     </div>
   </section>
+
 
   <!-- Modal -->
   <div class="modal" id="projectModal">
@@ -1198,6 +1194,18 @@
       offset: 120,
       once: true,
       disable: false
+    });
+
+    const swiper = new Swiper('.project-swiper', {
+      direction: 'vertical',
+      mousewheel: true,
+      speed: 1000,
+      effect: 'fade',
+      fadeEffect: { crossFade: true },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
     });
   </script>
 </body>

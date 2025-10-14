@@ -1,15 +1,360 @@
-.tech-card h3 {
-      font-size: 24px;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jang Dongchul | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+      overflow-x: hidden;
+    }
+    
+    body.modal-open {
+      overflow: hidden;
+    }
+    
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: transparent;
+      transition: background 0.2s ease;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(-100%);
+      animation: slideDown 1s ease forwards 0.2s;
+    }
+    
+    @keyframes slideDown {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background: #0A0A0A;
+      transform: translateY(-100%);
+      transition: transform 0.2s ease;
+      z-index: -1;
+    }
+    
+    header.nav-hovered::before,
+    header.scrolled::before {
+      transform: translateY(0);
+    }
+    
+    nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 40px;
+      pointer-events: auto;
+    }
+    
+    .nav-menu {
+      display: flex;
+      gap: 48px;
+      list-style: none;
+    }
+    
+    .nav-menu a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 13px;
       font-weight: 700;
-      margin-bottom: 12px;
+      letter-spacing: 0.1em;
+      transition: color 0.3s ease;
+      padding: 8px 12px;
+    }
+    
+    .nav-menu a:focus-visible {
+      outline: 3px solid #667eea;
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+    
+    header.nav-hovered .nav-menu a {
+      color: #888888;
+    }
+    
+    header.nav-hovered .nav-menu a:hover,
+    header.scrolled .nav-menu a:hover {
+      color: #ffffff !important;
+    }
+    
+    header.scrolled .nav-menu a {
+      color: #ffffff;
+    }
+    
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+    }
+    
+    .hero-content {
+      text-align: center;
+      color: #ffffff;
+    }
+    
+    .hero-content.fade-out {
+      animation: fadeOutCompletely 0.8s ease forwards;
+    }
+    
+    @keyframes fadeOutCompletely {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+    
+    .hero-fixed {
+      position: fixed;
+      bottom: 40px;
+      left: 40px;
+      color: #ffffff;
+      text-align: left;
+      opacity: 0;
+      transform: translateY(30px);
+      pointer-events: none;
+      z-index: 999;
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+    
+    .hero-fixed.show {
+      animation: slideUpFadeIn 1s ease forwards;
+    }
+    
+    @keyframes slideUpFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .hero-fixed h1 {
+      font-size: clamp(18px, 3vw, 28px);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    
+    .hero-fixed h1 .name {
+      font-weight: 700;
+    }
+    
+    .hero-fixed .tagline {
+      font-size: clamp(12px, 1.5vw, 14px);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      color: #b0b0b0;
+      line-height: 1.6;
+    }
+    
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 64px);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeInUp 1.2s ease forwards 0.5s;
+      line-height: 1.3;
+    }
+    
+    .hero h1 .name {
+      font-weight: 700;
+    }
+    
+    .hero .tagline {
+      font-size: clamp(16px, 2.5vw, 22px);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      color: #b0b0b0;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.2s ease forwards 0.8s;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #ffffff;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 2s, bounce 2s ease-in-out infinite 2.5s;
+    }
+    
+    @keyframes fadeIn {
+      to { opacity: 0.6; }
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(10px); }
+    }
+    
+    /* About Section */
+    .about {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 150px 40px;
+      background: #ffffff;
+      margin-bottom: 100px;
+    }
+    
+    .about-content {
+      max-width: 900px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    
+    .about-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .section-title {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 800;
+      margin-bottom: 48px;
       color: #1a1a1a;
     }
     
-    .tech-card .card-subtitle {
+    .about p {
+      font-size: clamp(16px, 2.5vw, 20px);
+      line-height: 1.8;
+      color: #444444;
+      margin-bottom: 24px;
+    }
+    
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 40px;
+    }
+    
+    .skill-tag {
+      padding: 12px 24px;
+      background: #f5f5f5;
+      border-radius: 30px;
       font-size: 14px;
-      color: #888888;
-      margin-bottom: 20px;
-      line-height: 1.6;
+      font-weight: 600;
+      color: #333333;
+      transition: all 0.3s ease;
+    }
+    
+    .skill-tag:hover {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    /* Tech Section */
+    .tech {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 150px 40px;
+      background: #ffffff;
+      color: #1a1a1a;
+      margin-bottom: 100px;
+    }
+    
+    .tech-content {
+      max-width: 1200px;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    
+    .tech-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .tech .section-title {
+      color: #1a1a1a;
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+    }
+    
+    .tech-card {
+      padding: 40px;
+      background: #f8f8f8;
+      border: 1px solid #e0e0e0;
+      border-radius: 16px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .tech-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .tech-card h3 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #1a1a1a;
     }
     
     .tech-card ul {
@@ -17,16 +362,267 @@
       color: #555555;
       font-size: 15px;
       line-height: 1.8;
-      margin-bottom: 20px;
     }
     
     .tech-card li {
       margin-bottom: 8px;
-      padding-left: 20px;
+    }
+    
+    /* Projects Section */
+    .projects {
+      min-height: 100vh;
+      padding: 150px 40px;
+      background: #ffffff;
+      margin-bottom: 100px;
+    }
+    
+    .projects-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    
+    .projects-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .projects .section-title {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 48px;
+    }
+    
+    .project-card {
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+    
+    .project-card:focus-visible {
+      outline: 3px solid #667eea;
+      outline-offset: 4px;
+    }
+    
+    .project-image {
+      width: 100%;
+      height: 240px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .project-info {
+      padding: 32px;
+    }
+    
+    .project-info h3 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #1a1a1a;
+    }
+    
+    .project-meta {
+      font-size: 13px;
+      color: #666666;
+      margin-bottom: 16px;
+    }
+    
+    .project-info p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #555555;
+      margin-bottom: 20px;
+    }
+    
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    
+    .project-tag {
+      padding: 6px 14px;
+      background: #f5f5f5;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #666666;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+    
+    .project-card:hover .project-tag {
+      border-color: #667eea;
+      transform: translateY(-2px);
+    }
+    
+    .project-links {
+      display: flex;
+      gap: 12px;
+    }
+    
+    .project-link {
+      padding: 10px 20px;
+      background: #1a1a1a;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+    
+    .project-link:hover {
+      background: #333333;
+    }
+    
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 2000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+    }
+    
+    .modal-content {
+      background: #ffffff;
+      border-radius: 20px;
+      max-width: 1200px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+    
+    .modal.active .modal-content {
+      transform: scale(1);
+    }
+    
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: rgba(0, 0, 0, 0.7);
+      border: none;
+      border-radius: 50%;
+      color: #ffffff;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: all 0.3s ease;
+    }
+    
+    .modal-close:hover {
+      background: #667eea;
+      transform: rotate(90deg);
+    }
+    
+    .modal-video-container {
+      width: 100%;
+      background: #000000;
+      border-radius: 20px 20px 0 0;
+      overflow: hidden;
+    }
+    
+    .modal-video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .modal-body {
+      padding: 40px;
+    }
+    
+    .modal-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #1a1a1a;
+    }
+    
+    .modal-meta {
+      font-size: 14px;
+      color: #888888;
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+    }
+    
+    .modal-description {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #444444;
+      margin-bottom: 32px;
+    }
+    
+    .modal-section {
+      margin-bottom: 32px;
+    }
+    
+    .modal-section h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #1a1a1a;
+    }
+    
+    .modal-section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    
+    .modal-section li {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #555555;
+      margin-bottom: 12px;
+      padding-left: 24px;
       position: relative;
     }
     
-    .tech-card li::before {
+    .modal-section li::before {
       content: "▹";
       position: absolute;
       left: 0;
@@ -34,38 +630,575 @@
       font-weight: 700;
     }
     
-    .tech-highlights {
-      margin-top: 20px;
-      padding-top: 20px;
-      border-top: 1px solid #e0e0e0;
+    .modal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
     }
     
-    .tech-highlights h4 {
+    .modal-tag {
+      padding: 10px 20px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #ffffff;
+      border-radius: 25px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    
+    /* Awards Section */
+    .awards {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 150px 40px;
+      background: #ffffff;
+      color: #1a1a1a;
+      margin-bottom: 100px;
+    }
+    
+    .awards-content {
+      max-width: 900px;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    
+    .awards-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .awards .section-title {
+      color: #1a1a1a;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .award-item {
+      padding: 32px 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .award-item:last-child {
+      border-bottom: none;
+    }
+    
+    .award-year {
       font-size: 14px;
-      font-weight: 700;
-      color: #667eea;
-      margin-bottom: 12px;
-      letter-spacing: 0.05em;
-    }
-    
-    .tech-highlights ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    
-    .tech-highlights li {
-      font-size: 14px;
-      line-height: 1.7;
-      color: #666666;
+      color: #888888;
       margin-bottom: 8px;
-      padding-left: 20px;
-      position: relative;
+      letter-spacing: 0.1em;
     }
     
-    .tech-highlights li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: #667eea;
+    .award-title {
+      font-size: 24px;
       font-weight: 700;
+      margin-bottom: 8px;
+      color: #1a1a1a;
     }
+    
+    .award-org {
+      font-size: 16px;
+      color: #666666;
+    }
+    
+    /* Contact Section */
+    .contact {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 150px 40px;
+      background: #ffffff;
+    }
+    
+    .contact-content {
+      max-width: 700px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    
+    .contact-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .contact .section-title {
+      margin-bottom: 40px;
+    }
+    
+    .contact p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #555555;
+      margin-bottom: 40px;
+    }
+    
+    .contact-links {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .contact-link {
+      padding: 16px 32px;
+      background: #1a1a1a;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    
+    .contact-link:hover {
+      background: #333333;
+      transform: translateY(-4px);
+    }
+    
+    .contact-link:focus-visible {
+      outline: 3px solid #667eea;
+      outline-offset: 4px;
+    }
+    
+    /* Footer */
+    footer {
+      padding: 40px;
+      text-align: center;
+      background: #f8f8f8;
+      color: #888888;
+      font-size: 14px;
+    }
+    
+    /* Mobile */
+    @media (max-width: 768px) {
+      .nav-menu {
+        gap: 24px;
+      }
+      
+      .nav-menu a {
+        font-size: 11px;
+        padding: 6px 8px;
+      }
+      
+      .hero h1 {
+        font-size: 48px;
+      }
+      
+      .section-title {
+        font-size: 36px;
+      }
+      
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .tech-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .modal-content {
+        width: 95%;
+        max-height: 95vh;
+      }
+      
+      .modal-body {
+        padding: 24px;
+      }
+      
+      .modal-title {
+        font-size: 24px;
+      }
+      
+      .hero-fixed {
+        left: 20px;
+        bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header id="header">
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="#projects">PROJECTS</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#tech">TECH</a></li>
+        <li><a href="#awards">AWARDS</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Embedded Software Developer<br><span class="name">Jang Dongchul</span></h1>
+      <div class="tagline">
+        who believes true craft begins with a single line of code
+      </div>
+    </div>
+    <div class="scroll-indicator">SCROLL</div>
+  </section>
+
+  <!-- Fixed Hero Text (Bottom Left) -->
+  <div class="hero-fixed">
+    <h1>Embedded Software Developer<br><span class="name">Jang Dongchul</span></h1>
+    <div class="tagline">
+      who believes true craft begins with a single line of code
+    </div>
+  </div>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="about-content">
+      <h2 class="section-title" data-aos="fade-right" data-aos-duration="700">About</h2>
+      <p data-aos="fade-right" data-aos-duration="700" data-aos-delay="100">
+        Double majoring in Digital Media and Software at Ajou University, I have built extensive knowledge in embedded systems and computer vision.
+      </p>
+      <p data-aos="fade-right" data-aos-duration="700" data-aos-delay="200">
+        Completed Hanwha Vision's Edge Device Academy (2nd cohort) with Outstanding Trainee Award and Best Final Project Award. Experienced in Qt development with C/C++ and Linux kernel module device driver development. Proficient in image processing and computer vision projects using OpenCV.
+      </p>
+      <div class="skills-list" data-aos="fade-right" data-aos-duration="700" data-aos-delay="300">
+        <span class="skill-tag">C/C++</span>
+        <span class="skill-tag">OpenCV</span>
+        <span class="skill-tag">Qt</span>
+        <span class="skill-tag">Embedded Linux</span>
+        <span class="skill-tag">Linux Kernel</span>
+        <span class="skill-tag">Kernel Programming</span>
+        <span class="skill-tag">GUI</span>
+        <span class="skill-tag">OpenGL</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech -->
+  <section class="tech" id="tech">
+    <div class="tech-content">
+      <h2 class="section-title" data-aos="fade-right" data-aos-duration="700">Tech Stack</h2>
+      <div class="tech-grid">
+        <div class="tech-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="100">
+          <h3>Programming Languages</h3>
+          <ul>
+            <li>C/C++ (Advanced)</li>
+            <li>Python</li>
+            <li>GLSL</li>
+          </ul>
+        </div>
+        <div class="tech-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="200">
+          <h3>Embedded & Linux</h3>
+          <ul>
+            <li>Embedded Linux</li>
+            <li>Linux Kernel Programming</li>
+            <li>Device Driver Development</li>
+          </ul>
+        </div>
+        <div class="tech-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="300">
+          <h3>Computer Vision & GUI</h3>
+          <ul>
+            <li>OpenCV · Image Processing</li>
+            <li>Qt Framework</li>
+            <li>OpenGL</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="projects" id="projects">
+    <div class="projects-content">
+      <h2 class="section-title" data-aos="fade-right" data-aos-duration="700">Projects</h2>
+      <div class="project-grid">
+        <div class="project-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="100">
+          <div class="project-image">🏭</div>
+          <div class="project-info">
+            <h3>Smart Factory Conveyor Monitoring</h3>
+            <div class="project-meta">Raspberry Pi · OpenCV · GStreamer</div>
+            <p>Optical Flow-based belt speed measurement system. Implemented RTSP real-time streaming and MQTT alert system.</p>
+            <div class="project-tags">
+              <span class="project-tag">Real-Time</span>
+              <span class="project-tag">OpenCV</span>
+              <span class="project-tag">MQTT</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link">GitHub</a>
+              <a href="#" class="project-link">Demo</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="200" onclick="openModal()">
+          <div class="project-image">⚙️</div>
+          <div class="project-info">
+            <h3>Kernel Module Motor Control</h3>
+            <div class="project-meta">Linux Driver · GPIO · Timer</div>
+            <p>Designed kthread management and resource release policy for safe kernel module unloading.</p>
+            <div class="project-tags">
+              <span class="project-tag">Kernel</span>
+              <span class="project-tag">Driver</span>
+              <span class="project-tag">GPIO</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link" onclick="event.stopPropagation()">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="300">
+          <div class="project-image">👶</div>
+          <div class="project-info">
+            <h3>Infant Monitoring System</h3>
+            <div class="project-meta">ESP32 · Sensor Fusion · BLE</div>
+            <p>Real-time monitoring system utilizing temperature/humidity, cry detection, and motion sensors.</p>
+            <div class="project-tags">
+              <span class="project-tag">IoT</span>
+              <span class="project-tag">BLE</span>
+              <span class="project-tag">ESP32</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal" id="projectModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      
+      <div class="modal-video-container">
+        <video class="modal-video" controls>
+          <source src="videos/ibl.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      
+      <div class="modal-body">
+        <h2 class="modal-title">Kernel Module Motor Control</h2>
+        <div class="modal-meta">Linux Driver · GPIO · Timer · Kernel Programming</div>
+        
+        <div class="modal-description">
+          <p>
+            Linux 커널 모듈을 활용한 모터 제어 시스템입니다. 안전한 커널 모듈 언로딩을 위한 kthread 관리 및 리소스 해제 정책을 설계하였으며, GPIO 핀을 통한 직접적인 하드웨어 제어를 구현했습니다.
+          </p>
+        </div>
+        
+        <div class="modal-section">
+          <h3>주요 기능</h3>
+          <ul>
+            <li>Kernel space에서 동작하는 디바이스 드라이버 개발</li>
+            <li>kthread를 활용한 비동기 모터 제어</li>
+            <li>GPIO 핀 직접 제어를 통한 PWM 신호 생성</li>
+            <li>안전한 모듈 언로딩을 위한 리소스 정리 메커니즘</li>
+            <li>Timer 기반 정밀한 타이밍 제어</li>
+          </ul>
+        </div>
+        
+        <div class="modal-section">
+          <h3>기술적 도전 과제</h3>
+          <ul>
+            <li>커널 패닉 방지를 위한 안전한 메모리 관리</li>
+            <li>Race condition 방지를 위한 동기화 메커니즘 구현</li>
+            <li>하드웨어 타이밍 제약사항 해결</li>
+            <li>효율적인 인터럽트 핸들링</li>
+          </ul>
+        </div>
+        
+        <div class="modal-section">
+          <h3>성과</h3>
+          <ul>
+            <li>안정적인 커널 모듈 로딩/언로딩 (0% 크래시율)</li>
+            <li>마이크로초 단위의 정밀한 모터 제어 달성</li>
+            <li>최소한의 CPU 오버헤드로 실시간 제어 구현</li>
+          </ul>
+        </div>
+        
+        <div class="modal-tags">
+          <span class="modal-tag">Linux Kernel</span>
+          <span class="modal-tag">Device Driver</span>
+          <span class="modal-tag">GPIO</span>
+          <span class="modal-tag">kthread</span>
+          <span class="modal-tag">PWM</span>
+          <span class="modal-tag">C Language</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Awards -->
+  <section class="awards" id="awards">
+    <div class="awards-content">
+      <h2 class="section-title" data-aos="fade-up">Awards & Certificates</h2>
+      <div class="award-item" data-aos="fade-up" data-aos-delay="150">
+        <div class="award-year">AUG 2025</div>
+        <div class="award-title">Best Final Project Award, Vision's Edge Device Academy</div>
+        <div class="award-org">Hanwha Vision</div>
+      </div>
+      <div class="award-item" data-aos="fade-up" data-aos-delay="300">
+        <div class="award-year">AUG 2025</div>
+        <div class="award-title">Outstanding Trainee Award, Vision's Edge Device Academy</div>
+        <div class="award-org">Hanwha Vision</div>
+      </div>
+      <div class="award-item" data-aos="fade-up" data-aos-delay="450">
+        <div class="award-year">JAN 2025</div>
+        <div class="award-title">OPIC Intermediate Mid2</div>
+        <div class="award-org">English Proficiency</div>
+      </div>
+      <div class="award-item" data-aos="fade-up" data-aos-delay="600">
+        <div class="award-year">FEB 2011</div>
+        <div class="award-title">Computer Specialist in Spreadsheet & Database Level 2</div>
+        <div class="award-org">Korea Chamber of Commerce & Industry</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="contact-content">
+      <h2 class="section-title">Contact</h2>
+      <p>
+        I welcome inquiries about collaboration and employment opportunities.<br>
+        Feel free to reach out through the following channels.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:gro*****@naver.com" class="contact-link">Email</a>
+        <a href="https://github.com/kmscallkkk" target="_blank" class="contact-link">GitHub</a>
+        <a href="https://kmscallkkk.github.io" class="contact-link">Portfolio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Jang Dongchul. All rights reserved.</p>
+  </footer>
+
+  <!-- AOS Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  
+  <script>
+    // Hero animation: fade out center, then show bottom left
+    setTimeout(() => {
+      const heroContent = document.querySelector('.hero-content');
+      heroContent.classList.add('fade-out');
+      
+      // Show fixed version after center fades out
+      setTimeout(() => {
+        const heroFixed = document.querySelector('.hero-fixed');
+        heroFixed.classList.add('show');
+      }, 800);
+    }, 2500);
+    
+    // Header interaction
+    const header = document.getElementById('header');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    navMenu.addEventListener('mouseenter', () => {
+      header.classList.add('nav-hovered');
+    });
+    
+    navMenu.addEventListener('mouseleave', () => {
+      header.classList.remove('nav-hovered');
+    });
+    
+    // Improved scroll handler with debouncing
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        const currentScroll = window.pageYOffset;
+        const heroFixed = document.querySelector('.hero-fixed');
+        const heroHeight = window.innerHeight;
+
+        // header background
+        if (currentScroll > 100) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+
+        // heroFixed show/hide logic - improved threshold
+        if (currentScroll > heroHeight * 0.3) {
+          const opacity = Math.max(0, 1 - ((currentScroll - heroHeight * 0.3) / (heroHeight * 0.2)));
+          heroFixed.style.opacity = opacity;
+          heroFixed.style.pointerEvents = opacity > 0 ? 'auto' : 'none';
+        } else {
+          heroFixed.style.opacity = '1';
+          heroFixed.style.pointerEvents = 'auto';
+        }
+      }, 16);
+    }, { passive: true });
+    
+    // Modal functions
+    function openModal() {
+      const modal = document.getElementById('projectModal');
+      const video = modal.querySelector('video');
+      document.body.classList.add('modal-open');
+      modal.classList.add('active');
+      video.play();
+    }
+    
+    function closeModal() {
+      const modal = document.getElementById('projectModal');
+      const video = modal.querySelector('video');
+      modal.classList.remove('active');
+      document.body.classList.remove('modal-open');
+      video.pause();
+      video.currentTime = 0;
+    }
+    
+    // Close modal on background click
+    document.getElementById('projectModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+    
+    // Close modal on ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+    
+    // Intersection Observer for sections
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const content = entry.target.querySelector('.about-content, .tech-content, .projects-content, .awards-content, .contact-content');
+          if (content) content.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('.about, .tech, .projects, .awards, .contact').forEach(section => {
+      observer.observe(section);
+    });
+    
+    // Initialize AOS
+    AOS.init({
+      easing: 'ease-in-out-sine',
+      duration: 1200,
+      offset: 120,
+      once: true,
+      disable: false
+    });
+  </script>
+</body>
+</html>

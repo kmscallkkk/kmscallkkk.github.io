@@ -370,7 +370,7 @@
     
     /* Projects Section */
     .projects {
-      min-height: 100vh;
+      min-height: 200vh;
       padding: 150px 40px;
       background: #ffffff;
       margin-bottom: 100px;
@@ -378,17 +378,14 @@
     }
     
     .projects-content {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
       max-width: 1400px;
       margin: 0 auto;
       width: 100%;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-    
-    .projects-content.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
     
     .projects .section-title {
@@ -402,7 +399,24 @@
       max-width: 600px;
       margin-left: auto;
       margin-right: 10%;
-      margin-top: 150px;
+      position: absolute;
+      right: 10%;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    
+    .project-single.fade-out {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    
+    .project-single.fade-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .project-single.hidden {
+      opacity: 0;
+      transform: translateY(50px);
     }
     
     .project-single h3 {
@@ -847,11 +861,16 @@
   <!-- Projects -->
   <section class="projects" id="projects">
     <div class="projects-content">
-      <h2 class="section-title" data-aos="fade-right" data-aos-duration="700">Projects</h2>
-      <div class="project-single" data-aos="fade-left" data-aos-duration="700">
+      <h2 class="section-title">Projects</h2>
+      <div class="project-single" id="project1">
         <h3>Smart Factory Conveyor Monitoring</h3>
         <div class="project-meta">Raspberry Pi · OpenCV · GStreamer</div>
         <p>Optical Flow-based belt speed measurement system. Implemented RTSP real-time streaming and MQTT alert system.</p>
+      </div>
+      <div class="project-single hidden" id="project2">
+        <h3>Kernel Module Motor Control</h3>
+        <div class="project-meta">Linux Driver · GPIO · Timer</div>
+        <p>Designed kthread management and resource release policy for safe kernel module unloading.</p>
       </div>
     </div>
   </section>
@@ -1060,15 +1079,45 @@
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const content = entry.target.querySelector('.about-content, .tech-content, .projects-content, .awards-content, .contact-content');
+          const content = entry.target.querySelector('.about-content, .tech-content, .awards-content, .contact-content');
           if (content) content.classList.add('visible');
         }
       });
     }, observerOptions);
     
-    document.querySelectorAll('.about, .tech, .projects, .awards, .contact').forEach(section => {
+    document.querySelectorAll('.about, .tech, .awards, .contact').forEach(section => {
       observer.observe(section);
     });
+    
+    // Projects scroll animation
+    const projectsSection = document.querySelector('.projects');
+    const project1 = document.getElementById('project1');
+    const project2 = document.getElementById('project2');
+    
+    window.addEventListener('scroll', () => {
+      if (!projectsSection) return;
+      
+      const rect = projectsSection.getBoundingClientRect();
+      const sectionHeight = projectsSection.offsetHeight;
+      const windowHeight = window.innerHeight;
+      
+      // Calculate scroll progress within projects section
+      const scrollProgress = (windowHeight - rect.top) / (sectionHeight - windowHeight);
+      
+      if (scrollProgress < 0.5) {
+        // First half: show project 1
+        project1.classList.remove('fade-out', 'hidden');
+        project1.classList.add('fade-in');
+        project2.classList.remove('fade-in');
+        project2.classList.add('hidden');
+      } else {
+        // Second half: transition to project 2
+        project1.classList.remove('fade-in');
+        project1.classList.add('fade-out');
+        project2.classList.remove('hidden');
+        project2.classList.add('fade-in');
+      }
+    }, { passive: true });
     
     // Initialize AOS
     AOS.init({

@@ -1131,14 +1131,25 @@
     
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
+        const content = entry.target.querySelector('.about-content, .tech-content, .awards-content, .contact-content');
+        const awardsTitle = entry.target.querySelector('.awards .section-title');
+        const awardsImage = entry.target.querySelector('.awards-image');
+        
         if (entry.isIntersecting) {
-          const content = entry.target.querySelector('.about-content, .tech-content, .awards-content, .contact-content');
           if (content) content.classList.add('visible');
           
-          // Awards title animation
+          // Awards title and image animation
           if (entry.target.classList.contains('awards')) {
-            const awardsTitle = entry.target.querySelector('.section-title');
             if (awardsTitle) awardsTitle.classList.add('visible');
+            if (awardsImage) awardsImage.classList.add('visible');
+          }
+        } else {
+          // Remove visible class when leaving viewport
+          if (content) content.classList.remove('visible');
+          
+          if (entry.target.classList.contains('awards')) {
+            if (awardsTitle) awardsTitle.classList.remove('visible');
+            if (awardsImage) awardsImage.classList.remove('visible');
           }
         }
       });
@@ -1254,7 +1265,7 @@
       easing: 'ease-in-out-sine',
       duration: 1200,
       offset: 120,
-      once: true,
+      once: false,
       disable: false
     });
   </script>

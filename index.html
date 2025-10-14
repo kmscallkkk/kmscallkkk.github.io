@@ -622,7 +622,7 @@
     }
     
     .awards-content {
-      max-width: 900px;
+      max-width: 1200px;
       width: 100%;
       opacity: 0;
       transform: translateY(50px);
@@ -632,6 +632,29 @@
     .awards-content.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+    
+    .awards-layout {
+      display: flex;
+      gap: 60px;
+      align-items: flex-start;
+      margin-top: 40px;
+    }
+    
+    .awards-image {
+      flex: 0 0 400px;
+      width: 400px;
+    }
+    
+    .awards-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .awards-list {
+      flex: 1;
     }
     
     .awards .section-title {
@@ -649,7 +672,7 @@
     }
     
     .award-item {
-      padding: 32px 0;
+      padding: 24px 0;
       border-bottom: 1px solid #e0e0e0;
     }
     
@@ -658,21 +681,21 @@
     }
     
     .award-year {
-      font-size: 14px;
+      font-size: 12px;
       color: #888888;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       letter-spacing: 0.1em;
     }
     
     .award-title {
-      font-size: 24px;
+      font-size: 18px;
       font-weight: 700;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       color: #1a1a1a;
     }
     
     .award-org {
-      font-size: 16px;
+      font-size: 14px;
       color: #666666;
     }
     
@@ -942,25 +965,32 @@
   <section class="awards" id="awards">
     <div class="awards-content">
       <h2 class="section-title">Awards & Certificates</h2>
-      <div class="award-item">
-        <div class="award-year">AUG 2025</div>
-        <div class="award-title">Best Final Project Award, Vision's Edge Device Academy</div>
-        <div class="award-org">Hanwha Vision</div>
-      </div>
-      <div class="award-item">
-        <div class="award-year">AUG 2025</div>
-        <div class="award-title">Outstanding Trainee Award, Vision's Edge Device Academy</div>
-        <div class="award-org">Hanwha Vision</div>
-      </div>
-      <div class="award-item">
-        <div class="award-year">JAN 2025</div>
-        <div class="award-title">OPIC Intermediate Mid2</div>
-        <div class="award-org">English Proficiency</div>
-      </div>
-      <div class="award-item">
-        <div class="award-year">FEB 2011</div>
-        <div class="award-title">Computer Specialist in Spreadsheet & Database Level 2</div>
-        <div class="award-org">Korea Chamber of Commerce & Industry</div>
+      <div class="awards-layout">
+        <div class="awards-image">
+          <img src="veda.jpg" alt="Awards Certificate">
+        </div>
+        <div class="awards-list">
+          <div class="award-item">
+            <div class="award-year">AUG 2025</div>
+            <div class="award-title">Best Final Project Award, Vision's Edge Device Academy</div>
+            <div class="award-org">Hanwha Vision</div>
+          </div>
+          <div class="award-item">
+            <div class="award-year">AUG 2025</div>
+            <div class="award-title">Outstanding Trainee Award, Vision's Edge Device Academy</div>
+            <div class="award-org">Hanwha Vision</div>
+          </div>
+          <div class="award-item">
+            <div class="award-year">JAN 2025</div>
+            <div class="award-title">OPIC Intermediate Mid2</div>
+            <div class="award-org">English Proficiency</div>
+          </div>
+          <div class="award-item">
+            <div class="award-year">FEB 2011</div>
+            <div class="award-title">Computer Specialist in Spreadsheet & Database Level 2</div>
+            <div class="award-org">Korea Chamber of Commerce & Industry</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1193,18 +1223,18 @@
         project3.style.transform = 'translateY(0)';
       }
       
-      // Phase 7: Third project moves up (0.85 - 0.92)
-      if (scrollProgress >= 0.85 && scrollProgress < 0.92) {
-        const phase7Progress = (scrollProgress - 0.85) / 0.07;
+      // Phase 7: Third project moves up (0.85 - 0.95)
+      if (scrollProgress >= 0.85 && scrollProgress < 0.95) {
+        const phase7Progress = (scrollProgress - 0.85) / 0.1;
         project3.style.opacity = 1;
         project3.style.transform = `translateY(${-500 * phase7Progress}px)`;
       }
       
-      // Phase 8: Projects title fades out (0.92 - 1)
-      if (scrollProgress >= 0.92) {
+      // Phase 8: Projects title fades out (0.95 - 1)
+      if (scrollProgress >= 0.95) {
         projectsTitle.classList.add('fade-out');
         projectsTitle.classList.remove('visible');
-      } else if (scrollProgress < 0.92) {
+      } else if (scrollProgress < 0.95) {
         projectsTitle.classList.remove('fade-out');
       }
       

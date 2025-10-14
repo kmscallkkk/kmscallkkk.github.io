@@ -852,12 +852,12 @@
   <section class="projects" id="projects">
     <div class="projects-content">
       <h2 class="section-title">Projects</h2>
-      <div class="project-single" id="project1" style="opacity: 0; transform: translateY(150px);">
+      <div class="project-single" id="project1" style="opacity: 0; transform: translateY(500px);">
         <h3>Smart Factory Conveyor Monitoring</h3>
         <div class="project-meta">Raspberry Pi · OpenCV · GStreamer</div>
         <p>Optical Flow-based belt speed measurement system. Implemented RTSP real-time streaming and MQTT alert system.</p>
       </div>
-      <div class="project-single" id="project2" style="opacity: 0; transform: translateY(200px);">
+      <div class="project-single" id="project2" style="opacity: 0; transform: translateY(500px);">
         <h3>Kernel Module Motor Control</h3>
         <div class="project-meta">Linux Driver · GPIO · Timer</div>
         <p>Designed kthread management and resource release policy for safe kernel module unloading.</p>
@@ -1105,7 +1105,7 @@
       if (scrollProgress >= 0.15 && scrollProgress < 0.45) {
         const phase2Progress = (scrollProgress - 0.15) / 0.3;
         project1.style.opacity = phase2Progress;
-        project1.style.transform = `translateY(${150 - phase2Progress * 150}px)`;
+        project1.style.transform = `translateY(${500 - phase2Progress * 500}px)`;
       }
       
       // Phase 3: Transition between projects (0.45 - 0.75)
@@ -1114,17 +1114,17 @@
         
         // First project moves up and fades out
         project1.style.opacity = 1 - phase3Progress;
-        project1.style.transform = `translateY(${-200 * phase3Progress}px)`;
+        project1.style.transform = `translateY(${-500 * phase3Progress}px)`;
         
         // Second project moves up and fades in
         project2.style.opacity = phase3Progress;
-        project2.style.transform = `translateY(${200 - phase3Progress * 200}px)`;
+        project2.style.transform = `translateY(${500 - phase3Progress * 500}px)`;
       }
       
       // Phase 4: Keep second project visible (0.75 - 1)
       if (scrollProgress > 0.75) {
         project1.style.opacity = 0;
-        project1.style.transform = 'translateY(-200px)';
+        project1.style.transform = 'translateY(-500px)';
         project2.style.opacity = 1;
         project2.style.transform = 'translateY(0)';
       }
@@ -1132,9 +1132,9 @@
       // Before animation starts
       if (scrollProgress < 0.15) {
         project1.style.opacity = 0;
-        project1.style.transform = 'translateY(150px)';
+        project1.style.transform = 'translateY(500px)';
         project2.style.opacity = 0;
-        project2.style.transform = 'translateY(200px)';
+        project2.style.transform = 'translateY(500px)';
       }
     }, { passive: true });
     

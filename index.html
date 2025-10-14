@@ -39,11 +39,15 @@
       right: 0;
       z-index: 1000;
       background: transparent;
-      transition: background 0.2s ease;
       pointer-events: none;
       opacity: 0;
       transform: translateY(-100%);
-      animation: slideDown 1s ease forwards 0.2s;
+      transition: transform 0.5s ease-out, opacity 0.5s ease-out, background 0.2s ease;
+    }
+    
+    header.loaded {
+      opacity: 1;
+      transform: translateY(0);
     }
     
     @keyframes slideDown {
@@ -69,6 +73,12 @@
     header.nav-hovered::before,
     header.scrolled::before {
       transform: translateY(0);
+    }
+    
+    header.hidden {
+      transform: translateY(-100%) !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
     }
     
     nav {
@@ -981,6 +991,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   
   <script>
+    // Initial header load
+    setTimeout(() => {
+      header.classList.add('loaded');
+    }, 200);
+    
     // Hero animation: fade out center, then show bottom left
     setTimeout(() => {
       const heroContent = document.querySelector('.hero-content');
@@ -1019,6 +1034,13 @@
           header.classList.add('scrolled');
         } else {
           header.classList.remove('scrolled');
+        }
+        
+        // header hide/show based on section (hide when past Hero section)
+        if (currentScroll > heroHeight * 0.93) {
+          header.classList.add('hidden');
+        } else {
+          header.classList.remove('hidden');
         }
 
         // heroFixed show/hide logic - improved threshold

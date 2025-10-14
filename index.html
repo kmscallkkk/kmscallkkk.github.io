@@ -370,10 +370,8 @@
     
     /* Projects Section */
     .projects {
-      min-height: 200vh;
-      padding: 150px 40px;
+      min-height: 300vh;
       background: #ffffff;
-      margin-bottom: 100px;
       position: relative;
     }
     
@@ -386,6 +384,7 @@
       max-width: 1400px;
       margin: 0 auto;
       width: 100%;
+      padding: 0 40px;
     }
     
     .projects .section-title {
@@ -393,30 +392,21 @@
       top: 150px;
       left: 40px;
       margin-bottom: 0;
-    }
-    
-    .project-single {
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: 10%;
-      position: absolute;
-      right: 10%;
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    
-    .project-single.fade-out {
       opacity: 0;
-      transform: translateY(-50px);
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
     }
     
-    .project-single.fade-in {
+    .projects .section-title.visible {
       opacity: 1;
       transform: translateY(0);
     }
     
-    .project-single.hidden {
-      opacity: 0;
-      transform: translateY(50px);
+    .project-single {
+      max-width: 600px;
+      position: absolute;
+      right: 10%;
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
     
     .project-single h3 {
@@ -862,12 +852,12 @@
   <section class="projects" id="projects">
     <div class="projects-content">
       <h2 class="section-title">Projects</h2>
-      <div class="project-single" id="project1">
+      <div class="project-single" id="project1" style="opacity: 0; transform: translateY(50px);">
         <h3>Smart Factory Conveyor Monitoring</h3>
         <div class="project-meta">Raspberry Pi · OpenCV · GStreamer</div>
         <p>Optical Flow-based belt speed measurement system. Implemented RTSP real-time streaming and MQTT alert system.</p>
       </div>
-      <div class="project-single hidden" id="project2">
+      <div class="project-single" id="project2" style="opacity: 0; transform: translateY(100px);">
         <h3>Kernel Module Motor Control</h3>
         <div class="project-meta">Linux Driver · GPIO · Timer</div>
         <p>Designed kthread management and resource release policy for safe kernel module unloading.</p>
@@ -1091,6 +1081,7 @@
     
     // Projects scroll animation
     const projectsSection = document.querySelector('.projects');
+    const projectsTitle = document.querySelector('.projects .section-title');
     const project1 = document.getElementById('project1');
     const project2 = document.getElementById('project2');
     
@@ -1101,21 +1092,49 @@
       const sectionHeight = projectsSection.offsetHeight;
       const windowHeight = window.innerHeight;
       
-      // Calculate scroll progress within projects section
-      const scrollProgress = (windowHeight - rect.top) / (sectionHeight - windowHeight);
+      // Calculate scroll progress (0 to 1)
+      const scrollStart = windowHeight - rect.top;
+      const scrollProgress = scrollStart / sectionHeight;
       
-      if (scrollProgress < 0.5) {
-        // First half: show project 1
-        project1.classList.remove('fade-out', 'hidden');
-        project1.classList.add('fade-in');
-        project2.classList.remove('fade-in');
-        project2.classList.add('hidden');
-      } else {
-        // Second half: transition to project 2
-        project1.classList.remove('fade-in');
-        project1.classList.add('fade-out');
-        project2.classList.remove('hidden');
-        project2.classList.add('fade-in');
+      // Phase 1: Show title (0 - 0.15)
+      if (scrollProgress > 0 && scrollProgress < 0.3) {
+        projectsTitle.classList.add('visible');
+      }
+      
+      // Phase 2: Show first project (0.15 - 0.45)
+      if (scrollProgress >= 0.15 && scrollProgress < 0.45) {
+        const phase2Progress = (scrollProgress - 0.15) / 0.3;
+        project1.style.opacity = phase2Progress;
+        project1.style.transform = `translateY(${50 - phase2Progress * 50}px)`;
+      }
+      
+      // Phase 3: Transition between projects (0.45 - 0.75)
+      if (scrollProgress >= 0.45 && scrollProgress <= 0.75) {
+        const phase3Progress = (scrollProgress - 0.45) / 0.3;
+        
+        // First project moves up and fades out
+        project1.style.opacity = 1 - phase3Progress;
+        project1.style.transform = `translateY(${-100 * phase3Progress}px)`;
+        
+        // Second project moves up and fades in
+        project2.style.opacity = phase3Progress;
+        project2.style.transform = `translateY(${100 - phase3Progress * 100}px)`;
+      }
+      
+      // Phase 4: Keep second project visible (0.75 - 1)
+      if (scrollProgress > 0.75) {
+        project1.style.opacity = 0;
+        project1.style.transform = 'translateY(-100px)';
+        project2.style.opacity = 1;
+        project2.style.transform = 'translateY(0)';
+      }
+      
+      // Before animation starts
+      if (scrollProgress < 0.15) {
+        project1.style.opacity = 0;
+        project1.style.transform = 'translateY(50px)';
+        project2.style.opacity = 0;
+        project2.style.transform = 'translateY(100px)';
       }
     }, { passive: true });
     

@@ -1164,15 +1164,16 @@
         video.load();
         video.play();
       } else if (projectNum === 3) {
-        // Infant Monitoring System - 로컬 비디오
-        videoContainer.style.display = 'block';
-        youtubeContainer.style.display = 'none';
-        video.src = 'videos/infant-monitoring.mp4';
+        // Infant Monitoring System - YouTube 임베드
+        videoContainer.style.display = 'none';
+        youtubeContainer.style.display = 'block';
+        youtube1.parentElement.style.display = 'block';
+        youtube2.parentElement.style.display = 'none';
+        document.querySelector('#modalYoutubeContainer .youtube-wrapper:first-child .youtube-title').textContent = 'Project Demo';
+        youtube1.src = 'https://www.youtube.com/embed/qaJwzJPC8yc';
         modalTitle.textContent = 'Infant Monitoring System';
         modalMeta.textContent = 'ESP32 · Sensor Fusion · BLE';
         modalDescription.textContent = 'Real-time monitoring system utilizing temperature/humidity, cry detection, and motion sensors.';
-        video.load();
-        video.play();
       }
     }
     

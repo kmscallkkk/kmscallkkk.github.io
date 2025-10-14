@@ -1095,9 +1095,41 @@
     
     function openProjectModal(projectNum) {
       const modal = document.getElementById('projectModal');
+      const video = modal.querySelector('video');
+      const videoContainer = modal.querySelector('.modal-video-container');
+      const modalTitle = modal.querySelector('.modal-title');
+      const modalMeta = modal.querySelector('.modal-meta');
+      const modalDescription = modal.querySelector('.modal-description p');
+      
       document.body.classList.add('modal-open');
       modal.classList.add('active');
-      // 프로젝트별 내용은 나중에 추가 예정
+      
+      // 프로젝트별 내용 설정
+      if (projectNum === 1) {
+        // Smart Factory Conveyor Monitoring
+        videoContainer.style.display = 'none';
+        modalTitle.textContent = 'Smart Factory Conveyor Monitoring';
+        modalMeta.textContent = 'Raspberry Pi · OpenCV · GStreamer';
+        modalDescription.textContent = 'Optical Flow-based belt speed measurement system. Implemented RTSP real-time streaming and MQTT alert system.';
+      } else if (projectNum === 2) {
+        // Kernel Module Motor Control
+        videoContainer.style.display = 'block';
+        video.src = 'videos/ibl.mp4';
+        modalTitle.textContent = 'Kernel Module Motor Control';
+        modalMeta.textContent = 'Linux Driver · GPIO · Timer';
+        modalDescription.textContent = 'Designed kthread management and resource release policy for safe kernel module unloading.';
+        video.load();
+        video.play();
+      } else if (projectNum === 3) {
+        // Infant Monitoring System
+        videoContainer.style.display = 'block';
+        video.src = 'videos/infant-monitoring.mp4';
+        modalTitle.textContent = 'Infant Monitoring System';
+        modalMeta.textContent = 'ESP32 · Sensor Fusion · BLE';
+        modalDescription.textContent = 'Real-time monitoring system utilizing temperature/humidity, cry detection, and motion sensors.';
+        video.load();
+        video.play();
+      }
     }
     
     function closeModal() {

@@ -528,6 +528,31 @@
       overflow: hidden;
     }
     
+    .modal-youtube-container {
+      width: 100%;
+      padding: 40px;
+      background: #f8f8f8;
+    }
+    
+    .youtube-wrapper {
+      margin-bottom: 30px;
+    }
+    
+    .youtube-wrapper:last-child {
+      margin-bottom: 0;
+    }
+    
+    .youtube-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #1a1a1a;
+    }
+    
+    .youtube-wrapper iframe {
+      border-radius: 8px;
+    }
+    
     .modal-video {
       width: 100%;
       height: auto;
@@ -941,11 +966,22 @@
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal()">&times;</button>
       
-      <div class="modal-video-container">
-        <video class="modal-video" controls>
-          <source src="videos/ibl.mp4" type="video/mp4">
+      <div class="modal-video-container" id="modalVideoContainer">
+        <video class="modal-video" id="modalVideo" controls>
+          <source src="" type="video/mp4">
           Your browser does not support the video tag.
         </video>
+      </div>
+      
+      <div class="modal-youtube-container" id="modalYoutubeContainer" style="display: none;">
+        <div class="youtube-wrapper">
+          <h3 class="youtube-title">Hardware Implementation</h3>
+          <iframe id="youtube1" width="100%" height="400" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="youtube-wrapper">
+          <h3 class="youtube-title">Qt GUI Application</h3>
+          <iframe id="youtube2" width="100%" height="400" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
       </div>
       
       <div class="modal-body">
@@ -1095,8 +1131,11 @@
     
     function openProjectModal(projectNum) {
       const modal = document.getElementById('projectModal');
-      const video = modal.querySelector('video');
-      const videoContainer = modal.querySelector('.modal-video-container');
+      const video = document.getElementById('modalVideo');
+      const videoContainer = document.getElementById('modalVideoContainer');
+      const youtubeContainer = document.getElementById('modalYoutubeContainer');
+      const youtube1 = document.getElementById('youtube1');
+      const youtube2 = document.getElementById('youtube2');
       const modalTitle = modal.querySelector('.modal-title');
       const modalMeta = modal.querySelector('.modal-meta');
       const modalDescription = modal.querySelector('.modal-description p');
@@ -1106,14 +1145,18 @@
       
       // 프로젝트별 내용 설정
       if (projectNum === 1) {
-        // Smart Factory Conveyor Monitoring
+        // Smart Factory Conveyor Monitoring - YouTube 임베드
         videoContainer.style.display = 'none';
+        youtubeContainer.style.display = 'block';
+        youtube1.src = 'https://www.youtube.com/embed/ftSbG4EC6QI';
+        youtube2.src = 'https://www.youtube.com/embed/GyWVxQQe8pA';
         modalTitle.textContent = 'Smart Factory Conveyor Monitoring';
         modalMeta.textContent = 'Raspberry Pi · OpenCV · GStreamer';
         modalDescription.textContent = 'Optical Flow-based belt speed measurement system. Implemented RTSP real-time streaming and MQTT alert system.';
       } else if (projectNum === 2) {
-        // Kernel Module Motor Control
+        // Kernel Module Motor Control - 로컬 비디오
         videoContainer.style.display = 'block';
+        youtubeContainer.style.display = 'none';
         video.src = 'videos/ibl.mp4';
         modalTitle.textContent = 'Kernel Module Motor Control';
         modalMeta.textContent = 'Linux Driver · GPIO · Timer';
@@ -1121,8 +1164,9 @@
         video.load();
         video.play();
       } else if (projectNum === 3) {
-        // Infant Monitoring System
+        // Infant Monitoring System - 로컬 비디오
         videoContainer.style.display = 'block';
+        youtubeContainer.style.display = 'none';
         video.src = 'videos/infant-monitoring.mp4';
         modalTitle.textContent = 'Infant Monitoring System';
         modalMeta.textContent = 'ESP32 · Sensor Fusion · BLE';
@@ -1134,11 +1178,20 @@
     
     function closeModal() {
       const modal = document.getElementById('projectModal');
-      const video = modal.querySelector('video');
+      const video = document.getElementById('modalVideo');
+      const youtube1 = document.getElementById('youtube1');
+      const youtube2 = document.getElementById('youtube2');
+      
       modal.classList.remove('active');
       document.body.classList.remove('modal-open');
+      
+      // 비디오 정지
       video.pause();
       video.currentTime = 0;
+      
+      // YouTube iframe 정지 (src 초기화)
+      youtube1.src = '';
+      youtube2.src = '';
     }
     
     // Close modal on background click

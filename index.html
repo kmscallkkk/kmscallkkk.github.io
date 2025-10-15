@@ -380,7 +380,7 @@
     
     /* Projects Section */
     .projects {
-      min-height: 300vh;
+      min-height: 400vh;
       background: #ffffff;
       position: relative;
     }
@@ -422,6 +422,15 @@
       position: absolute;
       right: 10%;
       transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+    }
+    
+    .project-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
     
     .project-single h3 {
@@ -941,18 +950,21 @@
     <div class="projects-content">
       <h2 class="section-title">Projects</h2>
       <div class="project-single" id="project1" style="opacity: 0; transform: translateY(500px);">
+        <img src="project1.jpg" alt="Smart Factory Conveyor Monitoring" class="project-image">
         <h3>Smart Factory Conveyor Monitoring</h3>
         <div class="project-meta">Raspberry Pi · OpenCV · GStreamer</div>
         <p>Optical Flow-based belt speed measurement system. Implemented RTSP real-time streaming and MQTT alert system.</p>
         <button class="project-detail-btn" onclick="openProjectModal(1)">Learn More →</button>
       </div>
       <div class="project-single" id="project2" style="opacity: 0; transform: translateY(500px);">
+        <img src="project2.jpg" alt="Kernel Module Motor Control" class="project-image">
         <h3>Kernel Module Motor Control</h3>
         <div class="project-meta">Linux Driver · GPIO · Timer</div>
         <p>Designed kthread management and resource release policy for safe kernel module unloading.</p>
         <button class="project-detail-btn" onclick="openProjectModal(2)">Learn More →</button>
       </div>
       <div class="project-single" id="project3" style="opacity: 0; transform: translateY(500px);">
+        <img src="project3.jpg" alt="Infant Monitoring System" class="project-image">
         <h3>Infant Monitoring System</h3>
         <div class="project-meta">ESP32 · Sensor Fusion · BLE</div>
         <p>Real-time monitoring system utilizing temperature/humidity, cry detection, and motion sensors.</p>
@@ -1269,23 +1281,23 @@
         projectsTitle.classList.remove('fade-out');
       }
       
-      // Phase 2: Show first project (0.1 - 0.3)
-      if (scrollProgress >= 0.1 && scrollProgress < 0.3) {
-        const phase2Progress = (scrollProgress - 0.1) / 0.2;
+      // Phase 2: Show first project (0.08 - 0.25)
+      if (scrollProgress >= 0.08 && scrollProgress < 0.25) {
+        const phase2Progress = (scrollProgress - 0.08) / 0.17;
         project1.style.opacity = phase2Progress;
         project1.style.transform = `translateY(${500 - phase2Progress * 500}px)`;
       }
       
-      // Phase 3: Transition project 1 to 2 (0.3 - 0.5)
-      if (scrollProgress >= 0.3 && scrollProgress <= 0.5) {
-        const phase3Progress = (scrollProgress - 0.3) / 0.2;
+      // Phase 3: Transition project 1 to 2 (0.25 - 0.42)
+      if (scrollProgress >= 0.25 && scrollProgress <= 0.42) {
+        const phase3Progress = (scrollProgress - 0.25) / 0.17;
         
         // First project moves up
         project1.style.transform = `translateY(${-500 * phase3Progress}px)`;
         
-        // Fade out starting from 50% of movement
-        if (phase3Progress > 0.5) {
-          project1.style.opacity = 1 - ((phase3Progress - 0.5) / 0.5);
+        // Fade out starting from 40% of movement
+        if (phase3Progress > 0.4) {
+          project1.style.opacity = 1 - ((phase3Progress - 0.4) / 0.6);
         } else {
           project1.style.opacity = 1;
         }
@@ -1295,24 +1307,24 @@
         project2.style.transform = `translateY(${500 - phase3Progress * 500}px)`;
       }
       
-      // Phase 4: Show second project (0.5 - 0.55)
-      if (scrollProgress > 0.5 && scrollProgress < 0.55) {
+      // Phase 4: Show second project (0.42 - 0.5)
+      if (scrollProgress > 0.42 && scrollProgress < 0.5) {
         project1.style.opacity = 0;
         project1.style.transform = 'translateY(-500px)';
         project2.style.opacity = 1;
         project2.style.transform = 'translateY(0)';
       }
       
-      // Phase 5: Transition project 2 to 3 (0.55 - 0.75)
-      if (scrollProgress >= 0.55 && scrollProgress <= 0.75) {
-        const phase5Progress = (scrollProgress - 0.55) / 0.2;
+      // Phase 5: Transition project 2 to 3 (0.5 - 0.67)
+      if (scrollProgress >= 0.5 && scrollProgress <= 0.67) {
+        const phase5Progress = (scrollProgress - 0.5) / 0.17;
         
         // Second project moves up
         project2.style.transform = `translateY(${-500 * phase5Progress}px)`;
         
-        // Fade out starting from 50% of movement
-        if (phase5Progress > 0.5) {
-          project2.style.opacity = 1 - ((phase5Progress - 0.5) / 0.5);
+        // Fade out starting from 40% of movement
+        if (phase5Progress > 0.4) {
+          project2.style.opacity = 1 - ((phase5Progress - 0.4) / 0.6);
         } else {
           project2.style.opacity = 1;
         }
@@ -1322,8 +1334,8 @@
         project3.style.transform = `translateY(${500 - phase5Progress * 500}px)`;
       }
       
-      // Phase 6: Show third project (0.75 - 0.85)
-      if (scrollProgress > 0.75 && scrollProgress < 0.85) {
+      // Phase 6: Show third project (0.67 - 0.8)
+      if (scrollProgress > 0.67 && scrollProgress < 0.8) {
         project1.style.opacity = 0;
         project1.style.transform = 'translateY(-500px)';
         project2.style.opacity = 0;
@@ -1332,30 +1344,30 @@
         project3.style.transform = 'translateY(0)';
       }
       
-      // Phase 7: Third project moves up and fades out (0.85 - 0.95)
-      if (scrollProgress >= 0.85 && scrollProgress < 0.95) {
-        const phase7Progress = (scrollProgress - 0.85) / 0.1;
+      // Phase 7: Third project moves up and fades out (0.8 - 0.92)
+      if (scrollProgress >= 0.8 && scrollProgress < 0.92) {
+        const phase7Progress = (scrollProgress - 0.8) / 0.12;
         
         project3.style.transform = `translateY(${-500 * phase7Progress}px)`;
         
-        // Fade out starting from 50% of movement
-        if (phase7Progress > 0.5) {
-          project3.style.opacity = 1 - ((phase7Progress - 0.5) / 0.5);
+        // Fade out starting from 40% of movement
+        if (phase7Progress > 0.4) {
+          project3.style.opacity = 1 - ((phase7Progress - 0.4) / 0.6);
         } else {
           project3.style.opacity = 1;
         }
       }
       
-      // Phase 8: Projects title fades out (0.95 - 1)
-      if (scrollProgress >= 0.95) {
+      // Phase 8: Projects title fades out (0.92 - 1)
+      if (scrollProgress >= 0.92) {
         projectsTitle.classList.add('fade-out');
         projectsTitle.classList.remove('visible');
-      } else if (scrollProgress < 0.95) {
+      } else if (scrollProgress < 0.92) {
         projectsTitle.classList.remove('fade-out');
       }
       
       // Before animation starts
-      if (scrollProgress < 0.1) {
+      if (scrollProgress < 0.08) {
         project1.style.opacity = 0;
         project1.style.transform = 'translateY(500px)';
         project2.style.opacity = 0;

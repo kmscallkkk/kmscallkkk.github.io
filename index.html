@@ -433,7 +433,7 @@
       font-size: 36px;
       font-weight: 700;
       margin-bottom: 24px;
-      color: #0070C0;
+      color: #2C5AA7;
     }
     
     .project-single .project-meta {
@@ -1295,52 +1295,76 @@
         projectsTitle.classList.remove('fade-out');
       }
       
-      // Phase 2: Show first project (0.08 - 0.25)
-      if (scrollProgress >= 0.08 && scrollProgress < 0.25) {
-        const phase2Progress = (scrollProgress - 0.08) / 0.17;
+      // Phase 2: Show first project - 빠른 페이드 인 (0.08 - 0.13)
+      if (scrollProgress >= 0.08 && scrollProgress < 0.13) {
+        const phase2Progress = (scrollProgress - 0.08) / 0.05;
         project1.style.opacity = phase2Progress;
         project1.style.transform = `translateY(${500 - phase2Progress * 500}px)`;
       }
       
-      // Phase 3: First project fade out (0.25 - 0.35)
-      if (scrollProgress >= 0.25 && scrollProgress < 0.35) {
-        const phase3Progress = (scrollProgress - 0.25) / 0.10;
+      // Phase 2.5: First project visible (0.13 - 0.30)
+      if (scrollProgress >= 0.13 && scrollProgress < 0.30) {
+        project1.style.opacity = 1;
+        project1.style.transform = 'translateY(0)';
+      }
+      
+      // Phase 3: First project fade out - 빠른 페이드 아웃 (0.30 - 0.35)
+      if (scrollProgress >= 0.30 && scrollProgress < 0.35) {
+        const phase3Progress = (scrollProgress - 0.30) / 0.05;
         project1.style.opacity = 1 - phase3Progress;
         project1.style.transform = `translateY(${-300 * phase3Progress}px)`;
       }
       
-      // Phase 4: Show second project (0.38 - 0.53)
-      if (scrollProgress >= 0.38 && scrollProgress < 0.53) {
+      // Phase 4: Show second project - 빠른 페이드 인 (0.38 - 0.43)
+      if (scrollProgress >= 0.38 && scrollProgress < 0.43) {
         project1.style.opacity = 0;
         project1.style.transform = 'translateY(-300px)';
-        const phase4Progress = (scrollProgress - 0.38) / 0.15;
+        const phase4Progress = (scrollProgress - 0.38) / 0.05;
         project2.style.opacity = phase4Progress;
         project2.style.transform = `translateY(${500 - phase4Progress * 500}px)`;
       }
       
-      // Phase 5: Second project fade out (0.53 - 0.63)
-      if (scrollProgress >= 0.53 && scrollProgress < 0.63) {
+      // Phase 4.5: Second project visible (0.43 - 0.58)
+      if (scrollProgress >= 0.43 && scrollProgress < 0.58) {
         project1.style.opacity = 0;
         project1.style.transform = 'translateY(-300px)';
-        const phase5Progress = (scrollProgress - 0.53) / 0.10;
+        project2.style.opacity = 1;
+        project2.style.transform = 'translateY(0)';
+      }
+      
+      // Phase 5: Second project fade out - 빠른 페이드 아웃 (0.58 - 0.63)
+      if (scrollProgress >= 0.58 && scrollProgress < 0.63) {
+        project1.style.opacity = 0;
+        project1.style.transform = 'translateY(-300px)';
+        const phase5Progress = (scrollProgress - 0.58) / 0.05;
         project2.style.opacity = 1 - phase5Progress;
         project2.style.transform = `translateY(${-300 * phase5Progress}px)`;
       }
       
-      // Phase 6: Show third project (0.66 - 0.81)
-      if (scrollProgress >= 0.66 && scrollProgress < 0.81) {
+      // Phase 6: Show third project - 빠른 페이드 인 (0.66 - 0.71)
+      if (scrollProgress >= 0.66 && scrollProgress < 0.71) {
         project1.style.opacity = 0;
         project1.style.transform = 'translateY(-300px)';
         project2.style.opacity = 0;
         project2.style.transform = 'translateY(-300px)';
-        const phase6Progress = (scrollProgress - 0.66) / 0.15;
+        const phase6Progress = (scrollProgress - 0.66) / 0.05;
         project3.style.opacity = phase6Progress;
         project3.style.transform = `translateY(${500 - phase6Progress * 500}px)`;
       }
       
-      // Phase 7: Third project fade out (0.81 - 0.92)
-      if (scrollProgress >= 0.81 && scrollProgress < 0.92) {
-        const phase7Progress = (scrollProgress - 0.81) / 0.11;
+      // Phase 6.5: Third project visible (0.71 - 0.86)
+      if (scrollProgress >= 0.71 && scrollProgress < 0.86) {
+        project1.style.opacity = 0;
+        project1.style.transform = 'translateY(-300px)';
+        project2.style.opacity = 0;
+        project2.style.transform = 'translateY(-300px)';
+        project3.style.opacity = 1;
+        project3.style.transform = 'translateY(0)';
+      }
+      
+      // Phase 7: Third project fade out - 빠른 페이드 아웃 (0.86 - 0.91)
+      if (scrollProgress >= 0.86 && scrollProgress < 0.91) {
+        const phase7Progress = (scrollProgress - 0.86) / 0.05;
         project3.style.opacity = 1 - phase7Progress;
         project3.style.transform = `translateY(${-300 * phase7Progress}px)`;
       }

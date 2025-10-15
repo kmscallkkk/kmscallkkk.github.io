@@ -342,27 +342,33 @@
     }
     
     .tech-category {
-      margin-bottom: 40px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
     }
     
     .tech-category-title {
-      font-size: 20px;
+      font-size: 16px;
       font-weight: 700;
-      margin-bottom: 20px;
+      margin-bottom: 0;
       color: #2C5AA7;
+      flex-shrink: 0;
+      width: 180px;
     }
     
     .tech-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 12px;
     }
     
     .tech-tag {
-      padding: 12px 24px;
+      padding: 8px 18px;
       background: #f5f5f5;
       border-radius: 30px;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
       color: #333333;
       transition: all 0.3s ease;
@@ -914,7 +920,7 @@
       <h2 class="section-title" data-aos="fade-right" data-aos-duration="700">Tech Stack</h2>
       
       <div class="tech-category" data-aos="fade-right" data-aos-duration="700" data-aos-delay="100">
-        <h3 class="tech-category-title">Programming Languages</h3>
+        <h3 class="tech-category-title">Language</h3>
         <div class="tech-tags">
           <span class="tech-tag">C</span>
           <span class="tech-tag">C++</span>
@@ -922,7 +928,7 @@
       </div>
       
       <div class="tech-category" data-aos="fade-right" data-aos-duration="700" data-aos-delay="200">
-        <h3 class="tech-category-title">Embedded and System Development</h3>
+        <h3 class="tech-category-title">Embedded Systems</h3>
         <div class="tech-tags">
           <span class="tech-tag">Embedded Linux</span>
           <span class="tech-tag">Linux Kernel</span>
@@ -950,7 +956,7 @@
       </div>
       
       <div class="tech-category" data-aos="fade-right" data-aos-duration="700" data-aos-delay="500">
-        <h3 class="tech-category-title">GUI</h3>
+        <h3 class="tech-category-title">Interface</h3>
         <div class="tech-tags">
           <span class="tech-tag">Qt</span>
         </div>
@@ -978,7 +984,7 @@
         <button class="project-detail-btn" onclick="openProjectModal(2)">Learn More →</button>
       </div>
       <div class="project-single" id="project3" style="opacity: 0; transform: translateY(500px);">
-        <img src="project3.png" alt="Infant Monitoring System" class="project-image">
+        <img src="project3.jpg" alt="Infant Monitoring System" class="project-image">
         <h3>Infant Monitoring System</h3>
         <div class="project-meta">ESP32 · Sensor Fusion · BLE</div>
         <p>Real-time monitoring system utilizing temperature/humidity, cry detection, and motion sensors.</p>

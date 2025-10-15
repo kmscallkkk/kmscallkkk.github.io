@@ -341,41 +341,37 @@
       margin-bottom: 80px;
     }
     
-    .tech-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
+    .tech-category {
+      margin-bottom: 40px;
     }
     
-    .tech-card {
-      padding: 40px;
-      background: #f8f8f8;
-      border: 1px solid #e0e0e0;
-      border-radius: 16px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .tech-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-    }
-    
-    .tech-card h3 {
-      font-size: 24px;
+    .tech-category-title {
+      font-size: 20px;
       font-weight: 700;
-      margin-bottom: 16px;
-      color: #1a1a1a;
+      margin-bottom: 20px;
+      color: #2C5AA7;
     }
     
-    .tech-card ul {
-      list-style: none;
-      color: #555555;
-      font-size: 15px;
-      line-height: 1.8;
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
     }
     
-    .tech-card li {
-      margin-bottom: 8px;
+    .tech-tag {
+      padding: 12px 24px;
+      background: #f5f5f5;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #333333;
+      transition: all 0.3s ease;
+    }
+    
+    .tech-tag:hover {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      transform: translateY(-2px);
     }
     
     /* Projects Section */
@@ -916,32 +912,50 @@
   <section class="tech" id="tech">
     <div class="tech-content">
       <h2 class="section-title" data-aos="fade-right" data-aos-duration="700">Tech Stack</h2>
-      <div class="tech-grid">
-        <div class="tech-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="100">
-          <h3>Programming Languages</h3>
-          <ul>
-            <li>C/C++ (Advanced)</li>
-            <li>Python</li>
-            <li>GLSL</li>
-          </ul>
-        </div>
-        <div class="tech-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="200">
-          <h3>Embedded & Linux</h3>
-          <ul>
-            <li>Embedded Linux</li>
-            <li>Linux Kernel Programming</li>
-            <li>Device Driver Development</li>
-          </ul>
-        </div>
-        <div class="tech-card" data-aos="fade-right" data-aos-duration="700" data-aos-delay="300">
-          <h3>Computer Vision & GUI</h3>
-          <ul>
-            <li>OpenCV · Image Processing</li>
-            <li>Qt Framework</li>
-            <li>OpenGL</li>
-          </ul>
+      
+      <div class="tech-category" data-aos="fade-right" data-aos-duration="700" data-aos-delay="100">
+        <h3 class="tech-category-title">Programming Languages</h3>
+        <div class="tech-tags">
+          <span class="tech-tag">C</span>
+          <span class="tech-tag">C++</span>
         </div>
       </div>
+      
+      <div class="tech-category" data-aos="fade-right" data-aos-duration="700" data-aos-delay="200">
+        <h3 class="tech-category-title">Embedded and System Development</h3>
+        <div class="tech-tags">
+          <span class="tech-tag">Embedded Linux</span>
+          <span class="tech-tag">Linux Kernel</span>
+          <span class="tech-tag">Kernel Programming</span>
+          <span class="tech-tag">Yocto</span>
+          <span class="tech-tag">ARM</span>
+        </div>
+      </div>
+      
+      <div class="tech-category" data-aos="fade-right" data-aos-duration="700" data-aos-delay="300">
+        <h3 class="tech-category-title">Network</h3>
+        <div class="tech-tags">
+          <span class="tech-tag">TCP/IP</span>
+          <span class="tech-tag">MQTT</span>
+          <span class="tech-tag">Wireshark</span>
+        </div>
+      </div>
+      
+      <div class="tech-category" data-aos="fade-right" data-aos-duration="700" data-aos-delay="400">
+        <h3 class="tech-category-title">Visual Computing</h3>
+        <div class="tech-tags">
+          <span class="tech-tag">OpenCV</span>
+          <span class="tech-tag">OpenGL</span>
+        </div>
+      </div>
+      
+      <div class="tech-category" data-aos="fade-right" data-aos-duration="700" data-aos-delay="500">
+        <h3 class="tech-category-title">GUI</h3>
+        <div class="tech-tags">
+          <span class="tech-tag">Qt</span>
+        </div>
+      </div>
+      
     </div>
   </section>
 
@@ -964,7 +978,7 @@
         <button class="project-detail-btn" onclick="openProjectModal(2)">Learn More →</button>
       </div>
       <div class="project-single" id="project3" style="opacity: 0; transform: translateY(500px);">
-        <img src="project3.png" alt="Infant Monitoring System" class="project-image">
+        <img src="project3.jpg" alt="Infant Monitoring System" class="project-image">
         <h3>Infant Monitoring System</h3>
         <div class="project-meta">ESP32 · Sensor Fusion · BLE</div>
         <p>Real-time monitoring system utilizing temperature/humidity, cry detection, and motion sensors.</p>

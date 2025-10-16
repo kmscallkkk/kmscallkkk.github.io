@@ -524,6 +524,7 @@
       transform: scale(0.9);
       transition: transform 0.3s ease;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      padding: 60px;
     }
     
     .modal.active .modal-content {
@@ -550,21 +551,21 @@
     }
     
     .modal-close:hover {
-      background: #667eea;
+      background: #2C5AA7;
       transform: rotate(90deg);
     }
     
     .modal-video-container {
       width: 100%;
       background: #000000;
-      border-radius: 20px 20px 0 0;
+      border-radius: 12px;
       overflow: hidden;
+      margin-bottom: 40px;
     }
     
     .modal-youtube-container {
       width: 100%;
-      padding: 40px;
-      background: #f8f8f8;
+      margin-bottom: 40px;
     }
     
     .youtube-wrapper {
@@ -576,10 +577,10 @@
     }
     
     .youtube-title {
-      font-size: 20px;
+      font-size: 16px;
       font-weight: 700;
       margin-bottom: 16px;
-      color: #1a1a1a;
+      color: #2C3544;
     }
     
     .youtube-wrapper iframe {
@@ -590,42 +591,52 @@
       width: 100%;
       height: auto;
       display: block;
+      border-radius: 12px;
     }
     
-    .modal-body {
-      padding: 40px;
+    .modal-header {
+      margin-bottom: 40px;
     }
     
     .modal-title {
-      font-size: 32px;
+      font-size: 36px;
       font-weight: 700;
-      margin-bottom: 16px;
-      color: #1a1a1a;
+      margin-bottom: 12px;
+      color: #2C5AA7;
     }
     
-    .modal-meta {
-      font-size: 14px;
-      color: #888888;
-      margin-bottom: 24px;
-      letter-spacing: 0.05em;
-    }
-    
-    .modal-description {
+    .modal-subtitle {
       font-size: 16px;
-      line-height: 1.8;
-      color: #444444;
-      margin-bottom: 32px;
+      color: #666666;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    
+    .modal-tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .modal-tech-tag {
+      padding: 6px 16px;
+      background: #f0f0f0;
+      color: #333333;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
     }
     
     .modal-section {
-      margin-bottom: 32px;
+      margin-bottom: 36px;
     }
     
     .modal-section h3 {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 700;
       margin-bottom: 16px;
-      color: #1a1a1a;
+      color: #2C3544;
     }
     
     .modal-section ul {
@@ -638,32 +649,17 @@
       line-height: 1.8;
       color: #555555;
       margin-bottom: 12px;
-      padding-left: 24px;
+      padding-left: 20px;
       position: relative;
     }
     
     .modal-section li::before {
-      content: "▹";
+      content: "•";
       position: absolute;
       left: 0;
-      color: #667eea;
+      color: #2C5AA7;
       font-weight: 700;
-    }
-    
-    .modal-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 24px;
-    }
-    
-    .modal-tag {
-      padding: 10px 20px;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: #ffffff;
-      border-radius: 25px;
-      font-size: 13px;
-      font-weight: 600;
+      font-size: 18px;
     }
     
     /* Awards Section */
@@ -789,6 +785,69 @@
       line-height: 1.8;
       color: #555555;
       margin-bottom: 40px;
+    }
+    
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+    
+    .form-group {
+      margin-bottom: 24px;
+      text-align: left;
+    }
+    
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #333333;
+      margin-bottom: 8px;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
+      transition: border-color 0.3s ease;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #2C5AA7;
+    }
+    
+    .form-group textarea {
+      resize: vertical;
+      min-height: 150px;
+    }
+    
+    .submit-btn {
+      padding: 16px 48px;
+      background: #2C5AA7;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    
+    .submit-btn:hover {
+      background: #1e4080;
+      transform: translateY(-2px);
+    }
+    
+    .form-status {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #2C5AA7;
     }
     
     .contact-links {
@@ -928,16 +987,6 @@
       <p data-aos="fade-right" data-aos-duration="700" data-aos-delay="200">
         Completed Hanwha Vision's Edge Device Academy (2nd cohort) with Outstanding Trainee Award and Best Final Project Award. Experienced in Qt development with C/C++ and Linux kernel module device driver development. Proficient in image processing and computer vision projects using OpenCV.
       </p>
-      <div class="skills-list" data-aos="fade-right" data-aos-duration="700" data-aos-delay="300">
-        <span class="skill-tag">C/C++</span>
-        <span class="skill-tag">OpenCV</span>
-        <span class="skill-tag">Qt</span>
-        <span class="skill-tag">Embedded Linux</span>
-        <span class="skill-tag">Linux Kernel</span>
-        <span class="skill-tag">Kernel Programming</span>
-        <span class="skill-tag">GUI</span>
-        <span class="skill-tag">OpenGL</span>
-      </div>
     </div>
   </section>
 
@@ -1025,32 +1074,71 @@
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal()">&times;</button>
       
-      <div class="modal-video-container" id="modalVideoContainer">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modalTitle">Smart Factory Conveyor Monitoring</h2>
+        <div class="modal-subtitle" id="modalSubtitle">Real-time belt speed measurement and monitoring system</div>
+        <div class="modal-tech-tags" id="modalTechTags">
+          <span class="modal-tech-tag">Raspberry Pi</span>
+          <span class="modal-tech-tag">OpenCV</span>
+          <span class="modal-tech-tag">GStreamer</span>
+        </div>
+      </div>
+      
+      <div class="modal-video-container" id="modalVideoContainer" style="display: none;">
         <video class="modal-video" id="modalVideo" controls>
           <source src="" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>
       
-      <div class="modal-youtube-container" id="modalYoutubeContainer" style="display: none;">
+      <div class="modal-youtube-container" id="modalYoutubeContainer">
         <div class="youtube-wrapper">
           <h3 class="youtube-title">Hardware Implementation</h3>
-          <iframe id="youtube1" width="100%" height="400" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe id="youtube1" width="100%" height="500" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="youtube-wrapper">
           <h3 class="youtube-title">Qt GUI Application</h3>
-          <iframe id="youtube2" width="100%" height="400" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe id="youtube2" width="100%" height="500" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
       
-      <div class="modal-body">
-        <h2 class="modal-title">Project Details</h2>
-        <div class="modal-meta">Coming Soon</div>
+      <div class="modal-body" id="modalBody">
+        <div class="modal-section">
+          <h3>Overview</h3>
+          <ul>
+            <li>Developed an automated monitoring system for conveyor belt operations in smart factory environments</li>
+            <li>Implemented computer vision-based speed measurement using Optical Flow algorithms</li>
+            <li>Achieved real-time processing and alert capabilities for production line efficiency</li>
+          </ul>
+        </div>
         
-        <div class="modal-description">
-          <p>
-            Detailed project information will be added here.
-          </p>
+        <div class="modal-section">
+          <h3>Key Features</h3>
+          <ul>
+            <li>Real-time belt speed measurement using Lucas-Kanade Optical Flow method</li>
+            <li>RTSP streaming for remote monitoring and multi-client support</li>
+            <li>MQTT-based alert system for immediate notification of anomalies</li>
+            <li>Qt-based GUI for intuitive control and visualization</li>
+          </ul>
+        </div>
+        
+        <div class="modal-section">
+          <h3>Technical Highlights</h3>
+          <ul>
+            <li>Optimized OpenCV algorithms for Raspberry Pi performance constraints</li>
+            <li>Implemented GStreamer pipeline for low-latency video streaming</li>
+            <li>Designed robust error handling and recovery mechanisms</li>
+            <li>Integrated MQTT protocol for IoT connectivity and scalability</li>
+          </ul>
+        </div>
+        
+        <div class="modal-section">
+          <h3>Results & Achievements</h3>
+          <ul>
+            <li>Achieved accurate speed measurement within ±2% error margin</li>
+            <li>Reduced manual monitoring requirements by 80%</li>
+            <li>Awarded Best Final Project at Hanwha Vision's Edge Device Academy</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -1096,10 +1184,31 @@
       <h2 class="section-title">Contact</h2>
       <p>
         I welcome inquiries about collaboration and employment opportunities.<br>
-        Feel free to reach out through the following channels.
+        Feel free to reach out through the form below or other channels.
       </p>
+      
+      <form class="contact-form" action="https://formspree.io/f/movkybnn" method="POST">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        
+        <button type="submit" class="submit-btn">Send Message</button>
+        <div class="form-status" id="formStatus"></div>
+      </form>
+      
       <div class="contact-links">
-        <a href="mailto:gro*****@naver.com" class="contact-link">Email</a>
+        <a href="mailto:kmscallkkk@ajou.ac.kr" class="contact-link">Email</a>
         <a href="https://github.com/kmscallkkk" target="_blank" class="contact-link">GitHub</a>
         <a href="https://kmscallkkk.github.io" class="contact-link">Portfolio</a>
       </div>
@@ -1195,44 +1304,154 @@
       const youtubeContainer = document.getElementById('modalYoutubeContainer');
       const youtube1 = document.getElementById('youtube1');
       const youtube2 = document.getElementById('youtube2');
-      const modalTitle = modal.querySelector('.modal-title');
-      const modalMeta = modal.querySelector('.modal-meta');
-      const modalDescription = modal.querySelector('.modal-description p');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalSubtitle = document.getElementById('modalSubtitle');
+      const modalTechTags = document.getElementById('modalTechTags');
+      const modalBody = document.getElementById('modalBody');
       
       document.body.classList.add('modal-open');
       modal.classList.add('active');
       
-      // 프로젝트별 내용 설정
       if (projectNum === 1) {
-        // Smart Factory Conveyor Monitoring - YouTube 임베드
+        // Smart Factory Conveyor Monitoring
         videoContainer.style.display = 'none';
         youtubeContainer.style.display = 'block';
+        youtube1.parentElement.style.display = 'block';
+        youtube2.parentElement.style.display = 'block';
         youtube1.src = 'https://www.youtube.com/embed/ftSbG4EC6QI';
         youtube2.src = 'https://www.youtube.com/embed/GyWVxQQe8pA';
+        
         modalTitle.textContent = 'Smart Factory Conveyor Monitoring';
-        modalMeta.textContent = 'Raspberry Pi · OpenCV · GStreamer';
-        modalDescription.textContent = 'Optical Flow-based belt speed measurement system. Implemented RTSP real-time streaming and MQTT alert system.';
+        modalSubtitle.textContent = 'Real-time belt speed measurement and monitoring system';
+        modalTechTags.innerHTML = `
+          <span class="modal-tech-tag">Raspberry Pi</span>
+          <span class="modal-tech-tag">OpenCV</span>
+          <span class="modal-tech-tag">GStreamer</span>
+          <span class="modal-tech-tag">MQTT</span>
+          <span class="modal-tech-tag">Qt</span>
+        `;
+        
+        modalBody.innerHTML = `
+          <div class="modal-section">
+            <h3>Overview</h3>
+            <ul>
+              <li>Developed an automated monitoring system for conveyor belt operations in smart factory environments</li>
+              <li>Implemented computer vision-based speed measurement using Optical Flow algorithms</li>
+              <li>Achieved real-time processing and alert capabilities for production line efficiency</li>
+            </ul>
+          </div>
+          
+          <div class="modal-section">
+            <h3>Key Features</h3>
+            <ul>
+              <li>Real-time belt speed measurement using Lucas-Kanade Optical Flow method</li>
+              <li>RTSP streaming for remote monitoring and multi-client support</li>
+              <li>MQTT-based alert system for immediate notification of anomalies</li>
+              <li>Qt-based GUI for intuitive control and visualization</li>
+            </ul>
+          </div>
+          
+          <div class="modal-section">
+            <h3>Technical Highlights</h3>
+            <ul>
+              <li>Optimized OpenCV algorithms for Raspberry Pi performance constraints</li>
+              <li>Implemented GStreamer pipeline for low-latency video streaming</li>
+              <li>Designed robust error handling and recovery mechanisms</li>
+              <li>Integrated MQTT protocol for IoT connectivity and scalability</li>
+            </ul>
+          </div>
+          
+          <div class="modal-section">
+            <h3>Results & Achievements</h3>
+            <ul>
+              <li>Achieved accurate speed measurement within ±2% error margin</li>
+              <li>Reduced manual monitoring requirements by 80%</li>
+              <li>Awarded Best Final Project at Hanwha Vision's Edge Device Academy</li>
+            </ul>
+          </div>
+        `;
       } else if (projectNum === 2) {
-        // Kernel Module Motor Control - 로컬 비디오
+        // Kernel Module Motor Control
         videoContainer.style.display = 'block';
         youtubeContainer.style.display = 'none';
         video.src = 'videos/ibl.mp4';
+        
         modalTitle.textContent = 'Kernel Module Motor Control';
-        modalMeta.textContent = 'Linux Driver · GPIO · Timer';
-        modalDescription.textContent = 'Designed kthread management and resource release policy for safe kernel module unloading.';
+        modalSubtitle.textContent = 'Linux device driver development for motor control';
+        modalTechTags.innerHTML = `
+          <span class="modal-tech-tag">Linux Kernel</span>
+          <span class="modal-tech-tag">C</span>
+          <span class="modal-tech-tag">GPIO</span>
+          <span class="modal-tech-tag">Device Driver</span>
+        `;
+        
+        modalBody.innerHTML = `
+          <div class="modal-section">
+            <h3>Overview</h3>
+            <ul>
+              <li>Developed Linux kernel module for motor control operations</li>
+              <li>Implemented device driver with safe resource management</li>
+            </ul>
+          </div>
+          
+          <div class="modal-section">
+            <h3>Technical Highlights</h3>
+            <ul>
+              <li>Designed kthread management for safe kernel module unloading</li>
+              <li>Implemented GPIO-based motor control interface</li>
+              <li>Developed timer-based PWM control mechanism</li>
+            </ul>
+          </div>
+        `;
+        
         video.load();
         video.play();
       } else if (projectNum === 3) {
-        // Infant Monitoring System - YouTube 임베드
+        // Infant Monitoring System
         videoContainer.style.display = 'none';
         youtubeContainer.style.display = 'block';
         youtube1.parentElement.style.display = 'block';
         youtube2.parentElement.style.display = 'none';
         document.querySelector('#modalYoutubeContainer .youtube-wrapper:first-child .youtube-title').textContent = 'Project Demo';
         youtube1.src = 'https://www.youtube.com/embed/qaJwzJPC8yc';
+        
         modalTitle.textContent = 'Infant Monitoring System';
-        modalMeta.textContent = 'ESP32 · Sensor Fusion · BLE';
-        modalDescription.textContent = 'Real-time monitoring system utilizing temperature/humidity, cry detection, and motion sensors.';
+        modalSubtitle.textContent = 'IoT-based real-time infant care monitoring solution';
+        modalTechTags.innerHTML = `
+          <span class="modal-tech-tag">ESP32</span>
+          <span class="modal-tech-tag">BLE</span>
+          <span class="modal-tech-tag">Sensor Fusion</span>
+          <span class="modal-tech-tag">IoT</span>
+        `;
+        
+        modalBody.innerHTML = `
+          <div class="modal-section">
+            <h3>Overview</h3>
+            <ul>
+              <li>Developed comprehensive infant monitoring system utilizing multiple sensors</li>
+              <li>Implemented real-time data collection and alert mechanisms</li>
+            </ul>
+          </div>
+          
+          <div class="modal-section">
+            <h3>Key Features</h3>
+            <ul>
+              <li>Temperature and humidity monitoring for optimal environment</li>
+              <li>Cry detection using sound sensor analysis</li>
+              <li>Motion detection for infant safety monitoring</li>
+              <li>Bluetooth Low Energy (BLE) for wireless data transmission</li>
+            </ul>
+          </div>
+          
+          <div class="modal-section">
+            <h3>Technical Highlights</h3>
+            <ul>
+              <li>Integrated multiple sensor inputs with ESP32 microcontroller</li>
+              <li>Implemented efficient power management for continuous operation</li>
+              <li>Designed real-time alert system for immediate caregiver notification</li>
+            </ul>
+          </div>
+        `;
       }
     }
     

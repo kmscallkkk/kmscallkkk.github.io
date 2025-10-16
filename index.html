@@ -760,12 +760,15 @@
       align-items: center;
       justify-content: center;
       padding: 150px 40px;
-      background: #ffffff;
+      background: #000000;
     }
     
     .contact-content {
-      max-width: 700px;
-      text-align: center;
+      max-width: 1200px;
+      width: 100%;
+      display: flex;
+      gap: 80px;
+      align-items: flex-start;
       opacity: 0;
       transform: translateY(50px);
       transition: opacity 1s ease, transform 1s ease;
@@ -776,20 +779,30 @@
       transform: translateY(0);
     }
     
+    .contact-left {
+      flex: 1;
+      text-align: left;
+    }
+    
+    .contact-right {
+      flex: 1;
+    }
+    
     .contact .section-title {
       margin-bottom: 40px;
+      color: #ffffff;
+      text-align: left;
     }
     
     .contact p {
       font-size: 18px;
       line-height: 1.8;
-      color: #555555;
-      margin-bottom: 40px;
+      color: #ffffff;
+      margin-bottom: 0;
     }
     
     .contact-form {
-      max-width: 600px;
-      margin: 0 auto 40px;
+      width: 100%;
     }
     
     .form-group {
@@ -801,7 +814,7 @@
       display: block;
       font-size: 14px;
       font-weight: 600;
-      color: #333333;
+      color: #ffffff;
       margin-bottom: 8px;
     }
     
@@ -809,8 +822,10 @@
     .form-group textarea {
       width: 100%;
       padding: 14px 18px;
-      border: 1px solid #e0e0e0;
-      border-radius: 8px;
+      border: 1px solid #444444;
+      background: #1a1a1a;
+      color: #ffffff;
+      border-radius: 0;
       font-size: 15px;
       font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
       transition: border-color 0.3s ease;
@@ -828,20 +843,39 @@
     }
     
     .submit-btn {
-      padding: 16px 48px;
-      background: #2C5AA7;
+      padding: 12px 32px;
+      background: transparent;
       color: #ffffff;
-      border: none;
-      border-radius: 8px;
+      border: 2px solid #ffffff;
+      border-radius: 0;
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
-      transition: background 0.3s ease, transform 0.3s ease;
+      transition: all 0.4s ease;
+      float: right;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .submit-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      transition: left 0.4s ease;
+      z-index: -1;
+    }
+    
+    .submit-btn:hover::before {
+      left: 0;
     }
     
     .submit-btn:hover {
-      background: #1e4080;
-      transform: translateY(-2px);
+      color: #000000;
+      border-color: #ffffff;
     }
     
     .form-status {
@@ -853,23 +887,24 @@
     .contact-links {
       display: flex;
       gap: 20px;
-      justify-content: center;
+      justify-content: flex-start;
       flex-wrap: wrap;
+      margin-top: 40px;
     }
     
     .contact-link {
       padding: 16px 32px;
-      background: #1a1a1a;
+      background: #2C5AA7;
       color: #ffffff;
       text-decoration: none;
-      border-radius: 8px;
+      border-radius: 4px;
       font-size: 15px;
       font-weight: 600;
       transition: background 0.3s ease, transform 0.3s ease;
     }
     
     .contact-link:hover {
-      background: #333333;
+      background: #1e4080;
       transform: translateY(-4px);
     }
     
@@ -1181,36 +1216,34 @@
   <!-- Contact -->
   <section class="contact" id="contact">
     <div class="contact-content">
-      <h2 class="section-title">Contact</h2>
-      <p>
-        I welcome inquiries about collaboration and employment opportunities.<br>
-        Feel free to reach out through the form below or other channels.
-      </p>
+      <div class="contact-left">
+        <h2 class="section-title">Contact</h2>
+        <p>
+          I welcome inquiries about collaboration and employment opportunities.<br>
+          Feel free to reach out through the form or other channels.
+        </p>
+      </div>
       
-      <form class="contact-form" action="https://formspree.io/f/movkybnn" method="POST">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" required>
-        </div>
-        
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-        
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" required></textarea>
-        </div>
-        
-        <button type="submit" class="submit-btn">Send Message</button>
-        <div class="form-status" id="formStatus"></div>
-      </form>
-      
-      <div class="contact-links">
-        <a href="mailto:kmscallkkk@ajou.ac.kr" class="contact-link">Email</a>
-        <a href="https://github.com/kmscallkkk" target="_blank" class="contact-link">GitHub</a>
-        <a href="https://kmscallkkk.github.io" class="contact-link">Portfolio</a>
+      <div class="contact-right">
+        <form class="contact-form" action="https://formspree.io/f/movkybnn" method="POST">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">Send</button>
+          <div class="form-status" id="formStatus"></div>
+        </form>
       </div>
     </div>
   </section>

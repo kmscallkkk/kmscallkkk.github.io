@@ -139,22 +139,11 @@
       color: #1a1a1a;
     }
     
-    .hero-content.fade-out {
-      animation: fadeOutCompletely 0.8s ease forwards;
-    }
-    
-    @keyframes fadeOutCompletely {
-      to {
-        opacity: 0;
-        visibility: hidden;
-      }
-    }
-    
     .hero-fixed {
       position: absolute;
       bottom: 40px;
       left: 40px;
-      color: #1a1a1a;
+      color: #ffffff;
       text-align: left;
       opacity: 0;
       transform: translateY(30px);
@@ -190,7 +179,7 @@
       font-size: clamp(12px, 1.5vw, 14px);
       font-weight: 300;
       letter-spacing: 0.02em;
-      color: #666666;
+      color: #ffffff;
       line-height: 1.6;
     }
     
@@ -286,19 +275,19 @@
     }
     
     .about-header .developer {
-      font-size: 16px;
+      font-size: 20px;
       font-weight: 300;
       margin-bottom: 4px;
     }
     
     .about-header .name {
-      font-size: 24px;
+      font-size: 32px;
       font-weight: 700;
       margin-bottom: 8px;
     }
     
     .about-header .email {
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 400;
     }
     
@@ -1264,14 +1253,8 @@
     
     // Hero animation: fade out center, then show bottom left
     setTimeout(() => {
-      const heroContent = document.querySelector('.hero-content');
-      heroContent.classList.add('fade-out');
-      
-      // Show fixed version after center fades out
-      setTimeout(() => {
-        const heroFixed = document.querySelector('.hero-fixed');
-        heroFixed.classList.add('show');
-      }, 800);
+      const heroFixed = document.querySelector('.hero-fixed');
+      heroFixed.classList.add('show');
     }, 2500);
     
     // Header interaction

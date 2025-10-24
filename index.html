@@ -1077,17 +1077,17 @@
         <button class="project-detail-btn" onclick="openProjectModal(1)">Learn More →</button>
       </div>
       <div class="project-single" id="project2" style="opacity: 0; transform: translateY(500px);">
-        <img src="project2.png" alt="Kernel Module Motor Control" class="project-image">
-        <h3>Kernel Module Motor Control</h3>
-        <div class="project-meta">Linux Driver · GPIO · Timer</div>
-        <p>Designed kthread management and resource release policy for safe kernel module unloading.</p>
-        <button class="project-detail-btn" onclick="openProjectModal(2)">Learn More →</button>
-      </div>
-      <div class="project-single" id="project3" style="opacity: 0; transform: translateY(500px);">
         <img src="project3.png" alt="Infant Monitoring System" class="project-image">
         <h3>Infant Monitoring System</h3>
         <div class="project-meta">ESP32 · Sensor Fusion · BLE</div>
         <p>Real-time monitoring system utilizing temperature/humidity, cry detection, and motion sensors.</p>
+        <button class="project-detail-btn" onclick="openProjectModal(2)">Learn More →</button>
+      </div>
+      <div class="project-single" id="project3" style="opacity: 0; transform: translateY(500px);">
+        <img src="project2.png" alt="Kernel Module Motor Control" class="project-image">
+        <h3>Kernel Module Motor Control</h3>
+        <div class="project-meta">Linux Driver · GPIO · Timer</div>
+        <p>Designed kthread management and resource release policy for safe kernel module unloading.</p>
         <button class="project-detail-btn" onclick="openProjectModal(3)">Learn More →</button>
       </div>
     </div>
@@ -1387,41 +1387,51 @@
           </div>
         `;
       } else if (projectNum === 2) {
-        // Kernel Module Motor Control
-        videoContainer.style.display = 'block';
-        youtubeContainer.style.display = 'none';
-        video.src = 'videos/ibl.mp4';
+        // Infant Monitoring System
+        videoContainer.style.display = 'none';
+        youtubeContainer.style.display = 'block';
+        youtube1.parentElement.style.display = 'block';
+        youtube2.parentElement.style.display = 'none';
+        document.querySelector('.youtube-wrapper:first-child .youtube-title').textContent = 'Project Demo';
+        youtube1.src = 'https://www.youtube.com/embed/qaJwzJPC8yc';
         
-        modalTitle.textContent = 'Kernel Module Motor Control';
-        modalSubtitle.textContent = 'Linux device driver development for motor control';
+        modalTitle.textContent = 'Infant Monitoring System';
+        modalSubtitle.textContent = 'IoT-based real-time infant care monitoring solution';
         modalTechTags.innerHTML = `
-          <span class="modal-tech-tag">Linux Kernel</span>
-          <span class="modal-tech-tag">C</span>
-          <span class="modal-tech-tag">GPIO</span>
-          <span class="modal-tech-tag">Device Driver</span>
+          <span class="modal-tech-tag">ESP32</span>
+          <span class="modal-tech-tag">BLE</span>
+          <span class="modal-tech-tag">Sensor Fusion</span>
+          <span class="modal-tech-tag">IoT</span>
         `;
         
         modalBody.innerHTML = `
           <div class="modal-section">
             <h3>Overview</h3>
             <ul>
-              <li>Developed Linux kernel module for motor control operations</li>
-              <li>Implemented device driver with safe resource management</li>
+              <li>Developed comprehensive infant monitoring system utilizing multiple sensors</li>
+              <li>Implemented real-time data collection and alert mechanisms</li>
+            </ul>
+          </div>
+          
+          <div class="modal-section">
+            <h3>Key Features</h3>
+            <ul>
+              <li>Temperature and humidity monitoring for optimal environment</li>
+              <li>Cry detection using sound sensor analysis</li>
+              <li>Motion detection for infant safety monitoring</li>
+              <li>Bluetooth Low Energy (BLE) for wireless data transmission</li>
             </ul>
           </div>
           
           <div class="modal-section">
             <h3>Technical Highlights</h3>
             <ul>
-              <li>Designed kthread management for safe kernel module unloading</li>
-              <li>Implemented GPIO-based motor control interface</li>
-              <li>Developed timer-based PWM control mechanism</li>
+              <li>Integrated multiple sensor inputs with ESP32 microcontroller</li>
+              <li>Implemented efficient power management for continuous operation</li>
+              <li>Designed real-time alert system for immediate caregiver notification</li>
             </ul>
           </div>
         `;
-        
-        video.load();
-        video.play();
       } else if (projectNum === 3) {
         // Infant Monitoring System
         videoContainer.style.display = 'none';

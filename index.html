@@ -1398,37 +1398,54 @@
         modalTitle.textContent = 'Infant Monitoring System';
         modalSubtitle.textContent = 'IoT-based real-time infant care monitoring solution';
         modalTechTags.innerHTML = `
-          <span class="modal-tech-tag">ESP32</span>
-          <span class="modal-tech-tag">BLE</span>
+          <span class="modal-tech-tag">Raspberry Pi</span>
+          <span class="modal-tech-tag">pthread</span>
           <span class="modal-tech-tag">Sensor Fusion</span>
-          <span class="modal-tech-tag">IoT</span>
+          <span class="modal-tech-tag">TCP/IP</span>
+          <span class="modal-tech-tag">Keras</span>
         `;
         
         modalBody.innerHTML = `
           <div class="modal-section">
             <h3>Overview</h3>
-            <ul>
-              <li>Developed comprehensive infant monitoring system utilizing multiple sensors</li>
-              <li>Implemented real-time data collection and alert mechanisms</li>
-            </ul>
+            <p>An IoT-based infant monitoring system designed to track environmental and biometric conditions in real-time. The system integrates seven types of sensors (temperature, humidity, body temperature, heart rate, distance, pressure, sound) to monitor the infant's status and immediately transmit alert messages to the server when abnormal conditions are detected. All functions are processed in parallel on a single Raspberry Pi board, with real-time responsiveness and system stability as core objectives.</p>
           </div>
           
           <div class="modal-section">
-            <h3>Key Features</h3>
+            <h3>Challenge & Solution</h3>
+            <p>Initial implementation faced the following challenges:</p>
             <ul>
-              <li>Temperature and humidity monitoring for optimal environment</li>
-              <li>Cry detection using sound sensor analysis</li>
-              <li>Motion detection for infant safety monitoring</li>
-              <li>Bluetooth Low Energy (BLE) for wireless data transmission</li>
+              <li>Synchronization mismatches due to different sensor measurement cycles</li>
+              <li>Data loss from queue access conflicts in multi-threaded environment</li>
+              <li>High false positive rates from sensor noise (DHT11, IR sensors)</li>
+            </ul>
+            <p>Solutions implemented:</p>
+            <ul>
+              <li>Designed thread-safe queue structure using <code>pthread_mutex</code> and <code>pthread_cond</code></li>
+              <li>Improved synchronization by collecting sensor data at 2ms intervals</li>
+              <li>Applied average-based filtering algorithm for noise reduction</li>
+              <li>Implemented dynamic threshold adjustment via <code>config.txt</code></li>
             </ul>
           </div>
           
           <div class="modal-section">
             <h3>Technical Highlights</h3>
             <ul>
-              <li>Integrated multiple sensor inputs with ESP32 microcontroller</li>
-              <li>Implemented efficient power management for continuous operation</li>
-              <li>Designed real-time alert system for immediate caregiver notification</li>
+              <li><strong>Multi-threaded Architecture:</strong> Parallel processing of sensor data collection and analysis using <code>pthread</code></li>
+              <li><strong>Noise Filtering:</strong> Applied averaging algorithm to secure stable measurement values</li>
+              <li><strong>Network Stability:</strong> Implemented auto-reconnection loop in TCP module for continuous operation during network instability</li>
+              <li><strong>Error Handling:</strong> Built system for logging errors and performing exception recovery</li>
+              <li><strong>AI Integration:</strong> Real-time voice analysis and status transmission using Keras-based cry detection module (<code>cry_detector.py</code>)</li>
+            </ul>
+          </div>
+          
+          <div class="modal-section">
+            <h3>Results</h3>
+            <ul>
+              <li>Confirmed successful alert message transmission for all sensor anomaly states (temperature, heart rate, disconnection, etc.)</li>
+              <li>System automatically recovers from TCP disconnection without program interruption</li>
+              <li>Real-time threshold adjustment through configuration file enables rapid response to operational environment changes</li>
+              <li>Achieved real-time processing and stable sensor fusion of 7 sensors on a single board</li>
             </ul>
           </div>
         `;

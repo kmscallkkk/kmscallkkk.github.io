@@ -416,7 +416,7 @@
       left: 40px;
       margin-bottom: 0;
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateX(-100px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
     
@@ -427,7 +427,7 @@
     
     .projects .section-title.fade-out {
       opacity: 0;
-      transform: translateY(-50px);
+      transform: translateX(-100px);
     }
     
     .project-single {
@@ -1614,11 +1614,12 @@
       const scrollStart = windowHeight - rect.top;
       const scrollProgress = scrollStart / sectionHeight;
       
-      // Phase 1: Show title with slide down animation (0 - 0.12)
+      // Phase 1: Show title with slide from left animation (0 - 0.12)
       if (scrollProgress > 0 && scrollProgress < 0.12) {
         const titleProgress = scrollProgress / 0.12;
+        const easeOut = 1 - Math.pow(1 - titleProgress, 3); // cubic ease-out for dynamic effect
         projectsTitle.style.opacity = titleProgress;
-        projectsTitle.style.transform = `translateY(${-30 + titleProgress * 30}px)`;
+        projectsTitle.style.transform = `translateX(${-100 + easeOut * 100}px)`;
         projectsTitle.classList.add('visible');
         projectsTitle.classList.remove('fade-out');
       }
@@ -1626,7 +1627,7 @@
       // Phase 1.5: Title stays visible (0.12 - 0.25)
       if (scrollProgress >= 0.12 && scrollProgress < 0.25) {
         projectsTitle.style.opacity = 1;
-        projectsTitle.style.transform = 'translateY(0)';
+        projectsTitle.style.transform = 'translateX(0)';
         projectsTitle.classList.add('visible');
         projectsTitle.classList.remove('fade-out');
       }

@@ -684,14 +684,15 @@
     
     .awards-layout {
       display: flex;
-      gap: 40px;
+      gap: 60px;
       align-items: flex-start;
       margin-top: 40px;
+      margin-left: -40px;
     }
     
     .awards-image {
-      flex: 0 0 800px;
-      width: 800px;
+      flex: 0 0 900px;
+      width: 900px;
     }
     
     .awards-image img {
@@ -703,6 +704,7 @@
     
     .awards-list {
       flex: 1;
+      margin-right: 40px;
     }
     
     .awards .section-title {
@@ -720,7 +722,7 @@
     }
     
     .award-item {
-      padding: 18px 0;
+      padding: 24px 0;
       border-bottom: 1px solid #e0e0e0;
     }
     
@@ -729,21 +731,21 @@
     }
     
     .award-year {
-      font-size: 10px;
+      font-size: 13px;
       color: #888888;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
       letter-spacing: 0.1em;
     }
     
     .award-title {
-      font-size: 14px;
+      font-size: 18px;
       font-weight: 700;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
       color: #1a1a1a;
     }
     
     .award-org {
-      font-size: 12px;
+      font-size: 15px;
       color: #666666;
     }
     
@@ -1632,66 +1634,37 @@
         projectsTitle.classList.remove('fade-out');
       }
       
-      // Phase 2: First project appears and scrolls up (0.15 - 0.35)
-      if (scrollProgress >= 0.15 && scrollProgress < 0.35) {
-        const phase2Progress = (scrollProgress - 0.15) / 0.2;
+      // Projects scroll together with fixed spacing (0.15 - 0.92)
+      if (scrollProgress >= 0.15 && scrollProgress < 0.92) {
+        // Calculate continuous scroll offset
+        const scrollOffset = (scrollProgress - 0.15) / (0.92 - 0.15) * 300; // 0 to 300vh total scroll
+        
+        // Project 1: starts at 0vh, scrolls up
         project1.style.opacity = 1;
-        project1.style.transform = `translateY(${(1 - phase2Progress) * 100}vh)`;
-        project1.style.pointerEvents = 'auto';
+        project1.style.transform = `translateY(${-scrollOffset}vh)`;
+        project1.style.pointerEvents = (scrollOffset < 80) ? 'auto' : 'none';
+        
+        // Project 2: starts at 100vh (fixed gap from project 1), scrolls up
         project2.style.opacity = 1;
-        project2.style.transform = 'translateY(200vh)';
-        project2.style.pointerEvents = 'none';
+        project2.style.transform = `translateY(${100 - scrollOffset}vh)`;
+        project2.style.pointerEvents = (scrollOffset >= 20 && scrollOffset < 180) ? 'auto' : 'none';
+        
+        // Project 3: starts at 200vh (fixed gap from project 2), scrolls up
         project3.style.opacity = 1;
-        project3.style.transform = 'translateY(400vh)';
-        project3.style.pointerEvents = 'none';
-      }
-      
-      // Phase 3: First project continues up, second project comes in (0.35 - 0.55)
-      if (scrollProgress >= 0.35 && scrollProgress < 0.55) {
-        const phase3Progress = (scrollProgress - 0.35) / 0.2;
-        project1.style.opacity = 1;
-        project1.style.transform = `translateY(${-phase3Progress * 100}vh)`;
-        project1.style.pointerEvents = phase3Progress < 0.7 ? 'auto' : 'none';
-        project2.style.opacity = 1;
-        project2.style.transform = `translateY(${(1 - phase3Progress) * 100}vh)`;
-        project2.style.pointerEvents = 'auto';
-        project3.style.opacity = 1;
-        project3.style.transform = 'translateY(200vh)';
-        project3.style.pointerEvents = 'none';
-      }
-      
-      // Phase 4: Second project continues up, third project comes in (0.55 - 0.75)
-      if (scrollProgress >= 0.55 && scrollProgress < 0.75) {
-        const phase4Progress = (scrollProgress - 0.55) / 0.2;
-        project1.style.opacity = 1;
-        project1.style.transform = 'translateY(-100vh)';
-        project1.style.pointerEvents = 'none';
-        project2.style.opacity = 1;
-        project2.style.transform = `translateY(${-phase4Progress * 100}vh)`;
-        project2.style.pointerEvents = phase4Progress < 0.7 ? 'auto' : 'none';
-        project3.style.opacity = 1;
-        project3.style.transform = `translateY(${(1 - phase4Progress) * 100}vh)`;
-        project3.style.pointerEvents = 'auto';
-      }
-      
-      // Phase 5: Third project continues up (0.75 - 0.92)
-      if (scrollProgress >= 0.75 && scrollProgress < 0.92) {
-        const phase5Progress = (scrollProgress - 0.75) / 0.17;
-        project1.style.opacity = 1;
-        project1.style.transform = 'translateY(-100vh)';
-        project1.style.pointerEvents = 'none';
-        project2.style.opacity = 1;
-        project2.style.transform = 'translateY(-100vh)';
-        project2.style.pointerEvents = 'none';
-        project3.style.opacity = 1;
-        project3.style.transform = `translateY(${-phase5Progress * 100}vh)`;
-        project3.style.pointerEvents = 'auto';
+        project3.style.transform = `translateY(${200 - scrollOffset}vh)`;
+        project3.style.pointerEvents = (scrollOffset >= 120) ? 'auto' : 'none';
       }
       
       // Phase 6: Projects title fades out (0.92 - 1)
       if (scrollProgress >= 0.92) {
         projectsTitle.classList.add('fade-out');
         projectsTitle.classList.remove('visible');
+        project1.style.opacity = 1;
+        project1.style.transform = 'translateY(-300vh)';
+        project1.style.pointerEvents = 'none';
+        project2.style.opacity = 1;
+        project2.style.transform = 'translateY(-200vh)';
+        project2.style.pointerEvents = 'none';
         project3.style.opacity = 1;
         project3.style.transform = 'translateY(-100vh)';
         project3.style.pointerEvents = 'none';

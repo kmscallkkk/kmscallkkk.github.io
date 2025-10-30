@@ -435,6 +435,11 @@
       position: absolute;
       right: 10%;
       transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+      pointer-events: auto;
+    }
+    
+    .project-single[style*="opacity: 0"] {
+      pointer-events: none;
     }
     
     .project-image {
@@ -982,7 +987,7 @@
     <div class="hero-content">
       <h1>Embedded Software Developer<br><span class="name">Jang Dongchul</span></h1>
       <div class="tagline">
-        who believes true craft begins with a single line of code
+        From hardware control To user interface
       </div>
     </div>
     <div class="scroll-indicator">SCROLL</div>
@@ -992,7 +997,7 @@
   <div class="hero-fixed">
     <h1>Embedded Software Developer<br><span class="name">Jang Dongchul</span></h1>
     <div class="tagline">
-      who believes true craft begins with a single line of code
+      From hardware control To user interface
     </div>
   </div>
 
@@ -1006,10 +1011,16 @@
         <div class="email">kmscallkkk@ajou.ac.kr</div>
       </div>
       <p data-aos="fade-right" data-aos-duration="700" data-aos-delay="100">
-        Double majoring in Digital Media and Software at Ajou University, I have built extensive knowledge in embedded systems and computer vision.
+        From hardware control to user interfaces, I am an embedded software developer who designs and integrates entire systems end-to-end.
       </p>
       <p data-aos="fade-right" data-aos-duration="700" data-aos-delay="200">
-        Completed Hanwha Vision's Edge Device Academy (2nd cohort) with Outstanding Trainee Award and Best Final Project Award. Experienced in Qt development with C/C++ and Linux kernel module device driver development. Proficient in image processing and computer vision projects using OpenCV.
+        With experience spanning Linux kernel drivers, communication systems, image processing, and Qt-based UIs, I approach development by tracing issues across layers and resolving them with structural clarity.
+      </p>
+      <p data-aos="fade-right" data-aos-duration="700" data-aos-delay="300">
+        During the Hanwha Vision's Edge Device Academy, I implemented a full-stack smart factory control system, where I learned the value of real-time control and reliable communication architectures.
+      </p>
+      <p data-aos="fade-right" data-aos-duration="700" data-aos-delay="400">
+        My goal is not just to make things work — but to make them work right.
       </p>
     </div>
   </section>
@@ -1625,12 +1636,14 @@
         const phase2Progress = (scrollProgress - 0.15) / 0.05;
         project1.style.opacity = phase2Progress;
         project1.style.transform = `translateY(${500 - phase2Progress * 500}px)`;
+        project1.style.pointerEvents = phase2Progress > 0.3 ? 'auto' : 'none';
       }
       
       // Phase 2.5: First project visible (0.13 - 0.30)
       if (scrollProgress >= 0.20 && scrollProgress < 0.30) {
         project1.style.opacity = 1;
         project1.style.transform = 'translateY(0)';
+        project1.style.pointerEvents = 'auto';
       }
       
       // Phase 3: First project fade out - 빠른 페이드 아웃 (0.30 - 0.35)
@@ -1638,53 +1651,66 @@
         const phase3Progress = (scrollProgress - 0.30) / 0.05;
         project1.style.opacity = 1 - phase3Progress;
         project1.style.transform = `translateY(${-300 * phase3Progress}px)`;
+        project1.style.pointerEvents = (1 - phase3Progress) > 0.3 ? 'auto' : 'none';
       }
       
       // Phase 4: Show second project - 빠른 페이드 인 (0.38 - 0.43)
       if (scrollProgress >= 0.38 && scrollProgress < 0.43) {
         project1.style.opacity = 0;
         project1.style.transform = 'translateY(-300px)';
+        project1.style.pointerEvents = 'none';
         const phase4Progress = (scrollProgress - 0.38) / 0.05;
         project2.style.opacity = phase4Progress;
         project2.style.transform = `translateY(${500 - phase4Progress * 500}px)`;
+        project2.style.pointerEvents = phase4Progress > 0.3 ? 'auto' : 'none';
       }
       
       // Phase 4.5: Second project visible (0.43 - 0.58)
       if (scrollProgress >= 0.43 && scrollProgress < 0.58) {
         project1.style.opacity = 0;
         project1.style.transform = 'translateY(-300px)';
+        project1.style.pointerEvents = 'none';
         project2.style.opacity = 1;
         project2.style.transform = 'translateY(0)';
+        project2.style.pointerEvents = 'auto';
       }
       
       // Phase 5: Second project fade out - 빠른 페이드 아웃 (0.58 - 0.63)
       if (scrollProgress >= 0.58 && scrollProgress < 0.63) {
         project1.style.opacity = 0;
         project1.style.transform = 'translateY(-300px)';
+        project1.style.pointerEvents = 'none';
         const phase5Progress = (scrollProgress - 0.58) / 0.05;
         project2.style.opacity = 1 - phase5Progress;
         project2.style.transform = `translateY(${-300 * phase5Progress}px)`;
+        project2.style.pointerEvents = (1 - phase5Progress) > 0.3 ? 'auto' : 'none';
       }
       
       // Phase 6: Show third project - 빠른 페이드 인 (0.66 - 0.71)
       if (scrollProgress >= 0.66 && scrollProgress < 0.71) {
         project1.style.opacity = 0;
         project1.style.transform = 'translateY(-300px)';
+        project1.style.pointerEvents = 'none';
         project2.style.opacity = 0;
         project2.style.transform = 'translateY(-300px)';
+        project2.style.pointerEvents = 'none';
         const phase6Progress = (scrollProgress - 0.66) / 0.05;
         project3.style.opacity = phase6Progress;
         project3.style.transform = `translateY(${500 - phase6Progress * 500}px)`;
+        project3.style.pointerEvents = phase6Progress > 0.3 ? 'auto' : 'none';
       }
       
       // Phase 6.5: Third project visible (0.71 - 0.86)
       if (scrollProgress >= 0.71 && scrollProgress < 0.86) {
         project1.style.opacity = 0;
         project1.style.transform = 'translateY(-300px)';
+        project1.style.pointerEvents = 'none';
         project2.style.opacity = 0;
         project2.style.transform = 'translateY(-300px)';
+        project2.style.pointerEvents = 'none';
         project3.style.opacity = 1;
         project3.style.transform = 'translateY(0)';
+        project3.style.pointerEvents = 'auto';
       }
       
       // Phase 7: Third project fade out - 빠른 페이드 아웃 (0.86 - 0.91)
@@ -1692,6 +1718,7 @@
         const phase7Progress = (scrollProgress - 0.86) / 0.05;
         project3.style.opacity = 1 - phase7Progress;
         project3.style.transform = `translateY(${-300 * phase7Progress}px)`;
+        project3.style.pointerEvents = (1 - phase7Progress) > 0.3 ? 'auto' : 'none';
       }
       
       // Phase 8: Projects title fades out (0.92 - 1)
@@ -1706,10 +1733,13 @@
       if (scrollProgress < 0.15) {
         project1.style.opacity = 0;
         project1.style.transform = 'translateY(500px)';
+        project1.style.pointerEvents = 'none';
         project2.style.opacity = 0;
         project2.style.transform = 'translateY(500px)';
+        project2.style.pointerEvents = 'none';
         project3.style.opacity = 0;
         project3.style.transform = 'translateY(500px)';
+        project3.style.pointerEvents = 'none';
       }
     }, { passive: true });
     

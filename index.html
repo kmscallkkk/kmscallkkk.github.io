@@ -1080,21 +1080,21 @@
   <section class="projects" id="projects">
     <div class="projects-content">
       <h2 class="section-title">Projects</h2>
-      <div class="project-single" id="project1" style="opacity: 0; transform: translateY(500px);">
+      <div class="project-single" id="project1" style="opacity: 1; transform: translateY(100vh);">
         <img src="project1.png" alt="Smart Factory Conveyor Monitoring" class="project-image">
         <h3>Smart Factory Conveyor Monitoring</h3>
         <div class="project-meta">Raspberry Pi · OpenCV · GStreamer</div>
         <p>Optical Flow-based belt speed measurement system. Implemented RTSP real-time streaming and MQTT alert system.</p>
         <button class="project-detail-btn" onclick="openProjectModal(1)">Learn More →</button>
       </div>
-      <div class="project-single" id="project2" style="opacity: 0; transform: translateY(500px);">
+      <div class="project-single" id="project2" style="opacity: 1; transform: translateY(200vh);">
         <img src="project3.png" alt="Infant Monitoring System" class="project-image">
         <h3>Infant Monitoring System</h3>
         <div class="project-meta">ESP32 · Sensor Fusion · BLE</div>
         <p>Real-time monitoring system utilizing temperature/humidity, cry detection, and motion sensors.</p>
         <button class="project-detail-btn" onclick="openProjectModal(2)">Learn More →</button>
       </div>
-      <div class="project-single" id="project3" style="opacity: 0; transform: translateY(500px);">
+      <div class="project-single" id="project3" style="opacity: 1; transform: translateY(300vh);">
         <img src="project2.png" alt="Kernel Module Motor Control" class="project-image">
         <h3>Kernel Module Motor Control</h3>
         <div class="project-meta">Linux Driver · GPIO · Timer</div>
@@ -1631,114 +1631,83 @@
         projectsTitle.classList.remove('fade-out');
       }
       
-      // Phase 2: Show first project - 빠른 페이드 인 (0.15 - 0.20)
-      if (scrollProgress >= 0.15 && scrollProgress < 0.20) {
-        const phase2Progress = (scrollProgress - 0.15) / 0.05;
-        project1.style.opacity = phase2Progress;
-        project1.style.transform = `translateY(${500 - phase2Progress * 500}px)`;
-        project1.style.pointerEvents = phase2Progress > 0.3 ? 'auto' : 'none';
-      }
-      
-      // Phase 2.5: First project visible (0.13 - 0.30)
-      if (scrollProgress >= 0.20 && scrollProgress < 0.30) {
+      // Phase 2: First project appears and scrolls up (0.15 - 0.35)
+      if (scrollProgress >= 0.15 && scrollProgress < 0.35) {
+        const phase2Progress = (scrollProgress - 0.15) / 0.2;
         project1.style.opacity = 1;
-        project1.style.transform = 'translateY(0)';
+        project1.style.transform = `translateY(${(1 - phase2Progress) * 100}vh)`;
         project1.style.pointerEvents = 'auto';
-      }
-      
-      // Phase 3: First project fade out - 빠른 페이드 아웃 (0.30 - 0.35)
-      if (scrollProgress >= 0.30 && scrollProgress < 0.35) {
-        const phase3Progress = (scrollProgress - 0.30) / 0.05;
-        project1.style.opacity = 1 - phase3Progress;
-        project1.style.transform = `translateY(${-300 * phase3Progress}px)`;
-        project1.style.pointerEvents = (1 - phase3Progress) > 0.3 ? 'auto' : 'none';
-      }
-      
-      // Phase 4: Show second project - 빠른 페이드 인 (0.38 - 0.43)
-      if (scrollProgress >= 0.38 && scrollProgress < 0.43) {
-        project1.style.opacity = 0;
-        project1.style.transform = 'translateY(-300px)';
-        project1.style.pointerEvents = 'none';
-        const phase4Progress = (scrollProgress - 0.38) / 0.05;
-        project2.style.opacity = phase4Progress;
-        project2.style.transform = `translateY(${500 - phase4Progress * 500}px)`;
-        project2.style.pointerEvents = phase4Progress > 0.3 ? 'auto' : 'none';
-      }
-      
-      // Phase 4.5: Second project visible (0.43 - 0.58)
-      if (scrollProgress >= 0.43 && scrollProgress < 0.58) {
-        project1.style.opacity = 0;
-        project1.style.transform = 'translateY(-300px)';
-        project1.style.pointerEvents = 'none';
         project2.style.opacity = 1;
-        project2.style.transform = 'translateY(0)';
-        project2.style.pointerEvents = 'auto';
-      }
-      
-      // Phase 5: Second project fade out - 빠른 페이드 아웃 (0.58 - 0.63)
-      if (scrollProgress >= 0.58 && scrollProgress < 0.63) {
-        project1.style.opacity = 0;
-        project1.style.transform = 'translateY(-300px)';
-        project1.style.pointerEvents = 'none';
-        const phase5Progress = (scrollProgress - 0.58) / 0.05;
-        project2.style.opacity = 1 - phase5Progress;
-        project2.style.transform = `translateY(${-300 * phase5Progress}px)`;
-        project2.style.pointerEvents = (1 - phase5Progress) > 0.3 ? 'auto' : 'none';
-      }
-      
-      // Phase 6: Show third project - 빠른 페이드 인 (0.66 - 0.71)
-      if (scrollProgress >= 0.66 && scrollProgress < 0.71) {
-        project1.style.opacity = 0;
-        project1.style.transform = 'translateY(-300px)';
-        project1.style.pointerEvents = 'none';
-        project2.style.opacity = 0;
-        project2.style.transform = 'translateY(-300px)';
-        project2.style.pointerEvents = 'none';
-        const phase6Progress = (scrollProgress - 0.66) / 0.05;
-        project3.style.opacity = phase6Progress;
-        project3.style.transform = `translateY(${500 - phase6Progress * 500}px)`;
-        project3.style.pointerEvents = phase6Progress > 0.3 ? 'auto' : 'none';
-      }
-      
-      // Phase 6.5: Third project visible (0.71 - 0.86)
-      if (scrollProgress >= 0.71 && scrollProgress < 0.86) {
-        project1.style.opacity = 0;
-        project1.style.transform = 'translateY(-300px)';
-        project1.style.pointerEvents = 'none';
-        project2.style.opacity = 0;
-        project2.style.transform = 'translateY(-300px)';
+        project2.style.transform = 'translateY(200vh)';
         project2.style.pointerEvents = 'none';
         project3.style.opacity = 1;
-        project3.style.transform = 'translateY(0)';
+        project3.style.transform = 'translateY(400vh)';
+        project3.style.pointerEvents = 'none';
+      }
+      
+      // Phase 3: First project continues up, second project comes in (0.35 - 0.55)
+      if (scrollProgress >= 0.35 && scrollProgress < 0.55) {
+        const phase3Progress = (scrollProgress - 0.35) / 0.2;
+        project1.style.opacity = 1;
+        project1.style.transform = `translateY(${-phase3Progress * 100}vh)`;
+        project1.style.pointerEvents = phase3Progress < 0.7 ? 'auto' : 'none';
+        project2.style.opacity = 1;
+        project2.style.transform = `translateY(${(1 - phase3Progress) * 100}vh)`;
+        project2.style.pointerEvents = 'auto';
+        project3.style.opacity = 1;
+        project3.style.transform = 'translateY(200vh)';
+        project3.style.pointerEvents = 'none';
+      }
+      
+      // Phase 4: Second project continues up, third project comes in (0.55 - 0.75)
+      if (scrollProgress >= 0.55 && scrollProgress < 0.75) {
+        const phase4Progress = (scrollProgress - 0.55) / 0.2;
+        project1.style.opacity = 1;
+        project1.style.transform = 'translateY(-100vh)';
+        project1.style.pointerEvents = 'none';
+        project2.style.opacity = 1;
+        project2.style.transform = `translateY(${-phase4Progress * 100}vh)`;
+        project2.style.pointerEvents = phase4Progress < 0.7 ? 'auto' : 'none';
+        project3.style.opacity = 1;
+        project3.style.transform = `translateY(${(1 - phase4Progress) * 100}vh)`;
         project3.style.pointerEvents = 'auto';
       }
       
-      // Phase 7: Third project fade out - 빠른 페이드 아웃 (0.86 - 0.91)
-      if (scrollProgress >= 0.86 && scrollProgress < 0.91) {
-        const phase7Progress = (scrollProgress - 0.86) / 0.05;
-        project3.style.opacity = 1 - phase7Progress;
-        project3.style.transform = `translateY(${-300 * phase7Progress}px)`;
-        project3.style.pointerEvents = (1 - phase7Progress) > 0.3 ? 'auto' : 'none';
+      // Phase 5: Third project continues up (0.75 - 0.92)
+      if (scrollProgress >= 0.75 && scrollProgress < 0.92) {
+        const phase5Progress = (scrollProgress - 0.75) / 0.17;
+        project1.style.opacity = 1;
+        project1.style.transform = 'translateY(-100vh)';
+        project1.style.pointerEvents = 'none';
+        project2.style.opacity = 1;
+        project2.style.transform = 'translateY(-100vh)';
+        project2.style.pointerEvents = 'none';
+        project3.style.opacity = 1;
+        project3.style.transform = `translateY(${-phase5Progress * 100}vh)`;
+        project3.style.pointerEvents = 'auto';
       }
       
-      // Phase 8: Projects title fades out (0.92 - 1)
+      // Phase 6: Projects title fades out (0.92 - 1)
       if (scrollProgress >= 0.92) {
         projectsTitle.classList.add('fade-out');
         projectsTitle.classList.remove('visible');
+        project3.style.opacity = 1;
+        project3.style.transform = 'translateY(-100vh)';
+        project3.style.pointerEvents = 'none';
       } else if (scrollProgress < 0.92) {
         projectsTitle.classList.remove('fade-out');
       }
       
       // Before animation starts
       if (scrollProgress < 0.15) {
-        project1.style.opacity = 0;
-        project1.style.transform = 'translateY(500px)';
+        project1.style.opacity = 1;
+        project1.style.transform = 'translateY(100vh)';
         project1.style.pointerEvents = 'none';
-        project2.style.opacity = 0;
-        project2.style.transform = 'translateY(500px)';
+        project2.style.opacity = 1;
+        project2.style.transform = 'translateY(200vh)';
         project2.style.pointerEvents = 'none';
-        project3.style.opacity = 0;
-        project3.style.transform = 'translateY(500px)';
+        project3.style.opacity = 1;
+        project3.style.transform = 'translateY(300vh)';
         project3.style.pointerEvents = 'none';
       }
     }, { passive: true });

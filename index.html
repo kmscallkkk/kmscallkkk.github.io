@@ -451,6 +451,12 @@
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
     
+    #project1 .project-image {
+      height: 400px;
+      object-fit: cover;
+      object-position: center;
+    }
+    
     .project-single h3 {
       font-size: 36px;
       font-weight: 700;
@@ -1090,7 +1096,7 @@
         <button class="project-detail-btn" onclick="openProjectModal(1)">MORE INFO ></button>
       </div>
       <div class="project-single" id="project2" style="opacity: 1; transform: translateY(200vh);">
-        <img src="project2.jpg" alt="Infant Monitoring System" class="project-image">
+        <img src="project2.jpeg" alt="Infant Monitoring System" class="project-image">
         <h3>Infant Monitoring System</h3>
         <div class="project-meta">Raspberry Pi · Multithreading · TCP Communication · Sensor Fusion · Real-time Monitoring</div>
         <p>Developed a real-time infant monitoring system that tracks temperature, heart rate, and environmental conditions. Implemented a multithreaded architecture with TCP communication for parallel sensor processing and instant alert transmission. Integrated a deep learning–based cry detection module that triggers motor vibration and white noise to calm the infant.</p>

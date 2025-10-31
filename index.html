@@ -1496,7 +1496,7 @@
           </div>
         `;
       } else if (projectNum === 3) {
-        // Infant Monitoring System
+        // GPS Satellite Navigation Algorithm Portfolio
         videoContainer.style.display = 'none';
         youtubeContainer.style.display = 'block';
         youtube1.parentElement.style.display = 'block';
@@ -1504,40 +1504,41 @@
         document.querySelector('#modalYoutubeContainer .youtube-wrapper:first-child .youtube-title').textContent = 'Project Demo';
         youtube1.src = 'https://www.youtube.com/embed/qaJwzJPC8yc';
         
-        modalTitle.textContent = 'Infant Monitoring System';
-        modalSubtitle.textContent = 'IoT-based real-time infant care monitoring solution';
+        modalTitle.textContent = 'GPS Satellite Navigation Algorithm Portfolio';
+        modalSubtitle.textContent = 'Ground-up implementation of GPS/GNSS positioning algorithms';
         modalTechTags.innerHTML = `
-          <span class="modal-tech-tag">ESP32</span>
-          <span class="modal-tech-tag">BLE</span>
-          <span class="modal-tech-tag">Sensor Fusion</span>
-          <span class="modal-tech-tag">IoT</span>
+          <span class="modal-tech-tag">Python</span>
+          <span class="modal-tech-tag">Kalman Filter</span>
+          <span class="modal-tech-tag">Least Squares</span>
+          <span class="modal-tech-tag">Satellite Positioning</span>
+          <span class="modal-tech-tag">Visualization</span>
         `;
         
         modalBody.innerHTML = `
           <div class="modal-section">
             <h3>Overview</h3>
-            <ul>
-              <li>Developed comprehensive infant monitoring system utilizing multiple sensors</li>
-              <li>Implemented real-time data collection and alert mechanisms</li>
-            </ul>
+            <p>Developed GPS/GNSS satellite navigation algorithms from the ground up, implementing both Single Point Positioning (SPP) and Kalman Filter–based tracking. Simulated realistic satellite orbits and pseudorange measurements to evaluate positioning accuracy and numerical stability. Validated results through visualization modules comparing SPP and Kalman Filter performance, achieving up to 50% improvement in accuracy.</p>
           </div>
           
           <div class="modal-section">
             <h3>Key Features</h3>
             <ul>
-              <li>Temperature and humidity monitoring for optimal environment</li>
-              <li>Cry detection using sound sensor analysis</li>
-              <li>Motion detection for infant safety monitoring</li>
-              <li>Bluetooth Low Energy (BLE) for wireless data transmission</li>
+              <li>Single Point Positioning (SPP) algorithm using nonlinear least squares</li>
+              <li>Kalman Filter for dynamic state estimation and noise reduction</li>
+              <li>Satellite orbit and clock error correction based on Keplerian elements</li>
+              <li>DOP (Dilution of Precision) and statistical error analysis</li>
+              <li>Comprehensive visualization: 3D trajectory, error plots, and sky view</li>
             </ul>
           </div>
           
           <div class="modal-section">
             <h3>Technical Highlights</h3>
             <ul>
-              <li>Integrated multiple sensor inputs with ESP32 microcontroller</li>
-              <li>Implemented efficient power management for continuous operation</li>
-              <li>Designed real-time alert system for immediate caregiver notification</li>
+              <li>Implemented modular architecture across seven Python modules (2,300+ LOC)</li>
+              <li>Developed adaptive Kalman Filter with outlier rejection using Mahalanobis distance</li>
+              <li>Ensured numerical stability with pseudo-inverse and convergence thresholds</li>
+              <li>Designed full simulation environment for both static and dynamic receiver scenarios</li>
+              <li>Achieved modular extensibility for integration with future RINEX or IMU datasets</li>
             </ul>
           </div>
         `;

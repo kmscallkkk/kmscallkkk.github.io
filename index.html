@@ -1103,14 +1103,14 @@
         <p>Developed a Raspberry Pi–based Smart Factory Control System. Integrated Linux kernel drivers for servo and stepper motor control, MQTT-TLS communication, Optical Flow–based image analysis, and a Qt dashboard UI to achieve real-time equipment control and monitoring.</p>
         <button class="project-detail-btn" onclick="openProjectModal(1)">MORE INFO ></button>
       </div>
-      <div class="project-single" id="project2" style="opacity: 1; transform: translateY(250vh);">
+      <div class="project-single" id="project2" style="opacity: 1; transform: translateY(190vh);">
         <img src="project2.jpg" alt="Infant Monitoring System" class="project-image">
         <h3>Infant Monitoring System</h3>
         <div class="project-meta">Raspberry Pi · Multithreading · TCP Communication · Sensor Fusion · Real-time Monitoring</div>
         <p>Developed a real-time infant monitoring system that tracks temperature, heart rate, and environmental conditions. Implemented a multithreaded architecture with TCP communication for parallel sensor processing and instant alert transmission. Integrated a deep learning–based cry detection module that triggers motor vibration and white noise to calm the infant.</p>
         <button class="project-detail-btn" onclick="openProjectModal(2)">MORE INFO ></button>
       </div>
-      <div class="project-single" id="project3" style="opacity: 1; transform: translateY(400vh);">
+      <div class="project-single" id="project3" style="opacity: 1; transform: translateY(280vh);">
         <img src="project2.png" alt="Kernel Module Motor Control" class="project-image">
         <h3>Kernel Module Motor Control</h3>
         <div class="project-meta">Linux Driver · GPIO · Timer</div>
@@ -1650,22 +1650,22 @@
       // Projects scroll together with fixed spacing (0.15 - 0.92)
       if (scrollProgress >= 0.15 && scrollProgress < 0.92) {
         // Calculate continuous scroll offset
-        const scrollOffset = (scrollProgress - 0.15) / (0.92 - 0.15) * 450; // 0 to 450vh total scroll
+        const scrollOffset = (scrollProgress - 0.15) / (0.92 - 0.15) * 270; // 0 to 270vh total scroll
         
         // Project 1: starts at 0vh, scrolls up
         project1.style.opacity = 1;
         project1.style.transform = `translateY(${-scrollOffset}vh)`;
-        project1.style.pointerEvents = (scrollOffset < 120) ? 'auto' : 'none';
+        project1.style.pointerEvents = (scrollOffset < 70) ? 'auto' : 'none';
         
-        // Project 2: starts at 150vh (fixed gap from project 1), scrolls up
+        // Project 2: starts at 90vh (fixed gap from project 1), scrolls up
         project2.style.opacity = 1;
-        project2.style.transform = `translateY(${150 - scrollOffset}vh)`;
-        project2.style.pointerEvents = (scrollOffset >= 30 && scrollOffset < 270) ? 'auto' : 'none';
+        project2.style.transform = `translateY(${90 - scrollOffset}vh)`;
+        project2.style.pointerEvents = (scrollOffset >= 20 && scrollOffset < 160) ? 'auto' : 'none';
         
-        // Project 3: starts at 300vh (fixed gap from project 2), scrolls up
+        // Project 3: starts at 180vh (fixed gap from project 2), scrolls up
         project3.style.opacity = 1;
-        project3.style.transform = `translateY(${300 - scrollOffset}vh)`;
-        project3.style.pointerEvents = (scrollOffset >= 180) ? 'auto' : 'none';
+        project3.style.transform = `translateY(${180 - scrollOffset}vh)`;
+        project3.style.pointerEvents = (scrollOffset >= 110) ? 'auto' : 'none';
       }
       
       // Phase 6: Projects title fades out (0.92 - 1)
@@ -1673,13 +1673,13 @@
         projectsTitle.classList.add('fade-out');
         projectsTitle.classList.remove('visible');
         project1.style.opacity = 1;
-        project1.style.transform = 'translateY(-450vh)';
+        project1.style.transform = 'translateY(-270vh)';
         project1.style.pointerEvents = 'none';
         project2.style.opacity = 1;
-        project2.style.transform = 'translateY(-300vh)';
+        project2.style.transform = 'translateY(-180vh)';
         project2.style.pointerEvents = 'none';
         project3.style.opacity = 1;
-        project3.style.transform = 'translateY(-150vh)';
+        project3.style.transform = 'translateY(-90vh)';
         project3.style.pointerEvents = 'none';
       } else if (scrollProgress < 0.92) {
         projectsTitle.classList.remove('fade-out');
@@ -1691,10 +1691,10 @@
         project1.style.transform = 'translateY(100vh)';
         project1.style.pointerEvents = 'none';
         project2.style.opacity = 1;
-        project2.style.transform = 'translateY(250vh)';
+        project2.style.transform = 'translateY(190vh)';
         project2.style.pointerEvents = 'none';
         project3.style.opacity = 1;
-        project3.style.transform = 'translateY(400vh)';
+        project3.style.transform = 'translateY(280vh)';
         project3.style.pointerEvents = 'none';
       }
     }, { passive: true });

@@ -1373,39 +1373,38 @@
         modalBody.innerHTML = `
           <div class="modal-section">
             <h3>Overview</h3>
-            <ul>
-              <li>Developed an automated monitoring system for conveyor belt operations in smart factory environments</li>
-              <li>Implemented computer vision-based speed measurement using Optical Flow algorithms</li>
-              <li>Achieved real-time processing and alert capabilities for production line efficiency</li>
-            </ul>
+            <p>Developed a Raspberry Pi–based Smart Factory Control System integrating hardware control, computer vision, and IoT communication. Implemented Linux kernel drivers for servo and stepper motors, Optical Flow–based vision modules, and a Qt dashboard for real-time monitoring and control. Designed an end-to-end architecture covering device drivers, communication protocols, vision analysis, and user interface integration.</p>
           </div>
           
           <div class="modal-section">
             <h3>Key Features</h3>
             <ul>
-              <li>Real-time belt speed measurement using Lucas-Kanade Optical Flow method</li>
-              <li>RTSP streaming for remote monitoring and multi-client support</li>
-              <li>MQTT-based alert system for immediate notification of anomalies</li>
-              <li>Qt-based GUI for intuitive control and visualization</li>
+              <li>Real-time control of 7 motors (5 servo + 2 stepper) via custom Linux kernel drivers</li>
+              <li>MQTT-TLS communication for secure, bidirectional device control and data logging</li>
+              <li>Optical Flow and Lab-color analysis for conveyor-speed measurement and product quality classification</li>
+              <li>Qt/C++ dashboard providing synchronized visualization of machine status and video streams</li>
+              <li>Modular architecture enabling independent updates to driver, communication, and vision layers</li>
             </ul>
           </div>
           
           <div class="modal-section">
             <h3>Technical Highlights</h3>
             <ul>
-              <li>Optimized OpenCV algorithms for Raspberry Pi performance constraints</li>
-              <li>Implemented GStreamer pipeline for low-latency video streaming</li>
-              <li>Designed robust error handling and recovery mechanisms</li>
-              <li>Integrated MQTT protocol for IoT connectivity and scalability</li>
+              <li>Implemented high-resolution PWM and kernel threads for deterministic timing</li>
+              <li>Designed character device interfaces (/dev/...) for stable user-kernel communication</li>
+              <li>Optimized OpenCV and GStreamer pipelines for real-time RTSP streaming on Raspberry Pi</li>
+              <li>Built error-recovery modes for gradual motor deceleration and process safety</li>
+              <li>Integrated MongoDB logging and JSON message structure for data synchronization</li>
             </ul>
           </div>
           
           <div class="modal-section">
             <h3>Results & Achievements</h3>
             <ul>
-              <li>Achieved accurate speed measurement within ±2% error margin</li>
-              <li>Reduced manual monitoring requirements by 80%</li>
-              <li>Awarded Best Final Project at Hanwha Vision's Edge Device Academy</li>
+              <li>Achieved ±1 ms PWM precision and ±2 cm/s conveyor speed stability</li>
+              <li>Reduced manual inspection effort by 80% through automated vision analysis</li>
+              <li>Established a fully operational 4-node real-time system (robot arm, feeder, 2 conveyors)</li>
+              <li>Awarded Best Final Project (1st Place) at Hanwha Vision Edge Device Academy</li>
             </ul>
           </div>
         `;

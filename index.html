@@ -1501,13 +1501,9 @@
           </div>
         `;
       } else if (projectNum === 3) {
-        // GPS Satellite Navigation Algorithm Portfolio
+        // GPS Satellite Navigation Algorithm
         videoContainer.style.display = 'none';
-        youtubeContainer.style.display = 'block';
-        youtube1.parentElement.style.display = 'block';
-        youtube2.parentElement.style.display = 'none';
-        document.querySelector('#modalYoutubeContainer .youtube-wrapper:first-child .youtube-title').textContent = 'Project Demo';
-        youtube1.src = 'https://www.youtube.com/embed/qaJwzJPC8yc';
+        youtubeContainer.style.display = 'none';
         
         modalTitle.textContent = 'GPS Satellite Navigation Algorithm';
         modalSubtitle.textContent = 'Ground-up implementation of GPS/GNSS positioning algorithms';
@@ -1545,6 +1541,28 @@
               <li>Designed full simulation environment for both static and dynamic receiver scenarios</li>
               <li>Achieved modular extensibility for integration with future RINEX or IMU datasets</li>
             </ul>
+          </div>
+          
+          <div class="modal-section">
+            <h3>Simulation Results</h3>
+            
+            <div style="margin-bottom: 40px;">
+              <img src="dop_values.png" style="width: 100%; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);" alt="DOP Values Over Time">
+              <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #2C3544;">DOP Values Over Time (Precision Metrics Analysis)</h4>
+              <p style="font-size: 15px; line-height: 1.8; color: #555555;">Visualized GDOP, PDOP, HDOP, VDOP, and TDOP values based on satellite geometry and spatial distribution. Simulated DOP variations to numerically evaluate the reliability and stability of position estimation.</p>
+            </div>
+            
+            <div style="margin-bottom: 40px;">
+              <img src="sky_plot.png" style="width: 100%; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);" alt="Satellite Sky Plot">
+              <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #2C3544;">Satellite Sky Plot (Satellite Distribution Visualization)</h4>
+              <p style="font-size: 15px; line-height: 1.8; color: #555555;">Displayed azimuth and elevation angles of eight satellites in a polar coordinate system from the receiver's perspective. Used to analyze how satellite geometry affects DOP values and overall positioning accuracy.</p>
+            </div>
+            
+            <div style="margin-bottom: 0;">
+              <img src="spp_results.png" style="width: 100%; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);" alt="GPS Single Point Positioning Results">
+              <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #2C3544;">GPS Single Point Positioning Results (SPP Performance Evaluation)</h4>
+              <p style="font-size: 15px; line-height: 1.8; color: #555555;">Visualized the difference between estimated and true receiver positions in 3D using the Single Point Positioning (SPP) algorithm. Verified positioning accuracy and convergence through error distribution, time-series analysis, and histograms.</p>
+            </div>
           </div>
         `;
       }
